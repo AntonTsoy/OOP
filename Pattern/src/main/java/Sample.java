@@ -1,4 +1,3 @@
-
 /**
  * Sample class to simulate 2.1 task functionality
  */
