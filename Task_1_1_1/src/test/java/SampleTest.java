@@ -1,4 +1,3 @@
-package ru.nsu.shadrina;
 
 import org.junit.jupiter.api.Test;
 

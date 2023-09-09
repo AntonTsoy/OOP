@@ -3,7 +3,6 @@ plugins {
     id 'jacoco'
 }
 
-group = 'ru.nsu.shadrina'
 version = '1.0-SNAPSHOT'
 
 repositories {
