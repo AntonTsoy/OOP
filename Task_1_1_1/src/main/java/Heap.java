@@ -56,7 +56,7 @@ public class Heap {
      * @param arrayLength 
      * @param curNodeId 
     */
-    private void siftDown(int arrayLength, int curNodeId){
+    public void siftDown(int arrayLength, int curNodeId){
        
         int largestNodeId = findNodeForSiftUp(arrayLength, curNodeId);
 
