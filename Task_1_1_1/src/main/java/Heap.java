@@ -12,13 +12,6 @@ public class Heap {
     /**
      * 
      */
-    public static void printHelloWorld() {
-        System.out.println("Hello world!");
-    }
-
-    /**
-     * 
-     */
     private boolean isLarger(int firstId, int secondId){
         return  this.heapArray[firstId] > this.heapArray[secondId];
     }
