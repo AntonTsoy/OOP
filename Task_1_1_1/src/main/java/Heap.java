@@ -88,8 +88,8 @@ public class Heap {
         // Pulling out the elements one by one
         for (int curLength = arrayLength - 1; curLength >= 0; curLength--){
             int temp = this.heapArray[0];
-            this.heapArray[0] = this.heapArray[i];
-            this.heapArray[i] = temp;
+            this.heapArray[0] = this.heapArray[curLength];
+            this.heapArray[curLength] = temp;
             siftDown(curLength, 0);
         }
 
@@ -105,5 +105,11 @@ public class Heap {
             System.out.print(this.heapArray[i]+" ");
         }
         System.out.println();
+    }
+
+    public static void main(String[] args){
+        Heap heap = new Heap(new int[] {5, 4, 3, 2, 1});
+        heap.heapSort();
+        heap.showHeap();
     }
 }
