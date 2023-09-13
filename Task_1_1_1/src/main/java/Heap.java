@@ -8,7 +8,7 @@ public class Heap {
 
     /**
      * Class constructor.
-     * 
+     *
      * @param array source array to create heap.
      */
     public Heap(int[] array) {
