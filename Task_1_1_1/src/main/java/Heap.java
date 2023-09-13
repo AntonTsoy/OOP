@@ -10,7 +10,7 @@ public class Heap {
      * Class constructor
      * @param array source array to create heap
     */
-    public Heap(int[] array){
+    public Heap(int[] array) {
         this.heapArray = array; 
     }
 
@@ -20,7 +20,7 @@ public class Heap {
      * @param secondId 
      * @return true if fist element is greater than second 
     */
-    private boolean isLarger(int firstId, int secondId){
+    private boolean isLarger(int firstId, int secondId) {
         return this.heapArray[firstId] > this.heapArray[secondId];
     }
 
@@ -30,7 +30,7 @@ public class Heap {
      * @param curNodeId 
      * @return greatest child index
     */
-    private int findNodeForSiftUp(int arrayLength, int curNodeId){
+    private int findNodeForSiftUp(int arrayLength, int curNodeId) {
         
         // Calculating the indexes of descendants
         int leftChildId = curNodeId * 2 + 1;
@@ -39,12 +39,12 @@ public class Heap {
         int largestNodeId = curNodeId;
         
         // Comparing with left descendant
-        if(leftChildId < arrayLength && isLarger(leftChildId, largestNodeId)){
+        if(leftChildId < arrayLength && isLarger(leftChildId, largestNodeId)) {
             largestNodeId = leftChildId;
         }
         
         // Comparing with right descendant
-        if(rightChildId < arrayLength && isLarger(rightChildId, largestNodeId)){
+        if(rightChildId < arrayLength && isLarger(rightChildId, largestNodeId)) {
             largestNodeId = rightChildId;
         }
 
@@ -56,11 +56,11 @@ public class Heap {
      * @param arrayLength 
      * @param curNodeId 
     */
-    public void siftDown(int arrayLength, int curNodeId){
+    public void siftDown(int arrayLength, int curNodeId) {
        
         int largestNodeId = findNodeForSiftUp(arrayLength, curNodeId);
 
-        if(largestNodeId != curNodeId){
+        if(largestNodeId != curNodeId) {
         
             // Swap elements
             int temp = this.heapArray[curNodeId];
@@ -76,17 +76,17 @@ public class Heap {
      * Method for sorting heap
      * @return sorted array
     */
-    public int[] heapSort(){
+    public int[] heapSort() {
 
         int arrayLength = this.heapArray.length;
 
         // Sift elements
-        for (int i = arrayLength / 2 - 1; i >= 0; i--){
+        for (int i = arrayLength / 2 - 1; i >= 0; i--) {
             siftDown(arrayLength, i);
         }
 
         // Pulling out the elements one by one
-        for (int curLength = arrayLength - 1; curLength >= 0; curLength--){
+        for (int curLength = arrayLength - 1; curLength >= 0; curLength--) {
             int temp = this.heapArray[0];
             this.heapArray[0] = this.heapArray[curLength];
             this.heapArray[curLength] = temp;
@@ -99,7 +99,7 @@ public class Heap {
     /**
      * Method for heap printing
     */
-    public void showHeap(){
+    public void showHeap() {
         // Print all the elements 
         for(int i = 0; i < this.heapArray.length; i++){
             System.out.print(this.heapArray[i]+" ");
