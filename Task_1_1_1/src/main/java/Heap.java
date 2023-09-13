@@ -1,41 +1,41 @@
 /**
- * The Heap class implements an array-based heap
+ * The Heap class implements an array-based heap.
  */
 public class Heap {
 
-    // An array to store heap elements
+    // An array to store heap elements.
     int[] heapArray;
 
     /**
-     * Class constructor
+     * Class constructor.
      * 
-     * @param array source array to create heap
+     * @param array source array to create heap.
      */
     public Heap(int[] array) {
         this.heapArray = array; 
     }
 
     /** 
-     * Method for comparing heap elements
+     * Method for comparing heap elements.
      * 
-     * @param firstId 
+     * @param firstId first arg.
      * 
-     * @param secondId 
+     * @param secondId second arg.
      * 
-     * @return true if fist element is greater than second 
+     * @return true if fist element is greater than second.
      */
     private boolean isLarger(int firstId, int secondId) {
         return this.heapArray[firstId] > this.heapArray[secondId];
     }
 
     /**
-     * Method for finding the largest child
+     * Method for finding the largest child.
      * 
-     * @param arrayLength 
+     * @param arrayLength length of array.
      * 
-     * @param curNodeId 
+     * @param curNodeId current Id in array.
      * 
-     * @return greatest child index
+     * @return greatest child index.
      */
     private int findNodeForSiftUp(int arrayLength, int curNodeId) {
         
@@ -59,11 +59,11 @@ public class Heap {
     }
 
     /**
-     * Method for sifting an element down
+     * Method for sifting an element down.
      * 
-     * @param arrayLength 
+     * @param arrayLength length of array.
      * 
-     * @param curNodeId 
+     * @param curNodeId current Id in array.
      */
     public void siftDown(int arrayLength, int curNodeId) {
        
@@ -82,9 +82,9 @@ public class Heap {
     }
 
     /**
-     * Method for sorting heap
+     * Method for sorting heap.
      * 
-     * @return sorted array
+     * @return sorted array.
      */
     public int[] heapSort() {
 
@@ -107,7 +107,7 @@ public class Heap {
     }
 
     /**
-     * Method for heap printing
+     * Method for heap printing.
      */
     public void showHeap() {
         // Print all the elements 

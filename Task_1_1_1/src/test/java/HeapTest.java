@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class HeapTest {
 
     /**
-     * Тест CheckSort
+     * Тест CheckSort.
      */
     @Test
     void checkMain() {
