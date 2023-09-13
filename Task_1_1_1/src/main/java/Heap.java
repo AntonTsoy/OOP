@@ -30,11 +30,11 @@ public class Heap {
 
     /**
      * Method for finding the largest child.
-     * 
+     *
      * @param arrayLength length of array.
-     * 
+     *
      * @param curNodeId current Id in array.
-     * 
+     *
      * @return greatest child index.
      */
     private int findNodeForSiftUp(int arrayLength, int curNodeId) {
