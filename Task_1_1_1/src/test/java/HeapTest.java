@@ -4,14 +4,24 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Тестовый класс для класса Heap.
-*/
+ * Тестовый класс для класса Heap. 
+ */
 class HeapTest {
- 
+
+    /**
+     * Тест CheckSort
+     */
+    @Test
+    void checkMain() {
+        CheckSort.main(new String[] {});
+        assertTrue(true);
+    }
+
     /**
      * Тест конструктора Heap.
+     * 
      * Проверяет, создается ли объект без ошибок.
-    */
+     */
     @Test
     void testHeapConstructor() {
         int[] array = {5, 3, 8, 4, 1, 2};
@@ -21,8 +31,9 @@ class HeapTest {
 
     /**
      * Тест создания Heap.
+     * 
      * Проверяет, что созданный объект имеет ожидаемую длину.
-    */
+     */
     @Test
     void testHeapCreation() {
         int[] array = {5, 3, 8, 4, 1, 2};
@@ -34,8 +45,9 @@ class HeapTest {
 
     /**
      * Тест метода siftDown.
+     * 
      * Проверяет, что элементы смещаются вниз в соответствии с правилами кучи.
-    */
+     */
     @Test
     void testSiftDown() {
         int[] array = {7, 2, 5, 3, 8, 4};
@@ -44,13 +56,14 @@ class HeapTest {
 
         heap.siftDown(6, 0);
 
-        assertArrayEquals(new int[]{7, 2, 5, 3, 8, 4}, heap.heapArray);
+        assertArrayEquals(new int[] {7, 2, 5, 3, 8, 4}, heap.heapArray);
     }
 
     /**
      * Тест метода heapSort.
+     * 
      * Проверяет, что массив сортируется в правильном порядке.
-    */
+     */
     @Test
     void testHeapSort() {
         int[] array = {5, 3, 8, 4, 1, 2};
@@ -59,13 +72,14 @@ class HeapTest {
 
         int[] result = heap.heapSort();
 
-        assertArrayEquals(new int[]{1, 2, 3, 4, 5, 8}, result);
+        assertArrayEquals(new int[] {1, 2, 3, 4, 5, 8}, result);
     }
 
     /**
      * Тест метода showHeap.
+     * 
      * Проверяет, что метод выполняется без ошибок.
-    */
+     */
     @Test
     void testShowHeap() {
         int[] array = {5, 3, 8, 4, 1, 2};

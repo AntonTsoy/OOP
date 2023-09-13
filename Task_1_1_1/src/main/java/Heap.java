@@ -1,6 +1,6 @@
 /**
  * The Heap class implements an array-based heap
-*/
+ */
 public class Heap {
 
     // An array to store heap elements
@@ -8,28 +8,35 @@ public class Heap {
 
     /**
      * Class constructor
+     * 
      * @param array source array to create heap
-    */
+     */
     public Heap(int[] array) {
         this.heapArray = array; 
     }
 
     /** 
      * Method for comparing heap elements
+     * 
      * @param firstId 
+     * 
      * @param secondId 
+     * 
      * @return true if fist element is greater than second 
-    */
+     */
     private boolean isLarger(int firstId, int secondId) {
         return this.heapArray[firstId] > this.heapArray[secondId];
     }
 
     /**
      * Method for finding the largest child
+     * 
      * @param arrayLength 
+     * 
      * @param curNodeId 
+     * 
      * @return greatest child index
-    */
+     */
     private int findNodeForSiftUp(int arrayLength, int curNodeId) {
         
         // Calculating the indexes of descendants
@@ -39,12 +46,12 @@ public class Heap {
         int largestNodeId = curNodeId;
         
         // Comparing with left descendant
-        if(leftChildId < arrayLength && isLarger(leftChildId, largestNodeId)) {
+        if (leftChildId < arrayLength && isLarger(leftChildId, largestNodeId)) {
             largestNodeId = leftChildId;
         }
         
         // Comparing with right descendant
-        if(rightChildId < arrayLength && isLarger(rightChildId, largestNodeId)) {
+        if (rightChildId < arrayLength && isLarger(rightChildId, largestNodeId)) {
             largestNodeId = rightChildId;
         }
 
@@ -53,14 +60,16 @@ public class Heap {
 
     /**
      * Method for sifting an element down
+     * 
      * @param arrayLength 
+     * 
      * @param curNodeId 
-    */
+     */
     public void siftDown(int arrayLength, int curNodeId) {
        
         int largestNodeId = findNodeForSiftUp(arrayLength, curNodeId);
 
-        if(largestNodeId != curNodeId) {
+        if (largestNodeId != curNodeId) {
         
             // Swap elements
             int temp = this.heapArray[curNodeId];
@@ -74,8 +83,9 @@ public class Heap {
 
     /**
      * Method for sorting heap
+     * 
      * @return sorted array
-    */
+     */
     public int[] heapSort() {
 
         int arrayLength = this.heapArray.length;
@@ -98,11 +108,11 @@ public class Heap {
 
     /**
      * Method for heap printing
-    */
+     */
     public void showHeap() {
         // Print all the elements 
-        for(int i = 0; i < this.heapArray.length; i++){
-            System.out.print(this.heapArray[i]+" ");
+        for (int number : this.heapArray) {
+            System.out.printf(number + " ");
         }
         System.out.println();
     }
