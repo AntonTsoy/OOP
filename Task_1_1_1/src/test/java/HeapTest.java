@@ -3,7 +3,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
 import org.junit.jupiter.api.Test;
 
 
@@ -58,7 +57,7 @@ class HeapTest {
     }
 
     /**
-     * Тест пирамидальной сортировки
+     * Тест пирамидальной сортировки.
      */
     @Test
     void testHeapSort() {
