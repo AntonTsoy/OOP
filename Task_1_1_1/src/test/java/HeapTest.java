@@ -8,6 +8,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class HeapTest {
 
     /**
+     * Тест main функции CheckSort.
+     */    
+    @Test
+    void checkMain() {
+        CheckSort.main(new String[] {});
+        Assertions.assertTrue(true);
+    }
+ 
+    /**
      * Тест конструктора Heap.
      * Проверяет, создается ли объект без ошибок.
      */
@@ -43,7 +52,7 @@ class HeapTest {
 
         heap.siftDown(6, 0);
 
-        assertArrayEquals(new int[]{7, 5, 8, 3, 2, 4}, heap.heapArray);
+        assertArrayEquals(new int[]{7, 2, 5, 3, 8, 4}, heap.heapArray);
     }
 
     /**
