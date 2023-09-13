@@ -24,4 +24,4 @@ bin
 
 ### VS Code ###
 .vscode
-**/*.class
+/**/*.class
