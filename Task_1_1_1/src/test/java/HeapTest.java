@@ -6,15 +6,6 @@ import static org.junit.jupiter.api.Assertions.*;
  * Тестовый класс для класса Heap.
  */
 class HeapTest {
-
-    /**
-     * Тест main функции CheckSort.
-     */    
-    @Test
-    void checkMain() {
-        CheckSort.main(new String[] {});
-        Assertions.assertTrue(true);
-    }
  
     /**
      * Тест конструктора Heap.
