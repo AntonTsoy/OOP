@@ -17,11 +17,11 @@ public class Heap {
 
     /** 
      * Method for comparing heap elements.
-     * 
+     *
      * @param firstId first arg.
-     * 
+     *
      * @param secondId second arg.
-     * 
+     *
      * @return true if fist element is greater than second.
      */
     private boolean isLarger(int firstId, int secondId) {
@@ -60,9 +60,9 @@ public class Heap {
 
     /**
      * Method for sifting an element down.
-     * 
+     *
      * @param arrayLength length of array.
-     * 
+     *
      * @param curNodeId current Id in array.
      */
     public void siftDown(int arrayLength, int curNodeId) {
@@ -83,7 +83,7 @@ public class Heap {
 
     /**
      * Method for sorting heap.
-     * 
+     *
      * @return sorted array.
      */
     public int[] heapSort() {
