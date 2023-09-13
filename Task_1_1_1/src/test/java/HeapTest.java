@@ -1,16 +1,17 @@
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Тестовый класс для класса Heap.
- */
+*/
 class HeapTest {
  
     /**
      * Тест конструктора Heap.
      * Проверяет, создается ли объект без ошибок.
-     */
+    */
     @Test
     void testHeapConstructor() {
         int[] array = {5, 3, 8, 4, 1, 2};
@@ -21,7 +22,7 @@ class HeapTest {
     /**
      * Тест создания Heap.
      * Проверяет, что созданный объект имеет ожидаемую длину.
-     */
+    */
     @Test
     void testHeapCreation() {
         int[] array = {5, 3, 8, 4, 1, 2};
@@ -34,7 +35,7 @@ class HeapTest {
     /**
      * Тест метода siftDown.
      * Проверяет, что элементы смещаются вниз в соответствии с правилами кучи.
-     */
+    */
     @Test
     void testSiftDown() {
         int[] array = {7, 2, 5, 3, 8, 4};
@@ -49,7 +50,7 @@ class HeapTest {
     /**
      * Тест метода heapSort.
      * Проверяет, что массив сортируется в правильном порядке.
-     */
+    */
     @Test
     void testHeapSort() {
         int[] array = {5, 3, 8, 4, 1, 2};
@@ -64,7 +65,7 @@ class HeapTest {
     /**
      * Тест метода showHeap.
      * Проверяет, что метод выполняется без ошибок.
-     */
+    */
     @Test
     void testShowHeap() {
         int[] array = {5, 3, 8, 4, 1, 2};
