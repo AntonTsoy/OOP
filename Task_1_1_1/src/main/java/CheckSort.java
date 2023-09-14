@@ -10,11 +10,12 @@ public class CheckSort {
      */
     public static void main(String[] args) {
         
-        Heap heap = new Heap(new int[] {5, 4, 0, 3, -7, 2, 1, 0, 0, -100000});
-        
-        heap.heapSort();
-        
-        heap.showHeap();
+        int[] heap = HeapSort.heapSort(new int[] {5, 4, 0, 3, -7, 2, 1, 0, 0, -100000});
+
+        for (int number : heap) {
+            System.out.print(number + " ");
+        }
+        System.out.println();
 
     }
 }
