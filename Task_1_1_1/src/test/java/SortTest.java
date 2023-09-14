@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Тестовый класс для класса Heap. 
  */
-class HearSortTest {
+class SortTest {
 
     /**
      * Тест CheckSort.
