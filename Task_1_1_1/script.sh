@@ -7,4 +7,5 @@ javac -d bin/main src/main/java/*.java
 javadoc -d docs src/main/java/*.java
 
 # Запуск приложения
-java -cp bin/main CheckSort
+jar cvfm heapSort.jar manifest.mf -C bin/main .
+java -jar heapSort.jar
