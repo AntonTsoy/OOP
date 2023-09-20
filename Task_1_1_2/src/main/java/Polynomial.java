@@ -125,15 +125,15 @@ public class Polynomial {
 
 
 
-    public void toString() {
-        curPolynom = transformToPolynom(this.polynomCoeffs);
+    public String toString() {
+        Polynomial curPolynom = transformToPolynom(this.polynomCoeffs);
 
-        if (curPolynom.polynomDegree = 1 && curPolynom.polynomCoeffs[0] == 0) {
-            System.out.println("0");
+        if (curPolynom.polynomDegree == 1 && curPolynom.polynomCoeffs[0] == 0) {
+            return "0";
         }
         else {
             //
-            System.out.println();
+            return "\n";
         }
     }
 
