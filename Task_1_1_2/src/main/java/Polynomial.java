@@ -1,23 +1,39 @@
 import java.util.Arrays;
 
 /**
- * The Polynomial class implements a math polynomial.
+ * Comment.
  */
 public class Polynomial {
 
     private final int[] polynomCoeffs;
-    private final int polynomDegree;
+    public final int polynomDegree;
 
     /**
-     * The Polynomial class implements a math polynomial.
+     * Comment.
+     */
+    private static int[] transformToPolynom(int[] supPolynom) {
+        int polynomDegree = supPolynom.length;
+        
+        while (supPolynom[polynomDegree - 1] == 0 && polynomDegree > 1) {
+            polynomDegree -= 1;
+        }
+
+        int[] polynomCoeffs = new int[polynomDegree];
+        System.arraycopy(supPolynom, 0, polynomCoeffs, 0, polynomDegree);
+
+        return polynomCoeffs;
+    }
+
+    /**
+     * Comment.
      */
     public Polynomial(int[] polynomCoeffs) {
-        this.polynomCoeffs = polynomCoeffs.clone();
+        this.polynomCoeffs = transformToPolynom(polynomCoeffs);
         this.polynomDegree = this.polynomCoeffs.length;
     }
 
     /**
-     * The Polynomial class implements a math polynomial.
+     * Comment.
      */  
     public Polynomial add(Polynomial summand) {
         int[] sumOfCoeffs = new int[Math.max(this.polynomDegree, summand.polynomDegree)];
@@ -28,11 +44,11 @@ public class Polynomial {
             sumOfCoeffs[i] += summand.polynomCoeffs[i];
         }
 
-        return new Polynomial(sumOfCoeffs);
+        return new Polynomial(transformToPolynom(sumOfCoeffs));
     }
 
     /**
-     * The Polynomial class implements a math polynomial.
+     * Comment.
      */    
     public Polynomial subtract(Polynomial subtracted) {
         int[] differenceOfCoeffs = subtracted.polynomCoeffs.clone();
@@ -41,11 +57,11 @@ public class Polynomial {
             differenceOfCoeffs[i] *= -1;
         }
 
-        return this.add(new Polynomial(differenceOfCoeffs));
+        return this.add(differenceOfCoeffs);
     }
 
     /**
-     * The Polynomial class implements a math polynomial.
+     * Comment.
      */      
     public Polynomial multiply(Polynomial multiplier) {
         int[] multOfCoeffs = new int[this.polynomDegree + multiplier.polynomDegree - 1];
@@ -56,11 +72,11 @@ public class Polynomial {
             }
         }
 
-        return new Polynomial(multOfCoeffs);
+        return new Polynomial(transformToPolynom(multOfCoeffs));
     }
 
     /**
-     * The Polynomial class implements a math polynomial.
+     * Comment.
      */  
     private static long fastPow(int base, int degree) {
         long resultPow = 1L;
@@ -78,7 +94,7 @@ public class Polynomial {
     }
 
     /**
-     * The Polynomial class implements a math polynomial.
+     * Comment.
      */  
     public long evaluate(int paramValue) {
         long valueOfPolynom = 0L;
@@ -91,7 +107,7 @@ public class Polynomial {
     }
 
     /**
-     * The Polynomial class implements a math polynomial.
+     * Comment.
      */  
     private static int reverseFactorial(int factorialBase, int factorialPow) {
         int result = 1;
@@ -104,12 +120,21 @@ public class Polynomial {
     }
 
     /**
-     * The Polynomial class implements a math polynomial.
+     * Comment.
      */  
     public Polynomial differentiate(int derivativeDegree) {
-        int[] derevativedCoeffs = new int[this.polynomDegree - derivativeDegree];
+        if (derivativeDegree < 1) {
+            return this;
+        }
+
+        int newDegree = this.polynomDegree - derivativeDegree;
+        if (newDegree < 1) {
+            return new Polynomial(new int[] {0});
+        }
         
-        System.arraycopy(this.polynomCoeffs, derivativeDegree, derevativedCoeffs, 0, derevativedCoeffs.length);
+        int[] derevativedCoeffs = new int[newDegree];
+        
+        System.arraycopy(this.polynomCoeffs, derivativeDegree, derevativedCoeffs, 0, newDegree);
 
         for (int i = derivativeDegree; i < this.polynomDegree; i++) {
             derevativedCoeffs[i - derivativeDegree] *= reverseFactorial(i, derivativeDegree);
@@ -119,30 +144,16 @@ public class Polynomial {
     }
 
     /**
-     * The Polynomial class implements a math polynomial.
+     * Comment.
      */  
     public boolean isEqual(Polynomial comparable) {
-        return Arrays.equals(this.polynomCoeffs, comparable.polynomCoeffs);
+        int[] firstCoeffs = transformToPolynom(this.polynomCoeffs);
+        int[] secondCoeffs = transformToPolynom(comparable.polynomCoeffs);
+        return Arrays.equals(firstCoeffs, secondCoeffs);
     }
 
     /**
-     * The Polynomial class implements a math polynomial.
-     */  
-    private static Polynomial transformToPolynom(int[] supPolynom) {
-        int polynomDegree = supPolynom.length;
-        
-        while (supPolynom[polynomDegree - 1] == 0 && polynomDegree > 1) {
-            polynomDegree -= 1;
-        }
-
-        int[] polynomCoeffs = new int[polynomDegree];
-        System.arraycopy(supPolynom, 0, polynomCoeffs, 0, polynomDegree);
-
-        return new Polynomial(polynomCoeffs);
-    }
-
-    /**
-     * The Polynomial class implements a math polynomial.
+     * Comment.
      */ 
     private static String monomSign(int monom) {
         if (monom < 0) {
@@ -155,7 +166,7 @@ public class Polynomial {
     }
 
     /**
-     * The Polynomial class implements a math polynomial.
+     * Comment.
      */ 
     private static String monomForm(int monom, int pow, boolean sign) {
         String monomStr = "";
@@ -179,20 +190,20 @@ public class Polynomial {
     }
 
     /**
-     * The Polynomial class implements a math polynomial.
+     * Comment.
      */   
     public String toString() {
-        Polynomial curPolynom = transformToPolynom(this.polynomCoeffs);
+        int[] curPolynom = transformToPolynom(this.polynomCoeffs);
 
-        if (curPolynom.polynomDegree == 1 && curPolynom.polynomCoeffs[0] == 0) {
+        if (curPolynom.length == 1 && curPolynom[0] == 0) {
             return "0";
         }
         else {
-            int curId = curPolynom.polynomDegree - 1;
-            String polynomStr = monomForm(curPolynom.polynomCoeffs[curId], curId--, false);
+            int curId = curPolynom.length - 1;
+            String polynomStr = monomForm(curPolynom[curId], curId--, false);
 
             while (curId >= 0) {
-                polynomStr += monomForm(curPolynom.polynomCoeffs[curId], curId--, true);
+                polynomStr += monomForm(curPolynom[curId], curId--, true);
             }
 
             return polynomStr;
