@@ -1,15 +1,21 @@
 import java.util.Arrays;
 
 /**
- * Comment.
+ * The Polynomial class represents a polynomial with integer coefficients.
  */
 public class Polynomial {
 
+    // Array of polynomial coefficients
     private final int[] polynomCoeffs;
-    public final int polynomDegree;
+    // Degree of senior coeffincient
+    private final int polynomDegree;
 
     /**
-     * Comment.
+     * Converts an array of coefficients into a polynomial.
+     * Deletes zero senior coefficients.
+     * 
+     * @param supPolynom initial array of coefficients.
+     * @return polynomial coefficient array. 
      */
     private static int[] transformToPolynom(int[] supPolynom) {
         int polynomDegree = supPolynom.length;
@@ -25,7 +31,9 @@ public class Polynomial {
     }
 
     /**
-     * Comment.
+     * Creates a polynomial based on an array of coefficients.
+     *  
+     * @param polynomCoeffs array of coefficients. 
      */
     public Polynomial(int[] polynomCoeffs) {
         this.polynomCoeffs = transformToPolynom(polynomCoeffs);
@@ -33,8 +41,11 @@ public class Polynomial {
     }
 
     /**
-     * Comment.
-     */  
+     * Adds this polynomial to another polynomial.
+     * 
+     * @param summand polynomial.   
+     * @return sum of polynomials.
+     */
     public Polynomial add(Polynomial summand) {
         int[] sumOfCoeffs = new int[Math.max(this.polynomDegree, summand.polynomDegree)];
 
@@ -48,8 +59,11 @@ public class Polynomial {
     }
 
     /**
-     * Comment.
-     */    
+     * Subtracts another polynomial from this polynomial.
+     *
+     * @param subtracted polynomial.
+     * @return polynomial difference.
+     */   
     public Polynomial subtract(Polynomial subtracted) {
         int[] differenceOfCoeffs = subtracted.polynomCoeffs.clone();
 
@@ -61,8 +75,11 @@ public class Polynomial {
     }
 
     /**
-     * Comment.
-     */      
+     * Multiplies this polynomial by another polynomial.
+     * 
+     * @param multiplier polynomial.
+     * @return product of polynomials.
+     */ 
     public Polynomial multiply(Polynomial multiplier) {
         int[] multOfCoeffs = new int[this.polynomDegree + multiplier.polynomDegree - 1];
 
@@ -76,8 +93,11 @@ public class Polynomial {
     }
 
     /**
-     * Comment.
-     */  
+     * Calculates the value of a polynomial at a point.
+     *
+     * @param paramValue argument.
+     * @return polynomial value in point.
+     */ 
     public long evaluate(int paramValue) {
         long valueOfPolynom = 0L;
         long curParamPow = 1;
@@ -90,9 +110,6 @@ public class Polynomial {
         return valueOfPolynom;
     }
 
-    /**
-     * Comment.
-     */  
     private static int reverseFactorial(int factorialBase, int factorialPow) {
         int result = 1;
         
@@ -104,8 +121,11 @@ public class Polynomial {
     }
 
     /**
-     * Comment.
-     */  
+     * Calculates the derivative of a polynomial of a given degree.
+     * 
+     * @param derivativeDegree argument.
+     * @return polynomial derivative.  
+     */ 
     public Polynomial differentiate(int derivativeDegree) {
         if (derivativeDegree < 1) {
             return this;
@@ -128,17 +148,17 @@ public class Polynomial {
     }
 
     /**
-     * Comment.
-     */  
+     * Checks the equality of this polynomial and the other polynomial. 
+     * 
+     * @param comparable another polynomial.
+     * @return true if polynomials are equal, otherwise false.
+     */ 
     public boolean isEqual(Polynomial comparable) {
         int[] firstCoeffs = transformToPolynom(this.polynomCoeffs);
         int[] secondCoeffs = transformToPolynom(comparable.polynomCoeffs);
         return Arrays.equals(firstCoeffs, secondCoeffs);
     }
 
-    /**
-     * Comment.
-     */ 
     private static String monomSign(int monom) {
         if (monom < 0) {
             return " - ";
@@ -149,20 +169,22 @@ public class Polynomial {
         return "";
     }
 
-    /**
-     * Comment.
-     */ 
     private static String monomForm(int monom, int pow, boolean sign) {
         String monomStr = "";
+        // If the coefficient of the monomial is zero, return an empty string
         if (monom == 0) {
             return monomStr;
         }
 
+        // Add a coefficient sign if necessary
         monomStr += sign ? monomSign(monom) : "";
+        // Add a coefficient if it is not equal to 1 or -1, 
+        // or the degree of the parameter is not zero
         if (monom != 1 && monom != -1 || pow == 0) {
             monomStr += sign ? Math.abs(monom) : monom;
         }
 
+        // Adding the variable degree part
         if (pow > 0) {
             monomStr += "x";
             if (pow != 1) {
@@ -174,18 +196,23 @@ public class Polynomial {
     }
 
     /**
-     * Comment.
-     */   
+     * Represents a polynomial as a string.
+     *
+     * @return string representation of a polynomial. 
+     */
     public String toString() {
         int[] curPolynom = transformToPolynom(this.polynomCoeffs);
 
+        // If the polynomial is zero, return (0)
         if (curPolynom.length == 1 && curPolynom[0] == 0) {
             return "0";
         }
         else {
+            // We start forming the string with a monomial of higher degree
             int curId = curPolynom.length - 1;
             String polynomStr = monomForm(curPolynom[curId], curId--, false);
 
+            // Adding the rest of the monomials
             while (curId >= 0) {
                 polynomStr += monomForm(curPolynom[curId], curId--, true);
             }
