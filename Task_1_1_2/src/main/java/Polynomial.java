@@ -57,7 +57,7 @@ public class Polynomial {
             differenceOfCoeffs[i] *= -1;
         }
 
-        return this.add(differenceOfCoeffs);
+        return this.add(new Polynomial(differenceOfCoeffs));
     }
 
     /**
