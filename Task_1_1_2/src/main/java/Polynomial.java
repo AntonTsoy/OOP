@@ -19,6 +19,10 @@ public class Polynomial {
      */
     private static int[] transformToPolynom(int[] supPolynom) {
         int polynomDegree = supPolynom.length;
+
+        if (0 == polynomDegree){
+            return new int[] {0};
+        }
         
         while (supPolynom[polynomDegree - 1] == 0 && polynomDegree > 1) {
             polynomDegree -= 1;
@@ -172,22 +176,27 @@ public class Polynomial {
     private static String monomForm(int monom, int pow, boolean sign) {
         String monomStr = "";
         // If the coefficient of the monomial is zero, return an empty string
-        if (monom == 0) {
+        if (0 == monom) {
             return monomStr;
         }
 
-        // Add a coefficient sign if necessary
-        monomStr += sign ? monomSign(monom) : "";
-        // Add a coefficient if it is not equal to 1 or -1, 
-        // or the degree of the parameter is not zero
-        if (monom != 1 && monom != -1 || pow == 0) {
-            monomStr += sign ? Math.abs(monom) : monom;
+        if (sign) {
+            monomStr += monomSign(monom);
+            if (1 != monom && -1 != monom || 0 == pow) {
+                monomStr += Math.abs(monom);
+            }
+        }
+        else if (-1 == monom && pow != 0) {
+            monomStr += "-";
+        }
+        else if (1 != monom || 0 == pow) {
+            monomStr += monom;
         }
 
         // Adding the variable degree part
         if (pow > 0) {
             monomStr += "x";
-            if (pow != 1) {
+            if (1 != pow) {
                 monomStr += "^" + pow;
             }
         }
@@ -204,7 +213,7 @@ public class Polynomial {
         int[] curPolynom = transformToPolynom(this.polynomCoeffs);
 
         // If the polynomial is zero, return (0)
-        if (curPolynom.length == 1 && curPolynom[0] == 0) {
+        if (1 == curPolynom.length && 0 == curPolynom[0]) {
             return "0";
         }
         else {
