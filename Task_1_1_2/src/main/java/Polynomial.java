@@ -78,29 +78,13 @@ public class Polynomial {
     /**
      * Comment.
      */  
-    private static long fastPow(int base, int degree) {
-        long resultPow = 1L;
-        long accum = base;
-        
-        while (degree > 0) {
-            if (degree % 2 != 0) {
-                resultPow *= accum;
-            }
-            accum *= accum;
-            degree /= 2;
-        }
-        
-        return resultPow;
-    }
-
-    /**
-     * Comment.
-     */  
     public long evaluate(int paramValue) {
         long valueOfPolynom = 0L;
+        long curParamPow = 1;
         
         for (int i = 0; i < this.polynomDegree; i++) {
-            valueOfPolynom += this.polynomCoeffs[i] * fastPow(paramValue, i);
+            valueOfPolynom += this.polynomCoeffs[i] * curParamPow;
+            curParamPow *= paramValue;
         }
 
         return valueOfPolynom;

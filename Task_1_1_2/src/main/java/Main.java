@@ -6,11 +6,11 @@ import java.util.Arrays;
 public class Main {
 
     public static void main(String[] args) {
-        // {-1, 0, 1, 2, -3} === -3x^4 + 2x^3 + x^2 - 1
-        // {-10} === -10
-        // {0, 5} === 5x
-        Polynomial ppp = new Polynomial(new int[] {0, 1, 0, 0, 0});
-        System.out.println(ppp.toString());
+        
+        Polynomial p1 = new Polynomial(new int[] {4, 3, 6, 7});
+        Polynomial p2 = new Polynomial(new int[] {3, 2, 8});
+        System.out.println(p1.add(p2.differentiate(1)).toString());
+        System.out.println(p1.multiply(p2).evaluate(2));
 
     }
 }
