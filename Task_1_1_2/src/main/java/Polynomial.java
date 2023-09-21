@@ -5,16 +5,20 @@ import java.util.Arrays;
  */
 public class Polynomial {
 
-    public final int[] polynomCoeffs;
-    public final int polynomDegree;
+    private final int[] polynomCoeffs;
+    private final int polynomDegree;
 
-
+    /**
+     * The Polynomial class implements a math polynomial.
+     */
     public Polynomial(int[] polynomCoeffs) {
         this.polynomCoeffs = polynomCoeffs.clone();
         this.polynomDegree = this.polynomCoeffs.length;
     }
 
-
+    /**
+     * The Polynomial class implements a math polynomial.
+     */  
     public Polynomial add(Polynomial summand) {
         int[] sumOfCoeffs = new int[Math.max(this.polynomDegree, summand.polynomDegree)];
 
@@ -27,7 +31,9 @@ public class Polynomial {
         return new Polynomial(sumOfCoeffs);
     }
 
-    
+    /**
+     * The Polynomial class implements a math polynomial.
+     */    
     public Polynomial subtract(Polynomial subtracted) {
         int[] differenceOfCoeffs = subtracted.polynomCoeffs.clone();
 
@@ -38,7 +44,9 @@ public class Polynomial {
         return this.add(new Polynomial(differenceOfCoeffs));
     }
 
-    
+    /**
+     * The Polynomial class implements a math polynomial.
+     */      
     public Polynomial multiply(Polynomial multiplier) {
         int[] multOfCoeffs = new int[this.polynomDegree + multiplier.polynomDegree - 1];
 
@@ -51,7 +59,9 @@ public class Polynomial {
         return new Polynomial(multOfCoeffs);
     }
 
-
+    /**
+     * The Polynomial class implements a math polynomial.
+     */  
     private static long fastPow(int base, int degree) {
         long resultPow = 1L;
         long accum = base;
@@ -67,7 +77,9 @@ public class Polynomial {
         return resultPow;
     }
 
-
+    /**
+     * The Polynomial class implements a math polynomial.
+     */  
     public long evaluate(int paramValue) {
         long valueOfPolynom = 0L;
         
@@ -78,7 +90,9 @@ public class Polynomial {
         return valueOfPolynom;
     }
 
-
+    /**
+     * The Polynomial class implements a math polynomial.
+     */  
     private static int reverseFactorial(int factorialBase, int factorialPow) {
         int result = 1;
         
@@ -89,7 +103,9 @@ public class Polynomial {
         return result;
     }
 
-
+    /**
+     * The Polynomial class implements a math polynomial.
+     */  
     public Polynomial differentiate(int derivativeDegree) {
         int[] derevativedCoeffs = new int[this.polynomDegree - derivativeDegree];
         
@@ -102,18 +118,24 @@ public class Polynomial {
         return new Polynomial(derevativedCoeffs);
     }
 
-
+    /**
+     * The Polynomial class implements a math polynomial.
+     */  
     public boolean isEqual(Polynomial comparable) {
         return Arrays.equals(this.polynomCoeffs, comparable.polynomCoeffs);
     }
 
-
+    /**
+     * The Polynomial class implements a math polynomial.
+     */  
+    /*  BADDD FUNCTION !!! */
     private static Polynomial transformToPolynom(int[] supPolynom) {
         int polynomDegree = supPolynom.length;
         
         for (int i = polynomDegree - 1; i > 0; i--) {
             if (supPolynom[i] != 0) {
                 polynomDegree = i + 1;
+                break;
             }
         }
         
@@ -123,8 +145,46 @@ public class Polynomial {
         return new Polynomial(polynomCoeffs);
     }
 
+    /**
+     * The Polynomial class implements a math polynomial.
+     */ 
+    private static String monomSign(int monom) {
+        if (monom < 0) {
+            return " - ";
+        }
+        else if (monom > 0) {
+            return " + ";
+        }
+        return "";
+    }
 
+    /**
+     * The Polynomial class implements a math polynomial.
+     */ 
+    private static String monomForm(int monom, int pow, boolean sign) {
+        String monomStr = "";
+        if (monom == 0) {
+            return monomStr;
+        }
 
+        monomStr += sign ? monomSign(monom) : "";
+        if (monom != 1 && monom != -1 || pow == 0) {
+            monomStr += sign ? Math.abs(monom) : monom;
+        }
+
+        if (pow > 0) {
+            monomStr += "x";
+            if (pow != 1) {
+                monomStr += "^" + pow;
+            }
+        }
+
+        return monomStr;
+    }
+
+    /**
+     * The Polynomial class implements a math polynomial.
+     */   
     public String toString() {
         Polynomial curPolynom = transformToPolynom(this.polynomCoeffs);
 
@@ -132,10 +192,14 @@ public class Polynomial {
             return "0";
         }
         else {
-            //
-            return "\n";
+            int curId = curPolynom.polynomDegree - 1;
+            String polynomStr = monomForm(curPolynom.polynomCoeffs[curId], curId--, false);
+
+            while (curId >= 0) {
+                polynomStr += monomForm(curPolynom.polynomCoeffs[curId], curId--, true);
+            }
+
+            return polynomStr;
         }
     }
-
-
 }
