@@ -128,17 +128,13 @@ public class Polynomial {
     /**
      * The Polynomial class implements a math polynomial.
      */  
-    /*  BADDD FUNCTION !!! */
     private static Polynomial transformToPolynom(int[] supPolynom) {
         int polynomDegree = supPolynom.length;
         
-        for (int i = polynomDegree - 1; i > 0; i--) {
-            if (supPolynom[i] != 0) {
-                polynomDegree = i + 1;
-                break;
-            }
+        while (supPolynom[polynomDegree - 1] == 0 && polynomDegree > 1) {
+            polynomDegree -= 1;
         }
-        
+
         int[] polynomCoeffs = new int[polynomDegree];
         System.arraycopy(supPolynom, 0, polynomCoeffs, 0, polynomDegree);
 
