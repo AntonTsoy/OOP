@@ -13,14 +13,14 @@ public class Polynomial {
     /**
      * Converts an array of coefficients into a polynomial.
      * Deletes zero senior coefficients.
-     * 
+     *
      * @param supPolynom initial array of coefficients.
      * @return polynomial coefficient array. 
      */
     private static int[] transformToPolynom(int[] supPolynom) {
         int polynomDegree = supPolynom.length;
 
-        if (0 == polynomDegree){
+        if (0 == polynomDegree) {
             return new int[] {0};
         }
         
@@ -36,7 +36,7 @@ public class Polynomial {
 
     /**
      * Creates a polynomial based on an array of coefficients.
-     *  
+     *
      * @param polynomCoeffs array of coefficients. 
      */
     public Polynomial(int[] polynomCoeffs) {
@@ -46,7 +46,7 @@ public class Polynomial {
 
     /**
      * Adds this polynomial to another polynomial.
-     * 
+     *
      * @param summand polynomial.   
      * @return sum of polynomials.
      */
@@ -80,7 +80,7 @@ public class Polynomial {
 
     /**
      * Multiplies this polynomial by another polynomial.
-     * 
+     *
      * @param multiplier polynomial.
      * @return product of polynomials.
      */ 
@@ -89,7 +89,7 @@ public class Polynomial {
 
         for (int i = 0; i < this.polynomDegree; i++) {
             for (int j = 0; j < multiplier.polynomDegree; j++) {
-                multOfCoeffs[i+j] += this.polynomCoeffs[i] * multiplier.polynomCoeffs[j];
+                multOfCoeffs[i + j] += this.polynomCoeffs[i] * multiplier.polynomCoeffs[j];
             }
         }
 
@@ -126,7 +126,7 @@ public class Polynomial {
 
     /**
      * Calculates the derivative of a polynomial of a given degree.
-     * 
+     *
      * @param derivativeDegree argument.
      * @return polynomial derivative.  
      */ 
@@ -153,7 +153,7 @@ public class Polynomial {
 
     /**
      * Checks the equality of this polynomial and the other polynomial. 
-     * 
+     *
      * @param comparable another polynomial.
      * @return true if polynomials are equal, otherwise false.
      */ 
@@ -166,8 +166,7 @@ public class Polynomial {
     private static String monomSign(int monom) {
         if (monom < 0) {
             return " - ";
-        }
-        else if (monom > 0) {
+        } else if (monom > 0) {
             return " + ";
         }
         return "";
