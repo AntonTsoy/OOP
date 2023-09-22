@@ -166,7 +166,8 @@ public class Polynomial {
     private static String monomSign(int monom) {
         if (monom < 0) {
             return " - ";
-        } else if (monom > 0) {
+        }
+        if (monom > 0) {
             return " + ";
         }
         return "";
@@ -184,11 +185,9 @@ public class Polynomial {
             if (1 != monom && -1 != monom || 0 == pow) {
                 monomStr += Math.abs(monom);
             }
-        }
-        else if (-1 == monom && pow != 0) {
+        } else if (-1 == monom && pow != 0) {
             monomStr += "-";
-        }
-        else if (1 != monom || 0 == pow) {
+        } else if (1 != monom || 0 == pow) {
             monomStr += monom;
         }
 
@@ -214,8 +213,7 @@ public class Polynomial {
         // If the polynomial is zero, return (0)
         if (1 == curPolynom.length && 0 == curPolynom[0]) {
             return "0";
-        }
-        else {
+        } else {
             // We start forming the string with a monomial of higher degree
             int curId = curPolynom.length - 1;
             String polynomStr = monomForm(curPolynom[curId], curId--, false);
