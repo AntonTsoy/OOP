@@ -152,6 +152,18 @@ public class Polynomial {
     }
 
     /**
+     * <p>Returns a hash code value for the object. This method is supported
+     * for the benefit of hash tables such as those provided by HashMap.
+     *
+     * @return a hash code value for this object.
+     */
+    @Override
+    public int hashCode() {
+        Object[] fields = {this.polynomDegree, this.polynomCoeffs};
+        return Arrays.deepHashCode(fields);
+    }
+
+    /**
      * Checks the equality of this polynomial and the other polynomial. 
      *
      * @param obj the reference object with which to compare.
@@ -164,6 +176,10 @@ public class Polynomial {
         }
 
         if (obj == null || this.getClass() != obj.getClass()) {
+            return false;
+        }
+
+        if (this.hashCode() != obj.hashCode()) {
             return false;
         }
 
@@ -235,5 +251,17 @@ public class Polynomial {
 
             return polynomStr;
         }
+    }
+
+    /**
+     * Static entry method.
+     *
+     * @param args Cmd args.
+     */
+    public static void main(String[] args) {
+        Polynomial p1 = new Polynomial(new int[] {4, 3, 6, 7});
+        Polynomial p2 = new Polynomial(new int[] {3, 2, 8});
+        System.out.println(p1.add(p2.differentiate(1)).toString());
+        System.out.println(p1.multiply(p2).evaluate(2));
     }
 }
