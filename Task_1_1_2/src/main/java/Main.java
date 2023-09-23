@@ -15,7 +15,5 @@ public class Main {
         Polynomial p2 = new Polynomial(new int[] {3, 2, 8});
         System.out.println(p1.add(p2.differentiate(1)).toString());
         System.out.println(p1.multiply(p2).evaluate(2));
-        
-        System.out.println(p1.equals(null));
     }
 }
