@@ -154,13 +154,22 @@ public class Polynomial {
     /**
      * Checks the equality of this polynomial and the other polynomial. 
      *
-     * @param comparable another polynomial.
-     * @return true if polynomials are equal, otherwise false.
+     * @param obj the reference object with which to compare.
+     * @return true if this object is the same as the obj argument; false otherwise.
      */ 
-    public boolean isEqual(Polynomial comparable) {
-        int[] firstCoeffs = transformToPolynom(this.polynomCoeffs);
-        int[] secondCoeffs = transformToPolynom(comparable.polynomCoeffs);
-        return Arrays.equals(firstCoeffs, secondCoeffs);
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null || this.getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Polynomial comparable = (Polynomial) obj;
+
+        return Arrays.equals(this.polynomCoeffs, comparable.polynomCoeffs);
     }
 
     private static String monomSign(int monom) {
@@ -207,6 +216,7 @@ public class Polynomial {
      *
      * @return string representation of a polynomial. 
      */
+    @Override
     public String toString() {
         int[] curPolynom = transformToPolynom(this.polynomCoeffs);
 

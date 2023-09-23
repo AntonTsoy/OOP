@@ -6,12 +6,6 @@ import org.junit.jupiter.api.Test;
 
 
 class PolynomialTest {
-    
-    @Test
-    void checkMain() {
-        Main.main(new String[] {});
-        assertTrue(true);
-    }
 
     @Test
     void testPolynomialPresentation() {
@@ -86,12 +80,12 @@ class PolynomialTest {
     @Test
     void testEquality() {
         Polynomial p1 = new Polynomial(new int[] {1, 2});
-        assertTrue(p1.isEqual(new Polynomial(new int[] {1, 2, 0, 0})));
+        assertTrue(p1.equals(new Polynomial(new int[] {1, 2, 0, 0})));
 
         Polynomial p2 = new Polynomial(new int[] {0, 13, 40, 5, 0, 26});
-        assertFalse(p2.isEqual(new Polynomial(new int[] {0, 13, 40, 5, 0, 26, -1, 0})));
+        assertFalse(p2.equals(new Polynomial(new int[] {0, 13, 40, 5, 0, 26, -1, 0})));
 
         Polynomial p3 = new Polynomial(new int[] {});
-        assertTrue(p3.isEqual(new Polynomial(new int[] {0})));
+        assertTrue(p3.equals(new Polynomial(new int[] {0})));
     }
 }
