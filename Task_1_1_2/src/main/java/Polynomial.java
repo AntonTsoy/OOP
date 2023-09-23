@@ -152,7 +152,7 @@ public class Polynomial {
     }
 
     /**
-     * <p>Returns a hash code value for the object. This method is supported
+     * Returns a hash code value for the object. This method is supported
      * for the benefit of hash tables such as those provided by HashMap.
      *
      * @return a hash code value for this object.
