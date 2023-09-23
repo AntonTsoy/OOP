@@ -190,17 +190,17 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#equals(java.lang.Object)">equals</a></span>&#8203;(java.lang.Object&nbsp;obj)</code></th>
+<td class="colLast">
+<div class="block">Checks the equality of this polynomial and the other polynomial.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#evaluate(int)">evaluate</a></span>&#8203;(int&nbsp;paramValue)</code></th>
 <td class="colLast">
 <div class="block">Calculates the value of a polynomial at a point.</div>
-</td>
-</tr>
-<tr id="i3" class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isEqual(Polynomial)">isEqual</a></span>&#8203;(<a href="Polynomial.html" title="class in &lt;Unnamed&gt;">Polynomial</a>&nbsp;comparable)</code></th>
-<td class="colLast">
-<div class="block">Checks the equality of this polynomial and the other polynomial.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
@@ -230,7 +230,7 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
-<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, wait, wait, wait</code></li>
+<code>clone, finalize, getClass, hashCode, notify, notifyAll, wait, wait, wait</code></li>
 </ul>
 </li>
 </ul>
@@ -352,19 +352,21 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="isEqual(Polynomial)">
+<a id="equals(java.lang.Object)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>isEqual</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;isEqual&#8203;(<a href="Polynomial.html" title="class in &lt;Unnamed&gt;">Polynomial</a>&nbsp;comparable)</pre>
+<h4>equals</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;equals&#8203;(java.lang.Object&nbsp;obj)</pre>
 <div class="block">Checks the equality of this polynomial and the other polynomial.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code>equals</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>comparable</code> - another polynomial.</dd>
+<dd><code>obj</code> - the reference object with which to compare.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>true if polynomials are equal, otherwise false.</dd>
+<dd>true if this object is the same as the obj argument; false otherwise.</dd>
 </dl>
 </li>
 </ul>
