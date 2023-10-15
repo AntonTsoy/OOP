@@ -5,28 +5,31 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
 /**
- * Tree class.
+ * Provides an iterable interface for depth-first traversal of a Tree.
  */
 public class DFSIterable<T> implements Iterable<T> {
 
     /**
-     * Tree class.
+     * Implements an iterator interface for depth-first traversal of a Tree.
      */
-    private class DFSIterator implements Iterator<T> {  // can I make this class STATIC?
+    private class DFSIterator implements Iterator<T> {  // Can I make this class STATIC?
 
-        // 
+        // Stack used to store nodes in depth-first order. 
         public ArrayDeque<Tree<T>> DFSqueue;
 
         /**
-         * Tree class.
-         */        
+         * Constructor. Initializes the queue with the root node.
+         */       
         public DFSIterator() {
             DFSqueue = new ArrayDeque<Tree<T>>();
             DFSqueue.add(treeNode);
         }
 
         /**
-         * Tree class.
+         * Returns true if the iteration has more elements. 
+         * In other words, returns true if next() would return an element rather than throwing an exception.
+         *
+         * @return true if the iteration has more elements.
          */
         @Override
         public boolean hasNext() {
@@ -34,7 +37,9 @@ public class DFSIterable<T> implements Iterable<T> {
         }
 
         /**
-         * Tree class.
+         * Returns the next element in the iteration.
+         *
+         * @return the next element in the iteration.
          */
         @Override
         public T next() {
@@ -48,18 +53,22 @@ public class DFSIterable<T> implements Iterable<T> {
         }
     } 
 
-    // 
+    // The tree to traverse.
     private final Tree<T> treeNode;
 
     /**
-     * Tree class.
+     * Constructor.
+     *
+     * @param treeNode The tree to traverse.
      */
     public DFSIterable(Tree<T> treeNode) {
         this.treeNode = treeNode;
     }
     
     /**
-     * Tree class.
+     * Returns an iterator over elements of type T.
+     *
+     * @return an Iterator.
      */
     @Override
     public Iterator<T> iterator() {
