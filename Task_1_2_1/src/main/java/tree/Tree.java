@@ -163,7 +163,7 @@ public class Tree<T> {
      *
      * @return Breadth-first iterable.
      */
-    public Iterable<T> Bfs() {
+    public Iterable<T> iBfs() {
         return new BfsIterable<T>(this);
     }
 
@@ -172,10 +172,13 @@ public class Tree<T> {
      *
      * @return Depth-first iterable.
      */
-    public Iterable<T> Dfs() {
+    public Iterable<T> iDfs() {
         return new DfsIterable<T>(this);
     }
 
+    /*
+     * Main function.
+     */
     @ExcludeFromJacocoGeneratedReport
     public static void main(String[] args) {
         Tree<Integer> treeI = new Tree<>(1);
@@ -184,7 +187,7 @@ public class Tree<T> {
         child1.addChild(5);
         child2.addChild(4);
 
-        for (Integer a : treeI.Dfs()) {
+        for (Integer a : treeI.iDfs()) {
             System.out.print(a + " ");
         }
 
