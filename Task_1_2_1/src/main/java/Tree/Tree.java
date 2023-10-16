@@ -135,6 +135,7 @@ public class Tree<T> {
      * Checks the equality of this subtree and the another. 
      *
      * @param obj the reference object with which to compare.
+     *
      * @return true if this object is the same as the obj argument; false otherwise.
      */ 
     @Override
@@ -158,8 +159,7 @@ public class Tree<T> {
     }
 
     /**
-     * Returns an iterable that performs a breadth-first traversal 
-     * of this tree.
+     * Returns an iterable that performs a breadth-first traversal of this tree.
      *
      * @return Breadth-first iterable.
      */
@@ -168,8 +168,7 @@ public class Tree<T> {
     }
 
     /**
-     * Returns an iterable that performs a depth-first traversal
-     * of this tree. 
+     * Returns an iterable that performs a depth-first traversal of this tree. 
      *
      * @return Depth-first iterable.
      */
