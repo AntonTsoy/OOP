@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.jupiter.api.BeforeEach;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class TreeTest {
@@ -222,13 +222,13 @@ class TreeTest {
     }    
 
     @Test
-    void testDifGenEquals() {  //////////////////////////////////////////////
+    void testDifGenEquals() {
         Tree<Integer> diffTree = new Tree<>(2);
         assertNotEquals(treeS, diffTree);
     }
 
     @Test
-    void testNullEquals() {  //////////////////////////////////////////////
+    void testNullEquals() {
         assertNotEquals(treeI, null);
     }
 
@@ -239,7 +239,7 @@ class TreeTest {
         child1.addChild(4);
         child2.addChild(5);
 
-        Iterable<Integer> bfs = treeI.iBfs();
+        Iterable<Integer> bfs = treeI.bfs();
         Iterator<Integer> itr = bfs.iterator();
 
         ArrayList<Integer> expected = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
@@ -259,7 +259,7 @@ class TreeTest {
         child2.addChild("A2");
         child2.addChild("A1");
 
-        Iterable<String> bfs = treeS.iDfs();
+        Iterable<String> bfs = treeS.dfs();
         Iterator<String> itr = bfs.iterator();
 
         ArrayList<String> expected =
