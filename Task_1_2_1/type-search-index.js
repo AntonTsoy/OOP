@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"Tree","l":"BFSIterable"},{"p":"Tree","l":"DFSIterable"},{"p":"Tree","l":"ExcludeFromJacocoGeneratedReport"},{"p":"Tree","l":"Tree"}]
