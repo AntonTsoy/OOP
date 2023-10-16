@@ -1,16 +1,16 @@
-package Tree;
+package tree;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 class TreeTest {
 
@@ -77,6 +77,7 @@ class TreeTest {
         treeS.addChild(child);
         assertEquals(child, treeS.nodeChildren.get(0));
     }
+
     @Test
     void testAddChildSubtreeParentS() {
         Tree<String> child = new Tree<>("RootChild");
@@ -233,7 +234,7 @@ class TreeTest {
     }
 
     @Test
-    void testBFS() {
+    void testBfs() {
         Tree<Integer> child1 = treeI.addChild(2);
         Tree<Integer> child2 = treeI.addChild(3);
         child1.addChild(4);
@@ -252,7 +253,7 @@ class TreeTest {
     }
 
     @Test
-    void testDFS() {
+    void testDfs() {
         Tree<String> child1 = treeS.addChild("B");
         Tree<String> child2 = treeS.addChild("A");
         child1.addChild("B_child");
@@ -262,7 +263,8 @@ class TreeTest {
         Iterable<String> bfs = treeS.DFS();
         Iterator<String> itr = bfs.iterator();
 
-        ArrayList<String> expected = new ArrayList<>(Arrays.asList("Root", "A", "A1", "A2", "B", "B_child"));
+        ArrayList<String> expected =
+            new ArrayList<>(Arrays.asList("Root", "A", "A1", "A2", "B", "B_child"));
         ArrayList<String> result = new ArrayList<>();
         while (itr.hasNext()) {
             result.add(itr.next());

@@ -1,4 +1,4 @@
-package Tree;
+package tree;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -164,7 +164,7 @@ public class Tree<T> {
      * @return Breadth-first iterable.
      */
     public Iterable<T> BFS() {
-        return new BFSIterable<T>(this);
+        return new BfsIterable<T>(this);
     }
 
     /**
@@ -173,7 +173,7 @@ public class Tree<T> {
      * @return Depth-first iterable.
      */
     public Iterable<T> DFS() {
-        return new DFSIterable<T>(this);
+        return new DfsIterable<T>(this);
     }
 
     @ExcludeFromJacocoGeneratedReport

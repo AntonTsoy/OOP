@@ -3,7 +3,7 @@ plugins {
     id 'jacoco'
 }
 
-group = "Tree"
+group = "tree"
 version = '1.0-SNAPSHOT'
 
 repositories {

@@ -1,4 +1,4 @@
-package Tree;
+package tree;
 
 import java.util.ArrayDeque;
 import java.util.ConcurrentModificationException;
@@ -7,22 +7,22 @@ import java.util.Iterator;
 /**
  * Provides an iterable interface for depth-first traversal of a Tree.
  */
-public class DFSIterable<T> implements Iterable<T> {
+public class DfsIterable<T> implements Iterable<T> {
 
     /**
      * Implements an iterator interface for depth-first traversal of a Tree.
      */
-    private class DFSIterator implements Iterator<T> {  // Can I make this class STATIC?
+    private class DfsIterator implements Iterator<T> {  // Can I make this class STATIC?
 
         // Stack used to store nodes in depth-first order. 
-        public ArrayDeque<Tree<T>> DFSqueue;
+        public ArrayDeque<Tree<T>> DfsStack;
 
         /**
          * Constructor. Initializes the queue with the root node.
          */       
-        public DFSIterator() {
-            DFSqueue = new ArrayDeque<Tree<T>>();
-            DFSqueue.add(treeNode);
+        public DfsIterator() {
+            DfsStack = new ArrayDeque<Tree<T>>();
+            DfsStack.add(treeNode);
         }
 
         /**
@@ -33,7 +33,7 @@ public class DFSIterable<T> implements Iterable<T> {
          */
         @Override
         public boolean hasNext() {
-            return !DFSqueue.isEmpty();
+            return !DfsStack.isEmpty();
         }
 
         /**
@@ -43,12 +43,12 @@ public class DFSIterable<T> implements Iterable<T> {
          */
         @Override
         public T next() {
-            Tree<T> currentNode = DFSqueue.pollLast();
+            Tree<T> currentNode = DfsStack.pollLast();
             if (currentNode.getNodeValue() == null) {
                 throw new ConcurrentModificationException();
             }
 
-            DFSqueue.addAll(currentNode.nodeChildren);
+            DfsStack.addAll(currentNode.nodeChildren);
             return currentNode.getNodeValue();
         }
     } 
@@ -61,7 +61,7 @@ public class DFSIterable<T> implements Iterable<T> {
      *
      * @param treeNode The tree to traverse.
      */
-    public DFSIterable(Tree<T> treeNode) {
+    public DfsIterable(Tree<T> treeNode) {
         this.treeNode = treeNode;
     }
     
@@ -72,6 +72,6 @@ public class DFSIterable<T> implements Iterable<T> {
      */
     @Override
     public Iterator<T> iterator() {
-        return new DFSIterator();
+        return new DfsIterator();
     }
 }
