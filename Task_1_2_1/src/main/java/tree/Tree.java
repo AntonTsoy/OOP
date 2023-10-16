@@ -176,10 +176,12 @@ public class Tree<T> {
         return new DfsIterable<T>(this);
     }
 
-    @ExcludeFromJacocoGeneratedReport
-    /*
-     * Main function.
+    /**
+     * Main function. First Point.
+     *
+     * @param args cmd args.
      */
+    @ExcludeFromJacocoGeneratedReport
     public static void main(String[] args) {
         Tree<Integer> treeI = new Tree<>(1);
         Tree<Integer> child1 = treeI.addChild(3);
