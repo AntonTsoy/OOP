@@ -15,25 +15,26 @@ public class BfsIterable<T> implements Iterable<T> {
     private class BfsIterator implements Iterator<T> {  // Can I make this class STATIC?
 
         // Queue used to store nodes in breadth-first order.
-        public ArrayDeque<Tree<T>> BfsQueue;
+        public ArrayDeque<Tree<T>> bfsQueue;
 
         /**
          * Constructor. Initializes the queue with the root node.
          */
         public BfsIterator() {
-            BfsQueue = new ArrayDeque<Tree<T>>();
-            BfsQueue.add(treeNode);
+            bfsQueue = new ArrayDeque<Tree<T>>();
+            bfsQueue.add(treeNode);
         }
 
         /**
          * Returns true if the iteration has more elements. 
-         * In other words, returns true if next() would return an element rather than throwing an exception.
+         * In other words, returns true if next() would return an element.
+         * Rather than throwing an exception.
          *
          * @return true if the iteration has more elements.
          */
         @Override
         public boolean hasNext() {
-            return !BfsQueue.isEmpty();
+            return !bfsQueue.isEmpty();
         }
 
         /**
@@ -43,12 +44,12 @@ public class BfsIterable<T> implements Iterable<T> {
          */
         @Override
         public T next() {
-            Tree<T> currentNode = BfsQueue.pollFirst();
+            Tree<T> currentNode = bfsQueue.pollFirst();
             if (currentNode.getNodeValue() == null) {
                 throw new ConcurrentModificationException();
             }
 
-            BfsQueue.addAll(currentNode.nodeChildren);
+            bfsQueue.addAll(currentNode.nodeChildren);
             return currentNode.getNodeValue();
         }
     }

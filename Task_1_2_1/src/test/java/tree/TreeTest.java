@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -240,7 +239,7 @@ class TreeTest {
         child1.addChild(4);
         child2.addChild(5);
 
-        Iterable<Integer> bfs = treeI.BFS();
+        Iterable<Integer> bfs = treeI.Bfs();
         Iterator<Integer> itr = bfs.iterator();
 
         ArrayList<Integer> expected = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
@@ -260,7 +259,7 @@ class TreeTest {
         child2.addChild("A2");
         child2.addChild("A1");
 
-        Iterable<String> bfs = treeS.DFS();
+        Iterable<String> bfs = treeS.Dfs();
         Iterator<String> itr = bfs.iterator();
 
         ArrayList<String> expected =

@@ -15,25 +15,26 @@ public class DfsIterable<T> implements Iterable<T> {
     private class DfsIterator implements Iterator<T> {  // Can I make this class STATIC?
 
         // Stack used to store nodes in depth-first order. 
-        public ArrayDeque<Tree<T>> DfsStack;
+        public ArrayDeque<Tree<T>> dfsStack;
 
         /**
          * Constructor. Initializes the queue with the root node.
          */       
         public DfsIterator() {
-            DfsStack = new ArrayDeque<Tree<T>>();
-            DfsStack.add(treeNode);
+            dfsStack = new ArrayDeque<Tree<T>>();
+            dfsStack.add(treeNode);
         }
 
         /**
          * Returns true if the iteration has more elements. 
-         * In other words, returns true if next() would return an element rather than throwing an exception.
+         * In other words, returns true if next() would return an element.
+         * Rather than throwing an exception.
          *
          * @return true if the iteration has more elements.
          */
         @Override
         public boolean hasNext() {
-            return !DfsStack.isEmpty();
+            return !dfsStack.isEmpty();
         }
 
         /**
@@ -43,12 +44,12 @@ public class DfsIterable<T> implements Iterable<T> {
          */
         @Override
         public T next() {
-            Tree<T> currentNode = DfsStack.pollLast();
+            Tree<T> currentNode = dfsStack.pollLast();
             if (currentNode.getNodeValue() == null) {
                 throw new ConcurrentModificationException();
             }
 
-            DfsStack.addAll(currentNode.nodeChildren);
+            dfsStack.addAll(currentNode.nodeChildren);
             return currentNode.getNodeValue();
         }
     } 
