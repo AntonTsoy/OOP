@@ -137,8 +137,8 @@ public class Tree<T> {
      * @param obj the reference object with which to compare.
      *
      * @return true 1) if this object has the same value as the obj argument and
-     *    2) if this object has children branches that have the same order and the same values,
-     *    otherwise it returns false.
+     *     2) if this object has children branches that have the same order and the same values,
+     *     otherwise it returns false.
      */ 
     @Override
     public boolean equals(Object obj) {
