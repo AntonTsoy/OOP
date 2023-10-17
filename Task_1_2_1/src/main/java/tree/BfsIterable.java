@@ -12,7 +12,7 @@ public class BfsIterable<T> implements Iterable<T> {
     /**
      * Implements an iterator interface for breadth-first traversal of a Tree.
      */
-    private class BfsIterator implements Iterator<T> {  // Can I make this class STATIC?
+    private class BfsIterator implements Iterator<T> {
 
         // Queue used to store nodes in breadth-first order.
         public ArrayDeque<Tree<T>> bfsQueue;

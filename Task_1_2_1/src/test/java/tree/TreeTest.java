@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -264,6 +265,7 @@ class TreeTest {
 
         ArrayList<String> expected =
             new ArrayList<>(Arrays.asList("Root", "A", "A1", "A2", "B", "B_child"));
+        
         ArrayList<String> result = new ArrayList<>();
         while (itr.hasNext()) {
             result.add(itr.next());
@@ -272,4 +274,35 @@ class TreeTest {
         assertEquals(expected, result);
     }
 
+    @Test
+    void testBfsConcurrentException() {
+        Tree<String> child1 = treeS.addChild("B");
+        Tree<String> child2 = treeS.addChild("A");
+        child1.addChild("B_child");
+        child2.addChild("A2");
+        child2.addChild("A1");
+
+
+        assertThrows(ConcurrentModificationException.class, () -> {
+            for (String curVal : treeS.bfs()) {
+                child2.remove();
+            }
+        });
+    }
+
+    @Test
+    void testDfsConcurrentException() {
+        Tree<Integer> child1 = treeI.addChild(1);
+        Tree<Integer> child2 = treeI.addChild(2);
+        child1.addChild(5);
+        child2.addChild(4);
+        child2.addChild(3);
+
+
+        assertThrows(ConcurrentModificationException.class, () -> {
+            for (Integer curVal : treeI.dfs()) {
+                treeI.remove();
+            }
+        });
+    }
 }

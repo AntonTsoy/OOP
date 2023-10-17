@@ -12,7 +12,7 @@ public class DfsIterable<T> implements Iterable<T> {
     /**
      * Implements an iterator interface for depth-first traversal of a Tree.
      */
-    private class DfsIterator implements Iterator<T> {  // Can I make this class STATIC?
+    private class DfsIterator implements Iterator<T> {
 
         // Stack used to store nodes in depth-first order. 
         public ArrayDeque<Tree<T>> dfsStack;

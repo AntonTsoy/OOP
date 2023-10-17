@@ -1,10 +1,10 @@
 #!/bin/sh
 
 # Компиляция исходного кода
-javac -d bin/main src/main/java/Tree/*.java
+javac -d bin/main src/main/java/tree/*.java
 
 # Генерация документации
-javadoc -d docs src/main/java/Tree/*.java
+javadoc -d docs src/main/java/tree/*.java
 
 # Запуск приложения
 jar cvfm tree.jar manifest.mf -C bin/main .
