@@ -30,7 +30,7 @@ public class SubStringSearch {
             }
 
             InputStreamReader inputReader = new InputStreamReader(stream, StandardCharsets.UTF_8);
-            bufReader = new BufferedReader(inputReader, 10 * 1024 * 1024);
+            bufReader = new BufferedReader(inputReader, 100 * 1024 * 1024);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -38,7 +38,7 @@ public class SubStringSearch {
 
     private boolean takePatch() {
         int charsCounter = 0;
-        char[] charsBuffer = new char[10 * 1024 * 1024];
+        char[] charsBuffer = new char[51 * 1024 * 1024];
         try {
             charsCounter = bufReader.read(charsBuffer);
             if (charsCounter < 0) {

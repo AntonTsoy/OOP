@@ -1,6 +1,9 @@
 package substring;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,10 +24,14 @@ public class TestSubStringSearch {
 
     @Test
     void easyTest() {
-        var found = finder.find("easy.txt", "z", true);
-        assertTrue(found.size() == 1 && found.get(0) == 250);
+        ArrayList<Long> found = finder.find("easy.txt", "Z", true);
+        assertTrue(found.size() == 1 && found.get(0) == 1);
     }
 
+    @Test
+    void go() {
+        ArrayList<Long> found = finder.find("src/test/resources/go.txt", "v");
+        assertEquals(found.get(0), 10);
+    }
 
-    
 }
