@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"substring","c":"SubStringSearch","l":"find(String, String, boolean)","url":"find(java.lang.String,java.lang.String,boolean)"},{"p":"substring","c":"SubStringSearch","l":"find(String, String)","url":"find(java.lang.String,java.lang.String)"},{"p":"substring","c":"SubStringSearch","l":"SubStringSearch()","url":"%3Cinit%3E()"}]
