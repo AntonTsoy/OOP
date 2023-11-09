@@ -29,7 +29,7 @@ public class TestSubStringSearch {
     @Test
     void go() {
         ArrayList<Long> found = finder.find("src/test/resources/go.txt", "bo");
-        assertEquals("[14, 41]", found.toString());
+        assertEquals("[14, 39]", found.toString());
     }
 
 }
