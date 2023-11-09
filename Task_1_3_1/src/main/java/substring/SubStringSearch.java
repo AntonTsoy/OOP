@@ -65,7 +65,7 @@ public class SubStringSearch {
         while (takePatch()) {
             strBuffer.insert(0, prevPatch);
 
-            System.err.println(subString + ":: " + strBuffer.toString());///////////////////////////
+            // System.err.println(subString + ":: " + strBuffer.toString()); //
 
             if (strBuffer.length() < subString.length()) {
                 break;
