@@ -30,22 +30,23 @@ public class SubStringSearch {
             }
 
             InputStreamReader inputReader = new InputStreamReader(stream, StandardCharsets.UTF_8);
-            bufReader = new BufferedReader(inputReader, 100 * 1024 * 1024);
+            bufReader = new BufferedReader(inputReader);  // Maybe need to define Size
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 
     private boolean takePatch() {
         int charsCounter = 0;
-        char[] charsBuffer = new char[51 * 1024 * 1024];
+        char[] charsBuffer = new char[10 * 1024 * 1024];
         try {
             charsCounter = bufReader.read(charsBuffer);
-            if (charsCounter < 0) {
+            if (charsCounter <= 0) {
                 return false;
             }
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
             return false;
         }
         
@@ -63,6 +64,9 @@ public class SubStringSearch {
         String prevPatch = "";
         while (takePatch()) {
             strBuffer.insert(0, prevPatch);
+
+            System.err.println(subString + ":: " + strBuffer.toString());///////////////////////////
+
             if (strBuffer.length() < subString.length()) {
                 break;
             }
@@ -91,9 +95,9 @@ public class SubStringSearch {
     /**
      * Function.
      *
-     * @param file
+     * @param file file.
      *
-     * @param findStr
+     * @param findStr findStr.
      */
     public ArrayList<Long> find(String file, String findStr) {
         subStringOccurs.clear();
@@ -111,9 +115,9 @@ public class SubStringSearch {
     /**
      * Function.
      *
-     * @param file
+     * @param file file.
      *
-     * @param findStr
+     * @param findStr findStr.
      */
     public ArrayList<Long> find(String file, String findStr, boolean resourcesDir) {
         subStringOccurs.clear();
