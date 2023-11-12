@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -73,7 +71,7 @@ public class TestSubStringSearch {
     @Test
     void BigFileTest() {
         createBigFile();
-        ArrayList<Long> found = finder.find("src/test/resources/Big10GB.txt", "v")
+        ArrayList<Long> found = finder.find("src/test/resources/Big10GB.txt", "v");
         assertEquals("[8]", found.toString());
         deleteBigFile();
     }
