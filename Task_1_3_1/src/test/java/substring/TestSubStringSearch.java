@@ -69,7 +69,7 @@ public class TestSubStringSearch {
     }
 
     @Test
-    void BigFileTest() {
+    void bigFileTest() {
         createBigFile();
         ArrayList<Long> found = finder.find("src/test/resources/Big10GB.txt", "v");
         assertEquals("[8]", found.toString());
