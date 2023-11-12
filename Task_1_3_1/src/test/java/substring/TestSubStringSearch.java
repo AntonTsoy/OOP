@@ -9,7 +9,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,12 +16,12 @@ import org.junit.jupiter.api.Test;
 /**
  * Test class for substring searching.
  */
-public class TestSubstringSearch {
-    SubstringSearch finder;
+public class TestSubStringSearch {
+    SubStringSearch finder;
 
     @BeforeEach
     void setUp() {
-        finder = new SubstringSearch();
+        finder = new SubStringSearch();
     }
 
     @Test
@@ -38,7 +37,7 @@ public class TestSubstringSearch {
     }
 
     @Test 
-    void FrenchTest() {
+    void frenchTest() {
         ArrayList<Long> found = finder.find("french.txt", "飘", true);
         assertEquals("[25]", found.toString());
     }
@@ -88,5 +87,6 @@ public class TestSubstringSearch {
     @Test 
     void BigResourceTest() {
 
-    }*/
+    }
+*/
 }

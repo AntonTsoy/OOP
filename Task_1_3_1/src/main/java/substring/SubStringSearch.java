@@ -13,25 +13,30 @@ import java.util.ArrayList;
 /**
  * Class for searching substring.
  */
-public class SubstringSearch {
+public class SubStringSearch {
     private String subString;
     private StringBuffer strBuffer = new StringBuffer();
     private BufferedReader bufReader;
     private ArrayList<Long> subStringOccurs = new ArrayList<>();
 
 
-    private void open(String file, boolean resourcesDir) {
+    private void openFile(String file) {
         try {
-            InputStream stream;
-            if (resourcesDir) {
-                stream = getClass().getClassLoader().getResourceAsStream(file);
-            } else {
-                stream = new FileInputStream(file);
-            }
-
+            InputStream stream = new FileInputStream(file);
             InputStreamReader inputReader = new InputStreamReader(stream, StandardCharsets.UTF_8);
             bufReader = new BufferedReader(inputReader);
         } catch (IOException e) {
+            System.err.println(e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void openResource(String file) {
+        try {
+            InputStream stream = getClass().getClassLoader().getResourceAsStream(file);
+            InputStreamReader inputReader = new InputStreamReader(stream, StandardCharsets.UTF_8);
+            bufReader = new BufferedReader(inputReader);
+        } catch (Exception e) {
             System.err.println(e.getMessage());
             throw new RuntimeException(e);
         }
@@ -64,8 +69,6 @@ public class SubstringSearch {
         String prevPatch = "";
         while (takePatch()) {
             strBuffer.insert(0, prevPatch);
-
-             System.err.println(subString + ":: " + strBuffer.toString()); //
 
             if (strBuffer.length() < subString.length()) {
                 break;
@@ -104,9 +107,8 @@ public class SubstringSearch {
 
         ByteBuffer utf8Buffer = StandardCharsets.UTF_8.encode(findStr);
         subString = StandardCharsets.UTF_8.decode(utf8Buffer).toString();
-        System.err.println("SbStr: " + subString + " >>");
 
-        open(file, false);
+        openFile(file);
 
         findPatchOccurs();
         close();
@@ -123,12 +125,14 @@ public class SubstringSearch {
     public ArrayList<Long> find(String file, String findStr, boolean resourcesDir) {
         subStringOccurs.clear();
 
-        System.err.println("FindStr: " + findStr + " >>"); 
         ByteBuffer utf8Buffer = StandardCharsets.UTF_8.encode(findStr);
         subString = StandardCharsets.UTF_8.decode(utf8Buffer).toString();
-        System.err.println("SbStr: " + subString + " >>"); 
 
-        open(file, resourcesDir);
+        if (resourcesDir) {
+            openResource(file);
+        } else {
+            openFile(file);
+        } 
 
         findPatchOccurs();
         close();
