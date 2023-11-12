@@ -35,7 +35,7 @@ public class TestSubStringSearch {
     }
 
     @Test 
-    void frenchTest() {
+    void actualTest() {
         ArrayList<Long> found = finder.find("actual.txt", "سلطانا", true);
         assertEquals("[10]", found.toString());
     }
@@ -71,7 +71,7 @@ public class TestSubStringSearch {
     @Test
     void bigFileTest() {
         createBigFile();
-        ArrayList<Long> found = finder.find("src/test/resources/Big10GB.txt", "v");
+        ArrayList<Long> found = finder.find("src/test/resources/Big10GB.txt", "!");
         assertEquals("[8]", found.toString());
         deleteBigFile();
     }
