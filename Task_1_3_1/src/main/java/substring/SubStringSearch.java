@@ -20,23 +20,18 @@ public class SubStringSearch {
     private ArrayList<Long> subStringOccurs = new ArrayList<>();
 
 
-    private void openFile(String file) {
+    private void open(String file, boolean resourcesDir) {
         try {
-            InputStream stream = new FileInputStream(file);
-            InputStreamReader inputReader = new InputStreamReader(stream, StandardCharsets.UTF_8);
-            bufReader = new BufferedReader(inputReader);
-        } catch (IOException e) {
-            System.err.println(e.getMessage());
-            throw new RuntimeException(e);
-        }
-    }
+            InputStream stream;
+            if (resourcesDir) {
+                stream = getClass().getClassLoader().getResourceAsStream(file);
+            } else {
+                stream = new FileInputStream(file);
+            }
 
-    private void openResource(String file) {
-        try {
-            InputStream stream = getClass().getClassLoader().getResourceAsStream(file);
             InputStreamReader inputReader = new InputStreamReader(stream, StandardCharsets.UTF_8);
-            bufReader = new BufferedReader(inputReader);
-        } catch (Exception e) {
+            bufReader = new BufferedReader(inputReader);  // Maybe need to define Size
+        } catch (IOException e) {
             System.err.println(e.getMessage());
             throw new RuntimeException(e);
         }
@@ -108,7 +103,7 @@ public class SubStringSearch {
         ByteBuffer utf8Buffer = StandardCharsets.UTF_8.encode(findStr);
         subString = StandardCharsets.UTF_8.decode(utf8Buffer).toString();
 
-        openFile(file);
+        open(file, false);
 
         findPatchOccurs();
         close();
@@ -128,11 +123,7 @@ public class SubStringSearch {
         ByteBuffer utf8Buffer = StandardCharsets.UTF_8.encode(findStr);
         subString = StandardCharsets.UTF_8.decode(utf8Buffer).toString();
 
-        if (resourcesDir) {
-            openResource(file);
-        } else {
-            openFile(file);
-        } 
+        open(file, resourcesDir);
 
         findPatchOccurs();
         close();

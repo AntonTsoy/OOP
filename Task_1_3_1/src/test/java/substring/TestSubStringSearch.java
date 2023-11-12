@@ -38,8 +38,8 @@ public class TestSubStringSearch {
 
     @Test 
     void frenchTest() {
-        ArrayList<Long> found = finder.find("french.txt", "飘", true);
-        assertEquals("[25]", found.toString());
+        ArrayList<Long> found = finder.find("actual.txt", "جميلات", true);
+        assertEquals("[1]", found.toString());
     }
 /* 
     static void createBigFile() {
