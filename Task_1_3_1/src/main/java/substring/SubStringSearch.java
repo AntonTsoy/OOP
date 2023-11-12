@@ -11,9 +11,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 /**
- * Abstract string finder class.
+ * Class for searching substring.
  */
-public class SubStringSearch {
+public class SubstringSearch {
     private String subString;
     private StringBuffer strBuffer = new StringBuffer();
     private BufferedReader bufReader;
@@ -30,7 +30,7 @@ public class SubStringSearch {
             }
 
             InputStreamReader inputReader = new InputStreamReader(stream, StandardCharsets.UTF_8);
-            bufReader = new BufferedReader(inputReader);  // Maybe need to define Size
+            bufReader = new BufferedReader(inputReader);
         } catch (IOException e) {
             System.err.println(e.getMessage());
             throw new RuntimeException(e);
@@ -65,7 +65,7 @@ public class SubStringSearch {
         while (takePatch()) {
             strBuffer.insert(0, prevPatch);
 
-            // System.err.println(subString + ":: " + strBuffer.toString()); //
+             System.err.println(subString + ":: " + strBuffer.toString()); //
 
             if (strBuffer.length() < subString.length()) {
                 break;
@@ -104,6 +104,7 @@ public class SubStringSearch {
 
         ByteBuffer utf8Buffer = StandardCharsets.UTF_8.encode(findStr);
         subString = StandardCharsets.UTF_8.decode(utf8Buffer).toString();
+        System.err.println("SbStr: " + subString + " >>");
 
         open(file, false);
 
@@ -122,8 +123,10 @@ public class SubStringSearch {
     public ArrayList<Long> find(String file, String findStr, boolean resourcesDir) {
         subStringOccurs.clear();
 
+        System.err.println("FindStr: " + findStr + " >>"); 
         ByteBuffer utf8Buffer = StandardCharsets.UTF_8.encode(findStr);
         subString = StandardCharsets.UTF_8.decode(utf8Buffer).toString();
+        System.err.println("SbStr: " + subString + " >>"); 
 
         open(file, resourcesDir);
 
