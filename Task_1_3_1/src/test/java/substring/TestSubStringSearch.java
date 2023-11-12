@@ -41,24 +41,20 @@ public class TestSubStringSearch {
         ArrayList<Long> found = finder.find("actual.txt", "سلطانا", true);
         assertEquals("[10]", found.toString());
     }
-/* 
+
     static void createBigFile() {
         try (FileWriter writer = new FileWriter("src/test/resources/Big10GB.txt")) {
-            int twoMbSize = 1048576 * 2;
-            StringBuilder twoMbString = new StringBuilder("b");
-            for (int i = twoMbSize; i > 1; i /= 2) {
-                twoMbString.append(twoMbString);
+            StringBuilder eightMbBuild = new StringBuilder("qWerTYkl");
+            for (int i = 1024 * 1024; i > 1; i /= 2) {
+                eightMbBuild.append(eightMbBuild);
             }
-            String twoMbBs = twoMbString.toString();
-            twoMbString.replace(1048575, 1048577, "aa");
-            writer.write(twoMbString.toString());
+            String eightMbStr = eightMbBuild.toString();
+            writer.write("qWerTYkl!");
             writer.flush();
-            for (int i = 0; i < 8190; ++i) {
-                writer.write(twoMbBs);
+            for (int i = 0; i < 1024; ++i) {
+                writer.write(eightMbStr);
                 writer.flush();
             }
-            writer.write(twoMbString.toString());
-            writer.flush();
         } catch (Exception e) {
             System.err.println("Problems with opening Big10GB.txt");
             throw new RuntimeException(e);
@@ -77,16 +73,8 @@ public class TestSubStringSearch {
     @Test
     void BigFileTest() {
         createBigFile();
-        ArrayList<Long> predictedList = new ArrayList<>();
-        predictedList.add((long) 1048575);
-        predictedList.add((long) 16 * 1024 * 1024 * 1024 - 1048577);
-        assertEquals(predictedList, finder.find("src/test/resources/Big10GB.txt", "v"));
+        ArrayList<Long> found = finder.find("src/test/resources/Big10GB.txt", "v")
+        assertEquals("[8]", found.toString());
         deleteBigFile();
     }
-
-    @Test 
-    void BigResourceTest() {
-
-    }
-*/
 }
