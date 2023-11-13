@@ -21,15 +21,20 @@ public class SubStringSearch {
 
 
     private void open(String file, boolean resourcesDir) {
-        InputStream stream;
-        if (resourcesDir) {
-            stream = getClass().getClassLoader().getResourceAsStream(file);
-        } else {
-            stream = new FileInputStream(file);
-        }
+        try {
+            InputStream stream;
+            if (resourcesDir) {
+                stream = getClass().getClassLoader().getResourceAsStream(file);
+            } else {
+                stream = new FileInputStream(file);
+            }
 
-        InputStreamReader inputReader = new InputStreamReader(stream, StandardCharsets.UTF_8);
-        bufReader = new BufferedReader(inputReader);
+            InputStreamReader inputReader = new InputStreamReader(stream, StandardCharsets.UTF_8);
+            bufReader = new BufferedReader(inputReader);  // Maybe need to define Size
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            throw new RuntimeException(e);
+        }
     }
 
     private boolean takePatch() {
