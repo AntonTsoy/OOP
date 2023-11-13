@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 
 /**
- * Test class for substring searching.
+ * Class for testing substring search.
  */
 public class TestSubStringSearch {
     SubStringSearch finder;
@@ -42,14 +42,19 @@ public class TestSubStringSearch {
 
     static void createBigFile() {
         try (FileWriter writer = new FileWriter("src/test/resources/Big10GB.txt")) {
-            StringBuilder eightMbBuild = new StringBuilder("qWerTYkl");
-            for (int i = 1024 * 1024; i > 1; i /= 2) {
+            // At the beginning, the size of this string is 8 bytes
+            StringBuilder eightMbBuild = new StringBuilder("qWerTYkl");  
+            // Then we will increase this size by 20 times. We will get string with 8 Mb size
+            int degreeOfTwo = 20;
+            while (degreeOfTwo > 0) {
                 eightMbBuild.append(eightMbBuild);
+                --degreeOfTwo;
             }
             String eightMbStr = eightMbBuild.toString();
             writer.write("qWerTYkl!");
             writer.flush();
-            for (int i = 0; i < 1024; ++i) {
+            // Write into the file 8 Gb
+            for (int i = 0; i < 1024; i++) {
                 writer.write(eightMbStr);
                 writer.flush();
             }

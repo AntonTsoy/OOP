@@ -21,20 +21,15 @@ public class SubStringSearch {
 
 
     private void open(String file, boolean resourcesDir) {
-        try {
-            InputStream stream;
-            if (resourcesDir) {
-                stream = getClass().getClassLoader().getResourceAsStream(file);
-            } else {
-                stream = new FileInputStream(file);
-            }
-
-            InputStreamReader inputReader = new InputStreamReader(stream, StandardCharsets.UTF_8);
-            bufReader = new BufferedReader(inputReader);  // Maybe need to define Size
-        } catch (IOException e) {
-            System.err.println(e.getMessage());
-            throw new RuntimeException(e);
+        InputStream stream;
+        if (resourcesDir) {
+            stream = getClass().getClassLoader().getResourceAsStream(file);
+        } else {
+            stream = new FileInputStream(file);
         }
+
+        InputStreamReader inputReader = new InputStreamReader(stream, StandardCharsets.UTF_8);
+        bufReader = new BufferedReader(inputReader);
     }
 
     private boolean takePatch() {
@@ -91,7 +86,8 @@ public class SubStringSearch {
     }
 
     /**
-     * Function.
+     * A function that reads a file in chunks. 
+     * And returns an array of indexes of the occurrence of the substring.
      *
      * @param file file.
      *
@@ -111,11 +107,14 @@ public class SubStringSearch {
     }
 
     /**
-     * Function.
+     * A function that reads a file or resource (it depends on the parameter) in chunks. 
+     * And returns an array of indexes of the occurrence of the substring.
      *
      * @param file file.
      *
      * @param findStr findStr.
+     *
+     * @param resourcesDir flag of resource. 
      */
     public ArrayList<Long> find(String file, String findStr, boolean resourcesDir) {
         subStringOccurs.clear();
