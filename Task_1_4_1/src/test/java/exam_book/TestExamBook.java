@@ -78,9 +78,9 @@ public class TestExamBook {
     }
 
     @Test
-    void testGoodSemesterInitializedToTrue() {
+    void testGoodSemesterInitializedToFalse() {
         Semester semester = new Semester(2);
-        assertTrue(semester.goodSemester());
+        assertFalse(semester.goodSemester());
     }
 
     @Test
@@ -97,46 +97,38 @@ public class TestExamBook {
         Subject testSubject = new Subject(java, 5, vlasov, true); 
         semester.addSubject(testSubject);
 
-        Subject result = semester.getSubject(0);
+        Subject result = semester.getSubject(1);
         assertSame(testSubject, result);  
     }
-
-    /////
     
     @Test
-    void testConstructor_StudentNameInitialized() {
+    void testStudentNameInitialized() {
         String testName = "John";
         ExamBook book = new ExamBook(testName);
         assertEquals(testName, book.student);
     }
 
     @Test
-    void testConstructor_CurrentSemesterInitializedToZero() {
+    void testCurrentSemesterInitializedToZero() {
         ExamBook book = new ExamBook("Test");
-        assertEquals(1, book.getSemester());
+        assertEquals(1, book.getSemester().semesterNum);
     }
 
     @Test
-    void testConstructor_QualifiedWorkInitializedToZero() {
+    void testSemestersListInitialized() {
         ExamBook book = new ExamBook("Test");
-        assertEquals(0, book.qualifiedWork); 
+        assertNotNull(book.getSemester(1));
     }
 
     @Test
-    void testConstructor_SemestersListInitialized() {
+    void testSemesterIsAdded() {
         ExamBook book = new ExamBook("Test");
-        assertNotNull(book.semesters);
+        Semester newSem = book.newSemester();  
+        assertEquals(2, newSem.semesterNum);
     }
 
     @Test
-    void testNewSemester_SemesterIsAdded() {
-        ExamBook book = new ExamBook("Test");
-        book.newSemester();  
-        assertEquals(2, book.semesters.size());
-    }
-
-    @Test
-    void testGetSemester_ReturnsCorrectSemester() {
+    void testReturnsCorrectSemester() {
         ExamBook book = new ExamBook("Test");  
         book.newSemester();
         
@@ -145,93 +137,90 @@ public class TestExamBook {
     }
 
     @Test
-    void testSetQualifier_InvalidMarkThrowsException() {
+    void testInvalidMarkThrowsException() {
         ExamBook book = new ExamBook("Test");
 
         assertThrows(IllegalArgumentException.class, () -> {
-            book.setQualifier(6);
+            book.setQualifier(1);
         });
     }
-    
-    // ...
 
     @Test
-    void testGetCurrentAverageMark_EmptyBookReturnsZero() {
-        ExamBook book = new ExamBook("Test");
+    void testCurrentAverageMarkOfEmptyBookReturnsZero() {
+        ExamBook book = new ExamBook("Vasya");
         
         assertEquals(0, book.getCurrentAverageMark());
     }
 
     @Test
-    void testGetCurrentAverageMark_CalculatesCorrectly() {
-        ExamBook book = new ExamBook("Test");
+    void testAverageMarkCalculatesCorrectly() {
+        ExamBook book = new ExamBook("Gena");
         
-        book.getSemester().addSubject(new Subject(null, 5, null, false));
+        book.getSemester().addSubject(new Subject(osi, 4, irtegov, true));
         book.newSemester();
-        book.getSemester().addSubject(new Subject(null, 4, null, false));
+        book.getSemester().addSubject(new Subject(java, 5, vlasov, false));
         
         assertEquals(4.5, book.getCurrentAverageMark());  
     }
 
     @Test
-    void testUpSalary_Eligible() {
-        ExamBook book = new ExamBook("Test");
+    void testUpSalaryEligible() {
+        ExamBook book = new ExamBook("Tsoy");
         
-        book.getSemester().addSubject(new Subject(null, 5, null, false));
+        book.getSemester().addSubject(new Subject(java, 5, "Anton", true));
         
         assertTrue(book.upSalary());
     }
 
     @Test
-    void testUpSalary_NotEligible() {
-        ExamBook book = new ExamBook("Test");
+    void testUpSalaryNotEligible() {
+        ExamBook book = new ExamBook("Dima");
         
-        book.getSemester().addSubject(new Subject(null, 4, null, false));
+        Discipline math = new Discipline("Math", "DFJC");
+        book.getSemester().addSubject(new Subject(math, 4, "Vova", false));
         
         assertFalse(book.upSalary());
     }
 
     @Test
-    void testRedDiploma_Eligible() {
+    void testRedDiplomaEligible() {
         ExamBook book = new ExamBook("Test");
+        Discipline template = new Discipline("TEMPLATE", "00-00");
         
         book.setQualifier(5);
         
-        for (int i = 0; i < 8; i++) {
-            book.newSemester();
-            book.getSemester().addSubject(new Subject(null, 5, null, false)); 
+        book.getSemester().addSubject(new Subject(template, 5, "DeadInside", false)); 
+        for (int i = 2; i <= 8; i++) {
+            book.newSemester().addSubject(new Subject(template, 5, "DeadInside", false)); 
         }
         
         assertTrue(book.redDiploma());
     }
 
     @Test
-    void testRedDiploma_NotEligible_LowAverageMark() {
+    void testRedNotEligibleLowAverageMark() {
         ExamBook book = new ExamBook("Test");
+        Discipline template = new Discipline("TEMPLATE", "00-00");
         
-        book.setQualifier(5);
+        book.setQualifier(4);
         
-        for (int i = 0; i < 8; i++) {
-            book.newSemester();
-            book.getSemester().addSubject(new Subject(null, 4, null, false));
+        book.getSemester().addSubject(new Subject(template, 5, "DeadInside", false)); 
+        for (int i = 2; i <= 8; i++) {
+            book.newSemester().addSubject(new Subject(template, 4, "DeadInside", false)); 
         }
+        
         
         assertFalse(book.redDiploma()); 
     }
 
     @Test
-    void testRedDiploma_NotEligible_BadSemester() {
+    void testRedDiplomaBadSemester() {
         ExamBook book = new ExamBook("Test");
         
         book.setQualifier(5);
         
-        for (int i = 0; i < 7; i++) {
-            book.newSemester();
-            book.getSemester().addSubject(new Subject(null, 5, null, false));
-        }
-        
-        book.newSemester(); 
-        book.getSemester().addSubject(new Subject(null, 3, null, false));
+        book.newSemester().addSubject(new Subject(java, 5, "Galina Bykova", false));
+        book.newSemester().addSubject(new Subject(osi, 3, irtegov, true));
         
         assertFalse(book.redDiploma());
     }

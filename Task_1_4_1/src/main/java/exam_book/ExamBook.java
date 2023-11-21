@@ -28,8 +28,10 @@ public class ExamBook {
     /**
      * Adds a new semester to the exam book.
      */
-    public void newSemester() {
-        this.semesters.add(new Semester(++currentSemester));
+    public Semester newSemester() {
+        Semester newHalf = new Semester(++currentSemester);
+        this.semesters.add(newHalf);
+        return newHalf;
     }
 
     /**
@@ -38,7 +40,7 @@ public class ExamBook {
      * @return the current semester.
      */
     public Semester getSemester() {
-        return semesters.get(currentSemester);
+        return semesters.get(currentSemester - 1);
     }
 
     /**
@@ -48,7 +50,7 @@ public class ExamBook {
      * @return the semester at the specified index.
      */
     public Semester getSemester(int semesterNum) {
-        return semesters.get(semesterNum);
+        return semesters.get(semesterNum - 1);
     }
 
     /**
@@ -75,7 +77,12 @@ public class ExamBook {
             currentGrade += sem.getGrade();
             subjectsNum += sem.quantityOfSubjects();
         }
-        return currentGrade / subjectsNum;
+
+        if (currentGrade == 0) {
+            return 0;
+        }
+
+        return (double)currentGrade / (double)subjectsNum;
     }
 
     /**
@@ -84,6 +91,10 @@ public class ExamBook {
      * @return true if eligible for a raise, false otherwise.
      */
     public boolean upSalary() {
+        if (getSemester().getGrade() == 0) {
+            return false;
+        }
+
         return getSemester().getGrade() / getSemester().quantityOfSubjects() == 5;
     }
 

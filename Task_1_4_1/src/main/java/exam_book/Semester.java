@@ -45,7 +45,7 @@ public class Semester {
      * @return the subject at the specified index.
      */
     public Subject getSubject(int subjectIdx) {
-        return subjects.get(subjectIdx);
+        return subjects.get(subjectIdx - 1);
     }
 
     /**
@@ -72,6 +72,6 @@ public class Semester {
      * @return true if the semester is good, false otherwise.
      */
     public boolean goodSemester() {
-        return this.isGood;
+        return this.isGood && subjects.size() > 0;
     }
 }
