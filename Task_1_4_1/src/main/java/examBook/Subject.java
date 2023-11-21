@@ -1,4 +1,4 @@
-package exam_book;
+package examBook;
 
 /**
  * Class for describing subject info, which poses for particular semester.

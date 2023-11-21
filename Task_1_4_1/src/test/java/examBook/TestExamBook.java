@@ -1,4 +1,4 @@
-package exam_book;
+package examBook;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -10,10 +10,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/*
+ * Class for tests.
+ */
 public class TestExamBook {
 
-    Discipline osi, java;
-    String irtegov, vlasov;
+    Discipline osi;
+    Discipline java;
+    String irtegov;
+    String vlasov;
 
     @BeforeEach
     void setUp() {

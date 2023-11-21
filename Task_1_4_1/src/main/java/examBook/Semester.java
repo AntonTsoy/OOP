@@ -1,4 +1,4 @@
-package exam_book;
+package examBook;
 
 import java.util.ArrayList;
 

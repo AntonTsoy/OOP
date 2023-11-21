@@ -1,4 +1,4 @@
-package exam_book;
+package examBook;
 
 import java.util.ArrayList;
 
@@ -82,7 +82,7 @@ public class ExamBook {
             return 0;
         }
 
-        return (double)currentGrade / (double)subjectsNum;
+        return (double) currentGrade / (double) subjectsNum;
     }
 
     /**
