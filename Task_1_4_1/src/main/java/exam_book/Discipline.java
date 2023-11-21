@@ -7,7 +7,6 @@ package exam_book;
 public class Discipline {
     public final String disciplineTitle;
     public final String competencies;
-    
     public String description;
 
     /**
