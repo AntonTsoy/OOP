@@ -1,4 +1,4 @@
-package examBook;
+package exam.book;
 
 /**
  * Class for discribing common info about subject.

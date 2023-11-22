@@ -3,7 +3,7 @@ plugins {
     id 'jacoco'
 }
 
-group = "examBook"
+group = "exam.book"
 version = '1.0-SNAPSHOT'
 
 repositories {
