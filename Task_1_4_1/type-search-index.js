@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"examBook","l":"Discipline"},{"p":"examBook","l":"ExamBook"},{"p":"examBook","l":"Semester"},{"p":"examBook","l":"Subject"}]
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"credit","l":"Discipline"},{"p":"credit","l":"ExamBook"},{"p":"credit","l":"Semester"},{"p":"credit","l":"Subject"}]
