@@ -1,4 +1,4 @@
-package exam.book;
+package credit;
 
 import java.util.ArrayList;
 
@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Represents an exam book for a student with information about their semesters and performance.
  */
 public class ExamBook {
-    private int currentSemester;   // The number of the current semester.
+    private int halfNum;   // The number of the current semester.
     private int qualifiedWork;   // The mark for the qualification work.
     private ArrayList<Semester> semesters;   // The list of semesters for the student.
 
@@ -19,7 +19,7 @@ public class ExamBook {
      */
     public ExamBook(String name) {
         this.student = name;
-        this.currentSemester = 0;
+        this.halfNum = 0;
         this.qualifiedWork = 0;
         this.semesters = new ArrayList<>();
         newSemester(); // Create the first semester by default.
@@ -29,7 +29,7 @@ public class ExamBook {
      * Adds a new semester to the exam book.
      */
     public Semester newSemester() {
-        Semester newHalf = new Semester(++currentSemester);
+        Semester newHalf = new Semester(++halfNum);
         this.semesters.add(newHalf);
         return newHalf;
     }
@@ -40,7 +40,7 @@ public class ExamBook {
      * @return the current semester.
      */
     public Semester getSemester() {
-        return semesters.get(currentSemester - 1);
+        return semesters.get(halfNum - 1);
     }
 
     /**
@@ -111,7 +111,7 @@ public class ExamBook {
                 break;
             }
         }
-        return currentSemester == 8 && getCurrentAverageMark() > 4.745
+        return halfNum == 8 && getCurrentAverageMark() > 4.745
             && qualifiedWork == 5 && isGood;
     }
 }

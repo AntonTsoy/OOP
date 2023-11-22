@@ -1,4 +1,4 @@
-package exam.book;
+package credit;
 
 import java.util.ArrayList;
 
@@ -10,7 +10,7 @@ public class Semester {
     private boolean isGood;
     private ArrayList<Subject> subjects; 
 
-    public final int semesterNum;
+    public final int halfNum;
 
     /**
      * Constructs a new Semester object with the given semester number.
@@ -18,7 +18,7 @@ public class Semester {
      * @param number the semester number.
      */
     public Semester(int number) {
-        this.semesterNum = number;
+        this.halfNum = number;
         this.sumOfMarks = 0;
         this.isGood = true;
 

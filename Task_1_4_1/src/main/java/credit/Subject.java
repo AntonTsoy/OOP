@@ -1,4 +1,4 @@
-package exam.book;
+package credit;
 
 /**
  * Class for describing subject info, which poses for particular semester.

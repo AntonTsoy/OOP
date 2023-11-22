@@ -1,4 +1,4 @@
-package exam.book;
+package credit;
 
 /**
  * Class for discribing common info about subject.

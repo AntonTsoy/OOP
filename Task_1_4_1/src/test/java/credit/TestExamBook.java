@@ -1,4 +1,4 @@
-package examBook;
+package credit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -73,7 +73,7 @@ public class TestExamBook {
     void testNumberInitialized() {
         int testNumber = 2;
         Semester semester = new Semester(testNumber);
-        assertEquals(testNumber, semester.semesterNum);
+        assertEquals(testNumber, semester.halfNum);
     }
 
     @Test 
@@ -116,7 +116,7 @@ public class TestExamBook {
     @Test
     void testCurrentSemesterInitializedToZero() {
         ExamBook book = new ExamBook("Test");
-        assertEquals(1, book.getSemester().semesterNum);
+        assertEquals(1, book.getSemester().halfNum);
     }
 
     @Test
@@ -129,7 +129,7 @@ public class TestExamBook {
     void testSemesterIsAdded() {
         ExamBook book = new ExamBook("Test");
         Semester newSem = book.newSemester();  
-        assertEquals(2, newSem.semesterNum);
+        assertEquals(2, newSem.halfNum);
     }
 
     @Test
@@ -138,7 +138,7 @@ public class TestExamBook {
         book.newSemester();
         
         Semester semester = book.getSemester();
-        assertEquals(2, semester.semesterNum);
+        assertEquals(2, semester.halfNum);
     }
 
     @Test
