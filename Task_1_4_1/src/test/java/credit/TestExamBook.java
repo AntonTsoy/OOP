@@ -76,18 +76,6 @@ public class TestExamBook {
         assertEquals(testNumber, semester.halfNum);
     }
 
-    @Test 
-    void testSumInitializedToZero() {
-        Semester semester = new Semester(1);
-        assertEquals(0, semester.getGrade());
-    }
-
-    @Test
-    void testGoodSemesterInitializedToFalse() {
-        Semester semester = new Semester(2);
-        assertFalse(semester.goodSemester());
-    }
-
     @Test
     void testAddSubject() {
         Semester semester = new Semester(3); 
@@ -229,4 +217,5 @@ public class TestExamBook {
         
         assertFalse(book.redDiploma());
     }
+
 }

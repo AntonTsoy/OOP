@@ -3,11 +3,9 @@ package credit;
 import java.util.ArrayList;
 
 /**
- * Represents a semester with subjects and grades.
+ * Represents a semester with subjects.
  */
 public class Semester {
-    private int sumOfMarks;
-    private boolean isGood;
     private ArrayList<Subject> subjects; 
 
     public final int halfNum;
@@ -19,9 +17,6 @@ public class Semester {
      */
     public Semester(int number) {
         this.halfNum = number;
-        this.sumOfMarks = 0;
-        this.isGood = true;
-
         this.subjects = new ArrayList<Subject>();
     }
 
@@ -32,10 +27,6 @@ public class Semester {
      */
     public void addSubject(Subject newSubject) {
         this.subjects.add(newSubject);
-        this.sumOfMarks += newSubject.getMark();
-        if (newSubject.getMark() < 4) {
-            this.isGood = false;
-        }
     }
 
     /**
@@ -49,29 +40,11 @@ public class Semester {
     }
 
     /**
-     * Gets the sum of marks for the semester.
-     *
-     * @return the sum of marks.
-     */
-    public int getGrade() {
-        return this.sumOfMarks;
-    }
-
-    /**
      * Gets the quantity of subjects in the semester.
      *
      * @return the quantity of subjects.
      */
     public int quantityOfSubjects() {
         return subjects.size();
-    }
-
-    /**
-     * Checks whether the semester is considered good based on the marks.
-     *
-     * @return true if the semester is good, false otherwise.
-     */
-    public boolean goodSemester() {
-        return this.isGood && subjects.size() > 0;
     }
 }

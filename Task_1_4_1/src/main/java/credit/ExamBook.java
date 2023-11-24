@@ -1,12 +1,15 @@
 package credit;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * Represents an exam book for a student with information about their semesters and performance.
  */
 public class ExamBook {
-    private int halfNum;   // The number of the current semester.
+    private int currentHalfIdx;   // The number of the current semester.
     private int qualifiedWork;   // The mark for the qualification work.
     private ArrayList<Semester> semesters;   // The list of semesters for the student.
 
@@ -19,7 +22,7 @@ public class ExamBook {
      */
     public ExamBook(String name) {
         this.student = name;
-        this.halfNum = 0;
+        this.currentHalfIdx = 0;
         this.qualifiedWork = 0;
         this.semesters = new ArrayList<>();
         newSemester(); // Create the first semester by default.
@@ -29,7 +32,7 @@ public class ExamBook {
      * Adds a new semester to the exam book.
      */
     public Semester newSemester() {
-        Semester newHalf = new Semester(++halfNum);
+        Semester newHalf = new Semester(++currentHalfIdx);
         this.semesters.add(newHalf);
         return newHalf;
     }
@@ -40,7 +43,7 @@ public class ExamBook {
      * @return the current semester.
      */
     public Semester getSemester() {
-        return semesters.get(halfNum - 1);
+        return semesters.get(currentHalfIdx - 1);
     }
 
     /**
@@ -49,8 +52,8 @@ public class ExamBook {
      * @param semesterNum the index of the semester to retrieve.
      * @return the semester at the specified index.
      */
-    public Semester getSemester(int semesterNum) {
-        return semesters.get(semesterNum - 1);
+    public Semester getSemester(int halfNum) {
+        return semesters.get(halfNum - 1);
     }
 
     /**
@@ -64,6 +67,16 @@ public class ExamBook {
         }
         this.qualifiedWork = mark;
     }
+
+    private double averageMarkOfSemesters(int halfBeg, int halfEnd) {
+        return IntStream.range(halfBeg, halfEnd + 1)
+            .mapToObj(num -> this.getSemester(num))
+            .flatMap(half -> IntStream.range(1, half.quantityOfSubjects() + 1)
+                .mapToObj(idx -> half.getSubject(idx)))
+            .mapToInt(Subject::getMark)
+            .average()
+            .orElse(0.0);
+    }
     
     /**
      * Calculates the current average mark for all semesters.
@@ -71,18 +84,7 @@ public class ExamBook {
      * @return the current average mark.
      */
     public double getCurrentAverageMark() {
-        int currentGrade = 0;
-        int subjectsNum = 0;
-        for (Semester sem : this.semesters) {
-            currentGrade += sem.getGrade();
-            subjectsNum += sem.quantityOfSubjects();
-        }
-
-        if (currentGrade == 0) {
-            return 0;
-        }
-
-        return (double) currentGrade / (double) subjectsNum;
+        return averageMarkOfSemesters(1, currentHalfIdx);
     }
 
     /**
@@ -91,11 +93,20 @@ public class ExamBook {
      * @return true if eligible for a raise, false otherwise.
      */
     public boolean upSalary() {
-        if (getSemester().getGrade() == 0) {
-            return false;
-        }
+        return averageMarkOfSemesters(currentHalfIdx, currentHalfIdx) > 4.95;
+    }
 
-        return getSemester().getGrade() / getSemester().quantityOfSubjects() == 5;
+        /*if (currentHalfIdx != 8) {
+            return false;
+        }*/
+ 
+    private Collection<Integer> diplomaMarks() {
+        return IntStream.range(1, 8)  
+            .mapToObj(this::getSemester)
+            .flatMap(half -> IntStream.range(1, half.quantityOfSubjects() + 1)  
+                .mapToObj(idx -> half.getSubject(idx)))
+            .collect(Collectors.toMap(subj -> subj.discipline, subj -> subj.getMark(),
+                (grade1, grade2) -> grade2)).values();
     }
 
     /**
@@ -103,15 +114,9 @@ public class ExamBook {
      *
      * @return true if eligible for a red diploma, false otherwise.
      */
-    public boolean redDiploma() {
-        boolean isGood = true;
-        for (Semester sem : this.semesters) {
-            if (!sem.goodSemester()) {
-                isGood = false;
-                break;
-            }
-        }
-        return halfNum == 8 && getCurrentAverageMark() > 4.745
-            && qualifiedWork == 5 && isGood;
+    public boolean redDiploma() { 
+        return currentHalfIdx == 8 && !diplomaMarks().contains(2) && !diplomaMarks().contains(3) 
+            && diplomaMarks().stream().mapToInt(a -> a).sum() / diplomaMarks().size() > 4.75
+            && qualifiedWork == 5;
     }
 }
