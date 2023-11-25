@@ -49,7 +49,7 @@ public class ExamBook {
     /**
      * Retrieves the semester at the specified index.
      *
-     * @param semesterNum the index of the semester to retrieve.
+     * @param halfNum the index of the semester to retrieve.
      * @return the semester at the specified index.
      */
     public Semester getSemester(int halfNum) {
@@ -96,10 +96,6 @@ public class ExamBook {
         return averageMarkOfSemesters(currentHalfIdx, currentHalfIdx) > 4.95;
     }
 
-        /*if (currentHalfIdx != 8) {
-            return false;
-        }*/
- 
     private Collection<Integer> diplomaMarks() {
         return IntStream.range(1, 8)  
             .mapToObj(this::getSemester)
