@@ -115,8 +115,8 @@ public class ExamBook {
      * @return true if eligible for a red diploma, false otherwise.
      */
     public boolean redDiploma() { 
-        return currentHalfIdx == 8 && !diplomaMarks().contains(2) && !diplomaMarks().contains(3) 
-            && diplomaMarks().stream().mapToInt(a -> a).sum() / diplomaMarks().size() > 4.75
-            && qualifiedWork == 5;
+        return currentHalfIdx == 8 && qualifiedWork == 5
+            && diplomaMarks().stream().allMatch(mark -> mark >= 4) 
+            && diplomaMarks().stream().mapToInt(a -> a).average().getAsDouble() > 4.75;
     }
 }
