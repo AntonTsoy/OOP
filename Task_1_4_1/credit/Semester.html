@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
+var data = {"i0":10,"i1":10,"i2":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -132,7 +132,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public class <span class="typeNameLabel">Semester</span>
 extends java.lang.Object</pre>
-<div class="block">Represents a semester with subjects and grades.</div>
+<div class="block">Represents a semester with subjects.</div>
 </li>
 </ul>
 </div>
@@ -207,27 +207,13 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getGrade()">getGrade</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Gets the sum of marks for the semester.</div>
-</td>
-</tr>
-<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="Subject.html" title="class in credit">Subject</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSubject(int)">getSubject</a></span>&#8203;(int&nbsp;subjectIdx)</code></th>
 <td class="colLast">
 <div class="block">Retrieves the subject at the specified index.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#goodSemester()">goodSemester</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Checks whether the semester is considered good based on the marks.</div>
-</td>
-</tr>
-<tr id="i4" class="altColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#quantityOfSubjects()">quantityOfSubjects</a></span>()</code></th>
 <td class="colLast">
@@ -331,24 +317,10 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="getGrade()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getGrade</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;getGrade()</pre>
-<div class="block">Gets the sum of marks for the semester.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the sum of marks.</dd>
-</dl>
-</li>
-</ul>
 <a id="quantityOfSubjects()">
 <!--   -->
 </a>
-<ul class="blockList">
+<ul class="blockListLast">
 <li class="blockList">
 <h4>quantityOfSubjects</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;quantityOfSubjects()</pre>
@@ -356,20 +328,6 @@ extends java.lang.Object</pre>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the quantity of subjects.</dd>
-</dl>
-</li>
-</ul>
-<a id="goodSemester()">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>goodSemester</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;goodSemester()</pre>
-<div class="block">Checks whether the semester is considered good based on the marks.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>true if the semester is good, false otherwise.</dd>
 </dl>
 </li>
 </ul>
