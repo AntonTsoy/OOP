@@ -65,6 +65,14 @@ public class AdjacencyMatrix<L extends Number, N> implements Graph<L, N> {
      * 
      */
     @Override
+    public ArrayList<Vertex<N>> getGraphVertices() {
+        return new ArrayList<Vertex<N>>(vertices);
+    }
+
+    /**
+     * 
+     */
+    @Override
     public Edge<L, N> addEdge(N name, L len, Vertex<N> startVertex, Vertex<N> endVertex) {
         int startId = vertices.indexOf(startVertex);
         int endId = vertices.indexOf(endVertex);

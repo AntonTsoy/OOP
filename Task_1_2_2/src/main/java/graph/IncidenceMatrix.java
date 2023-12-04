@@ -64,6 +64,14 @@ public class IncidenceMatrix<L extends Number, N> implements Graph<L, N> {
      * 
      */
     @Override
+    public ArrayList<Vertex<N>> getGraphVertices() {
+        return new ArrayList<Vertex<N>>(vertices);
+    }
+
+    /**
+     * 
+     */
+    @Override
     public Edge<L, N> addEdge(N name, L len, Vertex<N> startVertex, Vertex<N> endVertex) {
         if (!vertices.contains(startVertex) || !vertices.contains(endVertex)) {
             throw new IllegalArgumentException("Graph must contains the vertices");

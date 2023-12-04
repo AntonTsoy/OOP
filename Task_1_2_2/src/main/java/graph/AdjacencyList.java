@@ -57,6 +57,14 @@ public class AdjacencyList<L extends Number, N> implements Graph<L, N> {
      * 
      */
     @Override
+    public ArrayList<Vertex<N>> getGraphVertices() {
+        return new ArrayList<Vertex<N>>(vertices);
+    }
+
+    /**
+     * 
+     */
+    @Override
     public Edge<L, N> addEdge(N name, L len, Vertex<N> startVertex, Vertex<N> endVertex) {
         int startId = vertices.indexOf(startVertex);
         var newEdge = new Edge<L, N>(name, len, startVertex, endVertex);

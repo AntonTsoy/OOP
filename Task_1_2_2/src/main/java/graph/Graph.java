@@ -46,6 +46,8 @@ public interface Graph<L extends Number, N> {
     }
 
     ArrayList<Edge<L, N>> getIncidentEdges(Vertex<N> currentVeretex);
+
+    ArrayList<Vertex<N>> getGraphVertices();
     
     /**
      * 
