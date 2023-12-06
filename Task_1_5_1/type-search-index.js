@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"calculator","l":"Calculator"},{"p":"calculator","l":"IncorrectLogarithm"},{"p":"calculator","l":"InvalidOperation"},{"p":"calculator","l":"NegativeRoot"},{"p":"calculator","l":"ZeroDivisionError"},{"p":"calculator","l":"ZeroToZeroPower"}]
