@@ -47,12 +47,12 @@ public class Calculator {
      * Calculates the result of a mathematical expression in Reverse Polish Notation (RPN).
      * Supported operations include addition, subtraction, multiplication, division, logarithm, 
      * exponentiation, square root, sine, and cosine.
-     * This method takes a string representing the expression in RPN and returns the result of the calculation.
+     * This method takes string representing the expression and returns the result of calculation.
      *
      * @param expr a string representing the mathematical expression in Reverse Polish Notation
      * @return the result of the calculation
      * @throws ZeroDivisionError if the expression attempts to divide by zero
-     * @throws IncorrectLogarithm if the expression attempts to take the logarithm of a negative number
+     * @throws IncorrectLogarithm if expression attempts to take logarithm of negative number
      * @throws ZeroToZeroPower if the expression attempts to raise 0 to the power of 0
      * @throws NegativeRoot if the expression attempts to take the square root of a negative
      * @throws InvalidOperation if the expression contains an invalid operation

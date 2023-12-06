@@ -1,8 +1,11 @@
 package calculator;
 
-public class ZeroToZeroPower extends ZeroDivisionError{
+/**
+ * Comment.
+ */
+public class ZeroToZeroPower extends ZeroDivisionError {
     
-    public ZeroToZeroPower(){
+    public ZeroToZeroPower() {
         super("Zero to zeroth Power");
     }
 }
