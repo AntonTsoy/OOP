@@ -53,7 +53,7 @@ public class Calculator {
      * @param expr a string representing the mathematical expression in Reverse Polish Notation.
      * @return the result of the calculation.
      * @throws InvalidOperationException if the expression contains incorrect operation.
-     * @throws ZeroDivisionError if the expression attempts to do bad things for calculator.
+     * @throws CalculationException if the expression attempts to do bad things for calculator.
      */
     public static double calculate(String expr) 
     throws InvalidOperationException, CalculationException {
