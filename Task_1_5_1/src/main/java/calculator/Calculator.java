@@ -57,7 +57,7 @@ public class Calculator {
      * @throws CalculationException if the expression attempts to do bad things for calculator.
      */
     public static double calculate(String expr) 
-    throws InvalidOperationException, CalculationException {
+        throws InvalidOperationException, CalculationException {
         ArrayList<String> exprElements = parseExpression(expr);
         Stack<Double> stackNumbers = fillStackWithDoubles(exprElements);
         fillStackWithDoubles(exprElements);

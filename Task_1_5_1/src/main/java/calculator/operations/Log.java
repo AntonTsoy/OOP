@@ -20,7 +20,7 @@ public final class Log extends Operation {
      */
     @Override
     public void apply(List<Double> collection) 
-    throws CalculationException, IncorrectLogarithmError {
+        throws CalculationException, IncorrectLogarithmError {
         int idOfLastNumber = collection.size() - 1;
         if (idOfLastNumber < 0) {
             throw new CalculationException(

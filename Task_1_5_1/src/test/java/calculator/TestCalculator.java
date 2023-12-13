@@ -8,7 +8,6 @@ import calculator.exceptions.InvalidOperationException;
 import calculator.exceptions.NegativeRootException;
 import calculator.exceptions.PowerException;
 import calculator.exceptions.ZeroDivisionError;
-
 import org.junit.jupiter.api.Test;
 
 
