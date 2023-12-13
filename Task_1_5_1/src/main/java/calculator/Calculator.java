@@ -7,8 +7,9 @@ import java.util.stream.Collectors;
 
 import calculator.exceptions.CalculationException;
 import calculator.exceptions.InvalidOperationException;
-import calculator.operations.OperationFactory;
+import calculator.exceptions.ZeroDivisionError;
 import calculator.operations.Operation;
+import calculator.operations.OperationFactory;
 
 /**
  * Class which working like a Calculator.

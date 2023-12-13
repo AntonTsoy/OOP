@@ -5,8 +5,7 @@ import java.util.List;
 /**
  * 
  */
-public sealed abstract class Operation
-permits Addition, Difference, Division, Multiplication, Sqrt, Sin, Cos, Log, Pow {
+public abstract class Operation {
     
     /**
      * 
