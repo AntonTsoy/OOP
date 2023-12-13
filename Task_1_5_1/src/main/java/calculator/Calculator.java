@@ -6,6 +6,7 @@ import java.util.Stack;
 import java.util.stream.Collectors;
 
 import calculator.exceptions.CalculationException;
+import calculator.exceptions.IncorrectLogarithmError;
 import calculator.exceptions.InvalidOperationException;
 import calculator.exceptions.ZeroDivisionError;
 import calculator.operations.Operation;
@@ -46,7 +47,7 @@ public class Calculator {
     }
 
     /**
-     * Calculates the result of a mathematical expression in Reverse Polish Notation (RPN).
+     * Calculates the result of a mathematical expression in Reverse Polish Notation.
      * Supported operations include addition, subtraction, multiplication, division, logarithm, 
      * exponentiation, square root, sine, and cosine.
      * This method takes string representing the expression and returns the result of calculation.
@@ -54,10 +55,10 @@ public class Calculator {
      * @param expr a string representing the mathematical expression in Reverse Polish Notation
      * @return the result of the calculation
      * @throws ZeroDivisionError if the expression attempts to divide by zero
-     * @throws IncorrectLogarithm if expression attempts to take logarithm of negative number
-     * @throws ZeroToZeroPower if the expression attempts to raise 0 to the power of 0
-     * @throws NegativeRoot if the expression attempts to take the square root of a negative
-     * @throws InvalidOperation if the expression contains an invalid operation
+     * @throws IncorrectLogarithmError if expression attempts to take logarithm of negative number
+     * @throws PowerException if the expression attempts to raise 0 to the power of 0
+     * @throws NegativeRootError if the expression attempts to take the square root of a negative
+     * @throws InvalidOperationException if the expression contains an invalid operation
      */
     public static double calculate(String expr) 
     throws InvalidOperationException, CalculationException {
