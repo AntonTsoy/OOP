@@ -11,7 +11,7 @@ import calculator.operations.Operation;
 import calculator.operations.OperationFactory;
 
 /**
- * Class which working like a Calculator.
+ * Class that works like a Calculator.
  */
 public class Calculator {
 
@@ -35,6 +35,7 @@ public class Calculator {
     private static Stack<Double> fillStackWithDoubles(ArrayList<String> parsedExpr) {
         Stack<Double> stack = new Stack<>();
         int lastElement = parsedExpr.size() - 1;
+        
         while (isNumber(parsedExpr.get(lastElement))) {
             stack.push(Double.parseDouble(parsedExpr.get(lastElement)));
             parsedExpr.remove(lastElement);
@@ -63,12 +64,12 @@ public class Calculator {
 
         String operationStr = null;
         Operation operationObj = null;
-        int lastOperator = exprElements.size() - 1;
-        while (lastOperator >= 0) {
-            operationStr = exprElements.remove(lastOperator);
+        int lastOperatorIdx = exprElements.size() - 1;
+        while (lastOperatorIdx >= 0) {
+            operationStr = exprElements.remove(lastOperatorIdx);
             operationObj = OperationFactory.getOperation(operationStr);
             operationObj.apply(stackNumbers);
-            lastOperator--;
+            lastOperatorIdx--;
         }
 
         return stackNumbers.pop();
