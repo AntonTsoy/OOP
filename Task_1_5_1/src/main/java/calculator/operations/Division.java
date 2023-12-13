@@ -1,9 +1,9 @@
 package calculator.operations;
 
-import java.util.List;
-
 import calculator.exceptions.CalculationException;
 import calculator.exceptions.ZeroDivisionError;
+
+import java.util.List;
 
 /**
  * Represents a division operation that divides the last two numbers in a collection.
@@ -12,11 +12,12 @@ public final class Division extends Operation{
 
     /**
      * Applies the division operation to the provided collection of numbers.
-     * Removes the last two numbers from the collection, checks for division by zero, divides them, and inserts the result back into the collection.
+     * Removes the last two numbers from the collection, checks for division by zero.
+     * Divides them, and inserts the result back into the collection.
      *
      * @param collection The list of numbers on which the division operation is applied.
-     * @throws CalculationException if there are fewer numbers in the collection than required for division.
-     * @throws ZeroDivisionError if the second number is almost zero, indicating a division by zero.
+     * @throws CalculationException if there less numbers in collection than required for division.
+     * @throws ZeroDivisionError if the second number is almost zero, indicating division by zero.
      */
     @Override
     public void apply(List<Double> collection) throws CalculationException, ZeroDivisionError {

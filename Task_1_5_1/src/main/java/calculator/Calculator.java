@@ -1,14 +1,15 @@
 package calculator;
 
+import calculator.exceptions.CalculationException;
+import calculator.exceptions.InvalidOperationException;
+import calculator.operations.Operation;
+import calculator.operations.OperationFactory;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
-import calculator.exceptions.CalculationException;
-import calculator.exceptions.InvalidOperationException;
-import calculator.operations.Operation;
-import calculator.operations.OperationFactory;
 
 /**
  * Class that works like a Calculator.

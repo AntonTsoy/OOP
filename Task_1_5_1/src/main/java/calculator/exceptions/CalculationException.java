@@ -3,7 +3,7 @@ package calculator.exceptions;
 /**
  * Common exception class for different types mistakes in calculator.
  */
-public class CalculationException extends ArithmeticException{
+public class CalculationException extends ArithmeticException {
 
     /**
      * Exception class constructor.

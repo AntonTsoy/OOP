@@ -1,8 +1,8 @@
 package calculator.operations;
 
-import java.util.List;
-
 import calculator.exceptions.CalculationException;
+
+import java.util.List;
 
 /**
  * Represents a cosine operation that calculates the cosine of the last number in a collection.
@@ -11,10 +11,10 @@ public final class Cos extends Operation{
     
     /**
      * Applies the cosine operation to the provided collection of numbers.
-     * Removes the last number from the collection, calculates the cosine, and inserts the result back into the collection.
+     * Removes last number from collection, calculates cosine, inserts result back in collection.
      *
      * @param collection The list of numbers on which the cosine operation is applied.
-     * @throws CalculationException if there are fewer numbers in the collection than required for the cosine operation.
+     * @throws CalculationException if there less numbers than required for cosine operation.
      */
     @Override
     public void apply(List<Double> collection) throws CalculationException{
