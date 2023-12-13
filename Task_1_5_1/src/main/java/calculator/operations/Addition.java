@@ -11,7 +11,7 @@ public final class Addition extends Operation{
 
     /**
      * 
-     * @param collection
+     * @param collection comment.
      */
     @Override
     public void apply(List<Double> collection) throws CalculationException {

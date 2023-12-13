@@ -9,9 +9,9 @@ public class OperationFactory {
     
     /**
      * 
-     * @param operationName
-     * @return
-     * @throws InvalidOperationException
+     * @param operationName string that contains name of Operation.
+     * @return corresponding Operation class for this name.
+     * @throws InvalidOperationException if class don't process this Operation.
      */
     public static Operation getOperation(String operationName) throws InvalidOperationException{
     
