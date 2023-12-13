@@ -138,7 +138,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public final class <span class="typeNameLabel">Log</span>
 extends <a href="Operation.html" title="class in calculator.operations">Operation</a></pre>
-<div class="block">Represents a logarithm operation that calculates the natural logarithm of the last number in a collection.</div>
+<div class="block">Represents logarithm operation that calculates natural logarithm of last number in collection.</div>
 </li>
 </ul>
 </div>
@@ -247,15 +247,16 @@ extends <a href="Operation.html" title="class in calculator.operations">Operatio
            throws <a href="../exceptions/CalculationException.html" title="class in calculator.exceptions">CalculationException</a>,
                   <a href="../exceptions/IncorrectLogarithmError.html" title="class in calculator.exceptions">IncorrectLogarithmError</a></pre>
 <div class="block">Applies the logarithm operation to the provided collection of numbers.
- Removes the last number from the collection, checks for correctness (zero or negative), calculates the logarithm, and inserts the result back into the collection.</div>
+ Removes the last number from the collection, checks for correctness (zero or negative).
+ Calculates the logarithm, and inserts the result back into the collection.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="Operation.html#apply(java.util.List)">apply</a></code>&nbsp;in class&nbsp;<code><a href="Operation.html" title="class in calculator.operations">Operation</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>collection</code> - The list of numbers on which the logarithm operation is applied.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../exceptions/CalculationException.html" title="class in calculator.exceptions">CalculationException</a></code> - if there are fewer numbers in the collection than required for the logarithm operation.</dd>
-<dd><code><a href="../exceptions/IncorrectLogarithmError.html" title="class in calculator.exceptions">IncorrectLogarithmError</a></code> - if the number is almost zero or negative, indicating an incorrect logarithm argument.</dd>
+<dd><code><a href="../exceptions/CalculationException.html" title="class in calculator.exceptions">CalculationException</a></code> - if there less numbers than required for the logarithm operation.</dd>
+<dd><code><a href="../exceptions/IncorrectLogarithmError.html" title="class in calculator.exceptions">IncorrectLogarithmError</a></code> - if number is almost zero or negative.</dd>
 </dl>
 </li>
 </ul>
