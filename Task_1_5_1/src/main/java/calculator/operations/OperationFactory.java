@@ -14,7 +14,7 @@ public class OperationFactory {
      * @return corresponding Operation class for this name.
      * @throws InvalidOperationException if class don't process this Operation.
      */
-    public static Operation getOperation(String operationName) throws InvalidOperationException{
+    public static Operation getOperation(String operationName) throws InvalidOperationException {
     
         switch (operationName) {
             case "+":

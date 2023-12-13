@@ -2,7 +2,6 @@ package calculator.operations;
 
 import calculator.exceptions.CalculationException;
 import calculator.exceptions.PowerException;
-
 import java.util.List;
 
 /**

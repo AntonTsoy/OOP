@@ -2,7 +2,6 @@ package calculator.operations;
 
 import calculator.exceptions.CalculationException;
 import calculator.exceptions.IncorrectLogarithmError;
-
 import java.util.List;
 
 /**
@@ -16,7 +15,7 @@ public final class Log extends Operation{
      * Calculates the logarithm, and inserts the result back into the collection.
      *
      * @param collection The list of numbers on which the logarithm operation is applied.
-     * @throws CalculationException if there less numbers than required for the logarithm operation.
+     * @throws CalculationException if there less numbers than required for logarithm operation.
      * @throws IncorrectLogarithmError if number is almost zero or negative.
      */
     @Override

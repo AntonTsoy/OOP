@@ -4,7 +4,6 @@ import calculator.exceptions.CalculationException;
 import calculator.exceptions.InvalidOperationException;
 import calculator.operations.Operation;
 import calculator.operations.OperationFactory;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;

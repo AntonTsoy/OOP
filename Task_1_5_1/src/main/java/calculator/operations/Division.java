@@ -2,7 +2,6 @@ package calculator.operations;
 
 import calculator.exceptions.CalculationException;
 import calculator.exceptions.ZeroDivisionError;
-
 import java.util.List;
 
 /**

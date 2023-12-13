@@ -1,7 +1,6 @@
 package calculator.operations;
 
 import calculator.exceptions.CalculationException;
-
 import java.util.List;
 
 /**

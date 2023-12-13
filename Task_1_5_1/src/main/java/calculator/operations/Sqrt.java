@@ -2,7 +2,6 @@ package calculator.operations;
 
 import calculator.exceptions.CalculationException;
 import calculator.exceptions.NegativeRootException;
-
 import java.util.List;
 
 /**
