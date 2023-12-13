@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Represents a multiplication operation that multiplies the last two numbers in a collection.
  */
-public final class Multiplication extends Operation{
+public final class Multiplication extends Operation {
 
     /**
      * Applies the multiplication operation to the provided collection of numbers.
@@ -20,7 +20,9 @@ public final class Multiplication extends Operation{
     public void apply(List<Double> collection) throws CalculationException {
         int idOfLastNumber = collection.size() - 1;
         if (idOfLastNumber < 1) {
-            throw new CalculationException("There are fewer numbers in collection than required");
+            throw new CalculationException(
+                "There are fewer numbers in collection than required"
+            );
         }
 
         Double firstNumber = collection.remove(idOfLastNumber);

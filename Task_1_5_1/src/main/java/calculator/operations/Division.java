@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Represents a division operation that divides the last two numbers in a collection.
  */
-public final class Division extends Operation{
+public final class Division extends Operation {
 
     /**
      * Applies the division operation to the provided collection of numbers.

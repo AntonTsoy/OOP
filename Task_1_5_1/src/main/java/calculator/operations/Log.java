@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Represents logarithm operation that calculates natural logarithm of last number in collection.
  */
-public final class Log extends Operation{
+public final class Log extends Operation {
 
     /**
      * Applies the logarithm operation to the provided collection of numbers.
@@ -19,10 +19,13 @@ public final class Log extends Operation{
      * @throws IncorrectLogarithmError if number is almost zero or negative.
      */
     @Override
-    public void apply(List<Double> collection) throws CalculationException, IncorrectLogarithmError {
+    public void apply(List<Double> collection) 
+    throws CalculationException, IncorrectLogarithmError {
         int idOfLastNumber = collection.size() - 1;
         if (idOfLastNumber < 0) {
-            throw new CalculationException("There are fewer numbers in collection than required");
+            throw new CalculationException(
+                "There are fewer numbers in collection than required"
+            );
         }
 
         Double number = collection.remove(idOfLastNumber);

@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Represents a power operation that raises the first number to the power of the second number.
  */
-public final class Pow extends Operation{
+public final class Pow extends Operation {
 
     /**
      * Applies the power operation to the provided collection of numbers.

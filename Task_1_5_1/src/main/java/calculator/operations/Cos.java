@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Represents a cosine operation that calculates the cosine of the last number in a collection.
  */
-public final class Cos extends Operation{
+public final class Cos extends Operation {
     
     /**
      * Applies the cosine operation to the provided collection of numbers.

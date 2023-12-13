@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Represents a sine operation that calculates the sine of the last number in a collection.
  */
-public final class Sin extends Operation{
+public final class Sin extends Operation {
 
     /**
      * Applies the sine operation to the provided collection of numbers.

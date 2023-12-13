@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Represents a difference operation that subtracts the last two numbers in a collection.
  */
-public final class Difference extends Operation{
+public final class Difference extends Operation {
 
     /**
      * Applies the difference operation to the provided collection of numbers.
