@@ -1,14 +1,15 @@
 package calculator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-// import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-// import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-// import java.util.ArrayList;
-// import java.util.Stack;
+import calculator.exceptions.IncorrectLogarithmError;
+import calculator.exceptions.InvalidOperationException;
+import calculator.exceptions.NegativeRootException;
+import calculator.exceptions.PowerException;
+import calculator.exceptions.ZeroDivisionError;
 
 
 /**
@@ -55,7 +56,7 @@ public class TestCalculator {
     @Test
     public void testLogarithmOfNegativeNumber() {
         String expr = "log -2";
-        assertThrows(IncorrectLogarithm.class, () -> {
+        assertThrows(IncorrectLogarithmError.class, () -> {
             Calculator.calculate(expr);
         });
     }
@@ -63,7 +64,7 @@ public class TestCalculator {
     @Test
     public void testZeroToZeroPower() {
         String expr = "pow 0 0";
-        assertThrows(ZeroToZeroPower.class, () -> {
+        assertThrows(PowerException.class, () -> {
             Calculator.calculate(expr);
         });
     }
@@ -71,7 +72,7 @@ public class TestCalculator {
     @Test
     public void testNegativeRoot() {
         String expr = "sqrt -1";
-        assertThrows(NegativeRoot.class, () -> {
+        assertThrows(NegativeRootException.class, () -> {
             Calculator.calculate(expr);
         });
     }
@@ -79,7 +80,7 @@ public class TestCalculator {
     @Test
     public void testInvalidOperation() {
         String expr = "dub * 2 3 5";
-        assertThrows(InvalidOperation.class, () -> {
+        assertThrows(InvalidOperationException.class, () -> {
             Calculator.calculate(expr);
         });
     }

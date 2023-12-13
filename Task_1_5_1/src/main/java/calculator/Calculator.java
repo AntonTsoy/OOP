@@ -5,6 +5,11 @@ import java.util.Arrays;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
+import calculator.exceptions.CalculationException;
+import calculator.exceptions.InvalidOperationException;
+import calculator.operations.OperationFactory;
+import calculator.operations.Operation;
+
 /**
  * Class which working like a Calculator.
  */
@@ -39,10 +44,6 @@ public class Calculator {
         return stack;
     }
 
-    private static boolean almostZero(Double number) {
-        return Math.abs(number) < 0.00001;
-    }
-
     /**
      * Calculates the result of a mathematical expression in Reverse Polish Notation (RPN).
      * Supported operations include addition, subtraction, multiplication, division, logarithm, 
@@ -57,68 +58,19 @@ public class Calculator {
      * @throws NegativeRoot if the expression attempts to take the square root of a negative
      * @throws InvalidOperation if the expression contains an invalid operation
      */
-    public static double calculate(String expr) {
+    public static double calculate(String expr) 
+    throws InvalidOperationException, CalculationException {
         ArrayList<String> exprElements = parseExpression(expr);
         Stack<Double> stackNumbers = fillStackWithDoubles(exprElements);
         fillStackWithDoubles(exprElements);
 
+        String operationStr = null;
+        Operation operationObj = null;
         int lastOperator = exprElements.size() - 1;
-        Double first = 0.0;
-        Double second = 0.0;
         while (lastOperator >= 0) {
-            switch (exprElements.get(lastOperator)) {
-                case "+":
-                    stackNumbers.push(stackNumbers.pop() + stackNumbers.pop());
-                    break;
-                case "-":
-                    stackNumbers.push(stackNumbers.pop() - stackNumbers.pop());
-                    break;
-                case "*":
-                    stackNumbers.push(stackNumbers.pop() * stackNumbers.pop());
-                    break;
-                case "/":
-                    first = stackNumbers.pop();
-                    second = stackNumbers.pop();
-                    if (almostZero(second)) {
-                        throw new ZeroDivisionError("Division by zero");
-                    }
-                    stackNumbers.push(first / second);
-                    break;
-                case "log":
-                    first = stackNumbers.pop();
-                    if (almostZero(first) || first < -0.000001) {
-                        throw new IncorrectLogarithm();
-                    }
-                    stackNumbers.push(Math.log(first));
-                    break;
-                case "pow":
-                    first = stackNumbers.pop();
-                    second = stackNumbers.pop();
-                    if (almostZero(first) && almostZero(second)) {
-                        throw new ZeroToZeroPower();
-                    }
-                    stackNumbers.push(Math.pow(first, second));
-                    break;
-                case "sqrt":
-                    first = stackNumbers.pop();
-                    if (first < -0.000001) {
-                        throw new NegativeRoot();
-                    }
-                    stackNumbers.push(Math.sqrt(first));
-                    break;
-                case "sin":
-                    first = stackNumbers.pop();
-                    stackNumbers.push(Math.sin(first));
-                    break;
-                case "cos":
-                    first = stackNumbers.pop();
-                    stackNumbers.push(Math.cos(first));
-                    break;
-                default:
-                    throw new InvalidOperation();
-            }
-
-            exprElements.remove(lastOperator);
+            operationStr = exprElements.remove(lastOperator);
+            operationObj = OperationFactory.getOperation(operationStr);
+            operationObj.apply(stackNumbers);
             lastOperator--;
         }
 
