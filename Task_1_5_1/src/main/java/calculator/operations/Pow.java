@@ -4,9 +4,14 @@ import java.util.List;
 
 import calculator.exceptions.PowerException;
 
-
+/**
+ * 
+ */
 public final class Pow extends Operation{
 
+    /**
+     * 
+     */
     @Override
     public void apply(List<Double> collection) {
         int idOfLastNumber = collection.size() - 1;

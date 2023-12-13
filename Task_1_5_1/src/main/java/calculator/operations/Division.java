@@ -4,9 +4,14 @@ import java.util.List;
 
 import calculator.exceptions.ZeroDivisionError;
 
-
+/**
+ * 
+ */
 public final class Division extends Operation{
 
+    /**
+     * 
+     */
     @Override
     public void apply(List<Double> collection) throws ZeroDivisionError{
         int idOfLastNumber = collection.size() - 1;

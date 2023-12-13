@@ -2,9 +2,14 @@ package calculator.operations;
 
 import java.util.List;
 
-
+/**
+ * 
+ */
 public final class Multiplication extends Operation{
 
+    /**
+     * 
+     */
     @Override
     public void apply(List<Double> collection) {
         int idOfLastNumber = collection.size() - 1;

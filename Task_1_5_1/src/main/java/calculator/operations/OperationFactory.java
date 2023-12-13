@@ -2,10 +2,17 @@ package calculator.operations;
 
 import calculator.exceptions.InvalidOperationException;
 
-
-
+/**
+ * 
+ */
 public class OperationFactory {
     
+    /**
+     * 
+     * @param operationName
+     * @return
+     * @throws InvalidOperationException
+     */
     public static Operation getOperation(String operationName) throws InvalidOperationException{
     
         switch (operationName) {
