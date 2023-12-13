@@ -137,6 +137,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public abstract class <span class="typeNameLabel">Operation</span>
 extends java.lang.Object</pre>
+<div class="block">Abstract class representing a mathematical operation.</div>
 </li>
 </ul>
 </div>
@@ -181,17 +182,23 @@ extends java.lang.Object</pre>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#almostZero(java.lang.Double)">almostZero</a></span>&#8203;(java.lang.Double&nbsp;number)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Checks if a number is close to zero.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>abstract void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#apply(java.util.List)">apply</a></span>&#8203;(java.util.List&lt;java.lang.Double&gt;&nbsp;collection)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Applies the operation to the provided collection of numbers.</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isNegative(java.lang.Double)">isNegative</a></span>&#8203;(java.lang.Double&nbsp;number)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Checks if a number is negative.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -243,9 +250,10 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>apply</h4>
 <pre class="methodSignature">public abstract&nbsp;void&nbsp;apply&#8203;(java.util.List&lt;java.lang.Double&gt;&nbsp;collection)</pre>
+<div class="block">Applies the operation to the provided collection of numbers.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>collection</code> - of numbers.</dd>
+<dd><code>collection</code> - The list of numbers on which the operation is applied.</dd>
 </dl>
 </li>
 </ul>
@@ -256,11 +264,12 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>almostZero</h4>
 <pre class="methodSignature">protected&nbsp;boolean&nbsp;almostZero&#8203;(java.lang.Double&nbsp;number)</pre>
+<div class="block">Checks if a number is close to zero.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>number</code> - that we want check on the equality to zero.</dd>
+<dd><code>number</code> - The number to check for proximity to zero.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>true if this number close equality to zero, false otherwise.</dd>
+<dd>true if the number is close to zero, false otherwise.</dd>
 </dl>
 </li>
 </ul>
@@ -271,11 +280,12 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>isNegative</h4>
 <pre class="methodSignature">protected&nbsp;boolean&nbsp;isNegative&#8203;(java.lang.Double&nbsp;number)</pre>
+<div class="block">Checks if a number is negative.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>number</code> - that we want check on the negativity.</dd>
+<dd><code>number</code> - The number to check for negativity.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>true if this number is negative, false otherwise.</dd>
+<dd>true if the number is negative, false otherwise.</dd>
 </dl>
 </li>
 </ul>

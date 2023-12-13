@@ -138,6 +138,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public final class <span class="typeNameLabel">Sqrt</span>
 extends <a href="Operation.html" title="class in calculator.operations">Operation</a></pre>
+<div class="block">Represents a square root operation that calculates the square root of the last number in a collection.</div>
 </li>
 </ul>
 </div>
@@ -182,7 +183,9 @@ extends <a href="Operation.html" title="class in calculator.operations">Operatio
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#apply(java.util.List)">apply</a></span>&#8203;(java.util.List&lt;java.lang.Double&gt;&nbsp;collection)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Applies the square root operation to the provided collection of numbers.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -243,14 +246,16 @@ extends <a href="Operation.html" title="class in calculator.operations">Operatio
 <pre class="methodSignature">public&nbsp;void&nbsp;apply&#8203;(java.util.List&lt;java.lang.Double&gt;&nbsp;collection)
            throws <a href="../exceptions/CalculationException.html" title="class in calculator.exceptions">CalculationException</a>,
                   <a href="../exceptions/NegativeRootException.html" title="class in calculator.exceptions">NegativeRootException</a></pre>
+<div class="block">Applies the square root operation to the provided collection of numbers.
+ Removes the last number from the collection, checks for negativity, calculates the square root, and inserts the result back into the collection.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="Operation.html#apply(java.util.List)">apply</a></code>&nbsp;in class&nbsp;<code><a href="Operation.html" title="class in calculator.operations">Operation</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>collection</code> - of numbers.</dd>
+<dd><code>collection</code> - The list of numbers on which the square root operation is applied.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../exceptions/CalculationException.html" title="class in calculator.exceptions">CalculationException</a></code></dd>
-<dd><code><a href="../exceptions/NegativeRootException.html" title="class in calculator.exceptions">NegativeRootException</a></code></dd>
+<dd><code><a href="../exceptions/CalculationException.html" title="class in calculator.exceptions">CalculationException</a></code> - if there are fewer numbers in the collection than required for the square root operation.</dd>
+<dd><code><a href="../exceptions/NegativeRootException.html" title="class in calculator.exceptions">NegativeRootException</a></code> - if the number is negative, indicating an attempt to calculate the square root of a negative number.</dd>
 </dl>
 </li>
 </ul>
