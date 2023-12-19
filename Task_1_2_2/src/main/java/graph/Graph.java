@@ -48,6 +48,19 @@ public interface Graph<L extends Number, N> {
     ArrayList<Edge<L, N>> getIncidentEdges(Vertex<N> currentVeretex);
 
     ArrayList<Vertex<N>> getGraphVertices();
+
+    /**
+     * 
+     */
+    default ArrayList<Edge<L, N>> getGraphEdges() {
+        ArrayList<Edge<L, N>> graphEdges = new ArrayList<>();
+        ArrayList<Vertex<N>> graphVertices = getGraphVertices();
+        for (Vertex<N> currVertex : graphVertices) {
+            graphEdges.addAll(graphView.getIncidentEdges(currVertex));
+        }
+
+        return graphEdges;
+    }
     
     /**
      * 
