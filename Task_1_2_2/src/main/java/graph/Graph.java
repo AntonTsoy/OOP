@@ -14,16 +14,6 @@ public interface Graph<L extends Number, N> {
     /**
      * 
      * @param vertex
-     * @return
-     * 
-     */
-    default N getVertex(Vertex<N> vertex) {
-        return vertex.getVertexName();
-    }
-    
-    /**
-     * 
-     * @param vertex
      * @param newName
      * 
      */
@@ -35,32 +25,11 @@ public interface Graph<L extends Number, N> {
     
     void delEdge(Edge<L,N> edge);
 
-    /**
-     * 
-     * @param edge
-     * @return
-     * 
-     */
-    default N getEdge(Edge<L, N> edge) {
-        return edge.getEdgeName();
-    }
-
     ArrayList<Edge<L, N>> getIncidentEdges(Vertex<N> currentVeretex);
 
     ArrayList<Vertex<N>> getGraphVertices();
 
-    /**
-     * 
-     */
-    default ArrayList<Edge<L, N>> getGraphEdges() {
-        ArrayList<Edge<L, N>> graphEdges = new ArrayList<>();
-        ArrayList<Vertex<N>> graphVertices = getGraphVertices();
-        for (Vertex<N> currVertex : graphVertices) {
-            graphEdges.addAll(graphView.getIncidentEdges(currVertex));
-        }
-
-        return graphEdges;
-    }
+    ArrayList<Edge<L, N>> getGraphEdges();
     
     /**
      * 

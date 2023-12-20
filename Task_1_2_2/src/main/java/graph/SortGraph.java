@@ -6,23 +6,28 @@ import java.util.HashMap;
 import java.util.PriorityQueue;
 
 /**
+ * @param <N>
  * 
  */
 public class SortGraph {
 
-    private static HashMap<Vertex<N>, Double> distanceMap;
+    private static <L extends Number, N> void initSingleSource(
+        Graph<L, N> graphView, Vertex<N> sourceVertex, HashMap<Vertex<N>, Double> distanceMap
+    ) {
 
-    private static void initSingleSource(Graph<L, N> graphView, Vertex<N> sourceVertex) {
-        distanceMap = new HashMap<Vertex<N>, Double>();
         ArrayList<Vertex<N>> graphVertices = graphView.getGraphVertices();
 
         for (Vertex<N> currVertex : graphVertices) {
-            distanceMap.put(currVertex, Double.MAX_VALUE);    // I should to something in this
+            distanceMap.put(currVertex, Double.MAX_VALUE);
         }
         distanceMap.put(sourceVertex, 0.0);
     }
 
-    private static void relax(Vertex<N> prevVertex, Vertex<N> vertex, Double distance) {
+    private static void relax(
+        Vertex<N> prevVertex, Vertex<N> vertex, 
+        Double distance, HashMap<Vertex<N>, Double> distanceMap
+    ) {
+
         if (distanceMap.get(vertex) > distanceMap.get(prevVertex) + distance) {
             distanceMap.put(vertex, distanceMap.get(prevVertex) + distance);
         }
@@ -40,8 +45,9 @@ public class SortGraph {
         Graph<L, N> graphView, Vertex<N> sourceVertex
     ) {
         
-        initSingleSource(graphView, sourceVertex);
-        PriorityComparator<Vertex<N>> vertexComparator = new PriorityComparator();
+        HashMap<Vertex<N>, Double> distanceMap = new HashMap<Vertex<N>, Double>();
+        initSingleSource(graphView, sourceVertex, distanceMap);
+        PriorityComparator<Vertex<N>> vertexComparator = new PriorityComparator(distanceMap);
         PriorityQueue<Vertex<N>> verticesQueue = new PriorityQueue<>(vertexComparator);
         verticesQueue.addAll(graphView.getGraphVertices());
 
@@ -49,7 +55,7 @@ public class SortGraph {
             Vertex<N> currVertex = verticesQueue.poll();
             ArrayList<Edge<L, N>> incidentEdges = graphView.getIncidentEdges(currVertex);
             for (Edge<L, N> currEdge : incidentEdges) {
-                relax(currVertex, currEdge.endVertex, currEdge.edgeLen);
+                relax(currVertex, currEdge.endVertex, currEdge.edgeLen, distanceMap);
             }
         }
 
@@ -59,33 +65,45 @@ public class SortGraph {
     }
 
 
+    /**
+     * 
+     */
     public static <L extends Number, N> ArrayList<Vertex<N>> Bellman_Ford(
         Graph<L, N> graphView, Vertex<N> sourceVertex
     ) {
         
-        initSingleSource(graphView, sourceVertex);
+        initSingleSource(graphView, sourceVertex, distanceMap);
+        HashMap<Vertex<N>, Double> distanceMap = new HashMap<Vertex<N>, Double>();
         ArrayList<Edge<L, N>> graphEdges = graphView.getGraphEdges();
         for (int i = 1; i < resultList.size(); i++) {
             for (Edge<L, N> currEdge : graphEdges) {
-                relax(currEdge.startVertex, currEdge.endVertex, currEdge.edgeLen);
+                relax(currEdge.startVertex, currEdge.endVertex, currEdge.edgeLen, distanceMap);
             }
         }
 
         ArrayList<Vertex<N>> resultList = graphView.getGraphVertices();
+        PriorityComparator<Vertex<N>> vertexComparator = new PriorityComparator(distanceMap);
         resultList.sort(vertexComparator);
         return resultList;
     }
 
-    private static class PriorityComparator implements Comparator<Vertex<N>> {
+    private static class PriorityComparator<N> implements Comparator<Vertex<N>> {
+
+        private HashMap<Vertex<N>, Double> distanceMap;
+
+        public PriorityComparator(HashMap<Vertex<N>, Double> distanceMap) {
+            this.distanceMap = new HashMap<>(distanceMap);
+        }
 
         @Override
-        int compare(Vertex<N> obj1, Vertex<N> obj2) {
+        public int compare(Vertex<N> obj1, Vertex<N> obj2) {
             double difference = distanceMap.get(obj1) - distanceMap.get(obj2);
             if (difference < -0.00001) {
                 return -1;
             } else if (difference > 0.00001) {
                 return 1;
             }
+
             return 0;
         }
     }

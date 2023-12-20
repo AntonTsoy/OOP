@@ -72,10 +72,15 @@ public class IncidenceMatrix<L extends Number, N> implements Graph<L, N> {
      * 
      */
     @Override
+    public ArrayList<Edge<L, N>> getGraphEdges() {
+        return new ArrayList<Edge<L, N>>(edges);
+    }
+
+    /**
+     * 
+     */
+    @Override
     public Edge<L, N> addEdge(N name, L len, Vertex<N> startVertex, Vertex<N> endVertex) {
-        if (!vertices.contains(startVertex) || !vertices.contains(endVertex)) {
-            throw new IllegalArgumentException("Graph must contains the vertices");
-        }
         int startId = vertices.indexOf(startVertex);
         int endId = vertices.indexOf(endVertex);
 
