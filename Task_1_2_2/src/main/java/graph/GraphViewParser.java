@@ -36,7 +36,6 @@ public class GraphViewParser {
         throws IOException {
 
         splitResource(resourceTitle);
-
         ArrayList<String> verticesString = graphStrings.get(0);
         ArrayList<Vertex<N>> vertices = new ArrayList<>();
         for (int i = 1; i < verticesString.size(); i++) {

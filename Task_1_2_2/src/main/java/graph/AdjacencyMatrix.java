@@ -27,11 +27,11 @@ public class AdjacencyMatrix<L extends Number, N> implements Graph<L, N> {
     public Vertex<N> addVertex(N name) {
         var newVertex = new Vertex<N>(name);
         vertices.add(newVertex);
-        for (int i = 0; i < vertices.size() - 1; i++) {
-            // matrix.get(i).ensureCapacity(vertices.size());
+        for (int i = 0; i < matrix.size(); i++) {
             matrix.get(i).add(null);
         }
         matrix.add(new ArrayList<L>(vertices.size()));
+
         return newVertex;
     }
 
@@ -45,12 +45,23 @@ public class AdjacencyMatrix<L extends Number, N> implements Graph<L, N> {
             matrix.get(i).remove(vertexId);
         }
         matrix.remove(vertexId);
+
+        int edgeId = 0;
+        while (edgeId < edges.size()) {
+            if (edges.get(edgeId).getStartVertex() == vertex) {
+                edges.remove(edgeId);
+            } else if (edges.get(edgeId).getEndVertex() == vertex) {
+                edges.remove(edgeId);
+            } else {
+                edgeId++;
+            }
+        }
     }
 
     /**
      * 
      */
-    @Override
+    @Override // BAD
     public ArrayList<Edge<L, N>> getIncidentEdges(Vertex<N> currentVeretex) {
         var incidentEdges = new ArrayList<Edge<L, N>>();
         for (Edge<L, N> edge : edges) {
@@ -58,6 +69,7 @@ public class AdjacencyMatrix<L extends Number, N> implements Graph<L, N> {
                 incidentEdges.add(edge);
             }
         }
+
         return incidentEdges;
     }
 

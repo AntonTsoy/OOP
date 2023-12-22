@@ -25,6 +25,10 @@ public class AdjacencyList<L extends Number, N> implements Graph<L, N> {
     public Vertex<N> addVertex(N name) {
         var newVertex = new Vertex<N>(name);
         vertices.add(newVertex);
+        
+        var newEdges = new ArrayList<Edge<L, N>>();
+        incidenceList.add(newEdges);
+        
         return newVertex;
     }
 
@@ -42,13 +46,15 @@ public class AdjacencyList<L extends Number, N> implements Graph<L, N> {
                 }
             }
         }
+        int delVertexId = vertices.indexOf(vertex);
+        incidenceList.remove(delVertexId);
         vertices.remove(vertex);
     }
 
     /**
      * 
      */
-    @Override
+    @Override // BAD
     public ArrayList<Edge<L, N>> getIncidentEdges(Vertex<N> currentVeretex) {
         return incidenceList.get(vertices.indexOf(currentVeretex));
     }
@@ -91,14 +97,7 @@ public class AdjacencyList<L extends Number, N> implements Graph<L, N> {
      */
     @Override
     public void delEdge(Edge<L, N> edge) {
-        int curVertexId = 0;
-        while (curVertexId < vertices.size()) {
-            ArrayList<Edge<L, N>> curVertex = incidenceList.get(curVertexId);
-            if (curVertex.contains(edge)) {
-                curVertex.remove(edge);
-                break;
-            }
-            curVertexId++;
-        }
+        int startVertexId = vertices.indexOf(edge.getStartVertex());
+        incidenceList.get(startVertexId).remove(edge);
     }
 }

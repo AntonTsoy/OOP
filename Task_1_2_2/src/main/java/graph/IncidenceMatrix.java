@@ -26,14 +26,19 @@ public class IncidenceMatrix<L extends Number, N> implements Graph<L, N> {
     public Vertex<N> addVertex(N name) {
         var newVertex = new Vertex<N>(name);
         vertices.add(newVertex);
-        matrix.add(new ArrayList<Boolean>(edges.size()));
+        for (int i = 0; i < matrix.size(); i++) {
+            matrix.get(i).add(false);
+        }
+        matrix.add(new ArrayList<Boolean>(vertices.size()));  // Нужно положить false
+        
         return newVertex;
     }
+
 
     /**
      * 
      */
-    @Override
+    @Override // УДАЛИТЬ ВСЕ EDGES!
     public void delVertex(Vertex<N> vertex) {
         int vertexId = vertices.indexOf(vertex);
         for (int i = 0; i < edges.size(); i++) {
@@ -48,13 +53,12 @@ public class IncidenceMatrix<L extends Number, N> implements Graph<L, N> {
     /**
      * 
      */
-    @Override
-    public ArrayList<Edge<L, N>> getIncidentEdges(Vertex<N> currentVeretex) {
+    @Override // BAD
+    public ArrayList<Edge<L, N>> getIncidentEdges(Vertex<N> currentVertex) {
         var incidentEdges = new ArrayList<Edge<L, N>>();
-        int vertexId = vertices.indexOf(currentVeretex);
-        for (int i = 0; i < edges.size(); i++) {
-            if (matrix.get(vertexId).get(i).booleanValue()) {
-                incidentEdges.add(edges.get(i));
+        for (Edge<L, N> currEdge : edges) {
+            if (currEdge.getStartVertex() == currentVertex) {
+                incidentEdges.add(currEdge);
             }
         }
         return incidentEdges;
@@ -83,18 +87,10 @@ public class IncidenceMatrix<L extends Number, N> implements Graph<L, N> {
     public Edge<L, N> addEdge(N name, L len, Vertex<N> startVertex, Vertex<N> endVertex) {
         int startId = vertices.indexOf(startVertex);
         int endId = vertices.indexOf(endVertex);
+        matrix.get(startId).set(endId, true);
 
         var newEdge = new Edge<L, N>(name, len, startVertex, endVertex);
         edges.add(newEdge);
-        for (int i = 0; i < vertices.size(); i++) {
-            if (startId == i) {
-                matrix.get(i).add(true);
-            } else if (endId == i) {
-                matrix.get(i).add(false);
-            } else {
-                matrix.get(i).add(null);
-            }
-        }
 
         return newEdge;
     }
@@ -102,12 +98,11 @@ public class IncidenceMatrix<L extends Number, N> implements Graph<L, N> {
     /**
      * 
      */
-    @Override
+    @Override 
     public void delEdge(Edge<L, N> edge) {
-        int edgeId = edges.indexOf(edge);
-        for (int i = 0; i < vertices.size(); i++) {
-            matrix.get(i).remove(edgeId);
-        }
+        int startId = vertices.indexOf(edge.getStartVertex());
+        int endId = vertices.indexOf(edge.getEndVertex());
+        matrix.get(startId).set(endId, false);
         edges.remove(edge);
     }
 }

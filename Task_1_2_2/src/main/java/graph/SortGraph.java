@@ -1,15 +1,38 @@
- package graph;
+package graph;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
+
 /**
+ * @param <N>
  * @param <N>
  * 
  */
-public class SortGraph {
+public class SortGraph<N> {
+
+    private static class PriorityComparator<N> implements Comparator<Vertex<N>> {
+
+        private HashMap<Vertex<N>, Double> distanceMap;
+
+        public PriorityComparator(HashMap<Vertex<N>, Double> distanceMap) {
+            this.distanceMap = new HashMap<>(distanceMap);
+        } 
+
+        @Override
+        public int compare(Vertex<N> obj1, Vertex<N> obj2) {
+            double difference = distanceMap.get(obj1) - distanceMap.get(obj2);
+            if (difference < -0.00001) {
+                return -1;
+            } else if (difference > 0.00001) {
+                return 1;
+            }
+
+            return 0;
+        }
+    }
 
     private static <L extends Number, N> void initSingleSource(
         Graph<L, N> graphView, Vertex<N> sourceVertex, HashMap<Vertex<N>, Double> distanceMap
@@ -23,7 +46,7 @@ public class SortGraph {
         distanceMap.put(sourceVertex, 0.0);
     }
 
-    private static void relax(
+    private static <N> void relax(
         Vertex<N> prevVertex, Vertex<N> vertex, 
         Double distance, HashMap<Vertex<N>, Double> distanceMap
     ) {
@@ -32,6 +55,7 @@ public class SortGraph {
             distanceMap.put(vertex, distanceMap.get(prevVertex) + distance);
         }
     }
+    
 
     /**
      * 
@@ -47,7 +71,7 @@ public class SortGraph {
         
         HashMap<Vertex<N>, Double> distanceMap = new HashMap<Vertex<N>, Double>();
         initSingleSource(graphView, sourceVertex, distanceMap);
-        PriorityComparator<Vertex<N>> vertexComparator = new PriorityComparator(distanceMap);
+        PriorityComparator<N> vertexComparator = new PriorityComparator<>(distanceMap);
         PriorityQueue<Vertex<N>> verticesQueue = new PriorityQueue<>(vertexComparator);
         verticesQueue.addAll(graphView.getGraphVertices());
 
@@ -55,7 +79,10 @@ public class SortGraph {
             Vertex<N> currVertex = verticesQueue.poll();
             ArrayList<Edge<L, N>> incidentEdges = graphView.getIncidentEdges(currVertex);
             for (Edge<L, N> currEdge : incidentEdges) {
-                relax(currVertex, currEdge.endVertex, currEdge.edgeLen, distanceMap);
+                relax(
+                    currVertex, currEdge.getEndVertex(), 
+                    currEdge.getEdgeLen().doubleValue(), distanceMap
+                );
             }
         }
 
@@ -72,39 +99,21 @@ public class SortGraph {
         Graph<L, N> graphView, Vertex<N> sourceVertex
     ) {
         
-        initSingleSource(graphView, sourceVertex, distanceMap);
         HashMap<Vertex<N>, Double> distanceMap = new HashMap<Vertex<N>, Double>();
+        initSingleSource(graphView, sourceVertex, distanceMap);
         ArrayList<Edge<L, N>> graphEdges = graphView.getGraphEdges();
+        ArrayList<Vertex<N>> resultList = graphView.getGraphVertices();
         for (int i = 1; i < resultList.size(); i++) {
             for (Edge<L, N> currEdge : graphEdges) {
-                relax(currEdge.startVertex, currEdge.endVertex, currEdge.edgeLen, distanceMap);
+                relax(
+                    currEdge.getStartVertex(), currEdge.getEndVertex(),
+                    currEdge.getEdgeLen().doubleValue(), distanceMap
+                );
             }
         }
 
-        ArrayList<Vertex<N>> resultList = graphView.getGraphVertices();
-        PriorityComparator<Vertex<N>> vertexComparator = new PriorityComparator(distanceMap);
+        PriorityComparator<N> vertexComparator = new PriorityComparator<>(distanceMap);
         resultList.sort(vertexComparator);
         return resultList;
-    }
-
-    private static class PriorityComparator<N> implements Comparator<Vertex<N>> {
-
-        private HashMap<Vertex<N>, Double> distanceMap;
-
-        public PriorityComparator(HashMap<Vertex<N>, Double> distanceMap) {
-            this.distanceMap = new HashMap<>(distanceMap);
-        }
-
-        @Override
-        public int compare(Vertex<N> obj1, Vertex<N> obj2) {
-            double difference = distanceMap.get(obj1) - distanceMap.get(obj2);
-            if (difference < -0.00001) {
-                return -1;
-            } else if (difference > 0.00001) {
-                return 1;
-            }
-
-            return 0;
-        }
     }
 }
