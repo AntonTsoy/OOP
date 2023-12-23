@@ -24,17 +24,23 @@ class TestGraphs {
         }
     }
 
-
+    
+    @ParameterizedTest
+    @ArgumentsSource(GraphsArgumentsProvider.class)
+    void testAddVertex(Graph<Double, String> graph) {
+        Vertex<String> vertexExpected = graph.addVertex("A");
+        ArrayList<Vertex<String>> result = graph.getGraphVertices();
+        Assertions.assertEquals(vertexExpected, result.get(0));
+    }
 
     @ParameterizedTest
     @ArgumentsSource(GraphsArgumentsProvider.class)
-    void testResource(Graph<Double, String> graph) throws IOException {
-        GraphViewParser.parseResource(graph, "graph.txt");
-    
-
-        ArrayList<Vertex<String>> vertices = graph.getGraphVertices();
-        ArrayList<Vertex<String>> result = SortGraph.Dijkstra(graph, vertices.get(0));
-        Assertions.assertEquals(vertices, result);
+    void testAddEdge(Graph<Double, String> graph) {
+        Vertex<String> vertexExpected1 = graph.addVertex("A");
+        Vertex<String> vertexExpected2 = graph.addVertex("B");
+        Edge<Double, String> edge = graph.addEdge("AB", 1.0, vertexExpected1, vertexExpected2);
+        Assertions.assertEquals(vertexExpected1, edge.getStartVertex());
+        Assertions.assertEquals(vertexExpected2, edge.getEndVertex());
     }
 
     @ParameterizedTest
@@ -49,6 +55,17 @@ class TestGraphs {
         graph.addEdge("CA", 5.0, expected.get(2), expected.get(0));
         ArrayList<Vertex<String>> result = SortGraph.Dijkstra(graph, expected.get(0));
         Assertions.assertEquals(expected, result);
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(GraphsArgumentsProvider.class)
+    void testResource(Graph<Double, String> graph) throws IOException {
+        GraphViewParser.parseResource(graph, "graph.txt");
+    
+
+        ArrayList<Vertex<String>> vertices = graph.getGraphVertices();
+        ArrayList<Vertex<String>> result = SortGraph.Dijkstra(graph, vertices.get(0));
+        Assertions.assertEquals(vertices, result);
     }
 
 }

@@ -23,15 +23,20 @@ public class AdjacencyMatrix<L extends Number, N> implements Graph<L, N> {
     /**
      * 
      */
-    @Override
+    @Override // НАДО ПРОВЕРЯТЬ НА NULL В БУДУЩЕМ!
     public Vertex<N> addVertex(N name) {
-        var newVertex = new Vertex<N>(name);
+        Vertex<N> newVertex = new Vertex<N>(name);
         vertices.add(newVertex);
         for (int i = 0; i < matrix.size(); i++) {
             matrix.get(i).add(null);
         }
-        matrix.add(new ArrayList<L>(vertices.size()));
 
+        ArrayList<L> addedVertexList = new ArrayList<L>();
+        matrix.add(addedVertexList);
+        for (int i = 0; i < vertices.size(); i++) {
+            addedVertexList.add(null);
+        }
+        
         return newVertex;
     }
 
@@ -56,6 +61,8 @@ public class AdjacencyMatrix<L extends Number, N> implements Graph<L, N> {
                 edgeId++;
             }
         }
+
+        vertices.remove(vertex);
     }
 
     /**

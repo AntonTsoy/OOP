@@ -20,8 +20,9 @@ public class Edge<L extends Number, N> {
     public Edge(N name, L len, Vertex<N> startVertex, Vertex<N> endVertex) {
         setEdgeName(name);
         setEdgeLen(len);
-        setStartVertex(startVertex);
-        setEndVertex(endVertex);
+        
+        this.startVertex = startVertex;
+        this.endVertex = endVertex;
     }
 
     /**
@@ -49,7 +50,7 @@ public class Edge<L extends Number, N> {
      * @param len
      */
     public void setEdgeLen(L len) {
-        if (Math.abs(len.doubleValue() - 0) < 0.0001) {
+        if (Math.abs(len.doubleValue()) < 0.000001) {
             throw new IllegalArgumentException("Len can't be a ZERO");
         } else {
             this.edgeLen = len;
@@ -62,34 +63,6 @@ public class Edge<L extends Number, N> {
      */
     public L getEdgeLen() {
         return this.edgeLen;
-    }
-
-    /**
-     * 
-     * @param vertex
-     * @return
-     */
-    private Vertex<N> setVertex(Vertex<N> vertex) {
-        if (vertex == null) {
-            throw new IllegalArgumentException("Vertex can't be a NULL");
-        }
-        return vertex;
-    }
-
-    /**
-     * 
-     * @param vertex
-     */
-    public void setStartVertex(Vertex<N> vertex) {
-        this.startVertex = setVertex(vertex);
-    }
-
-    /**
-     * 
-     * @param vertex
-     */
-    public void setEndVertex(Vertex<N> vertex) {
-        this.startVertex = setVertex(vertex);
     }
 
     /**

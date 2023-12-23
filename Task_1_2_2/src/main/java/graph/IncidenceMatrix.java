@@ -24,12 +24,17 @@ public class IncidenceMatrix<L extends Number, N> implements Graph<L, N> {
      */
     @Override
     public Vertex<N> addVertex(N name) {
-        var newVertex = new Vertex<N>(name);
+        Vertex<N> newVertex = new Vertex<N>(name);
         vertices.add(newVertex);
         for (int i = 0; i < matrix.size(); i++) {
             matrix.get(i).add(false);
         }
-        matrix.add(new ArrayList<Boolean>(vertices.size()));  // Нужно положить false
+
+        ArrayList<Boolean> addedVertexList = new ArrayList<Boolean>();
+        matrix.add(addedVertexList);
+        for (int i = 0; i < vertices.size(); i++) {
+            addedVertexList.add(false);
+        }
         
         return newVertex;
     }
@@ -56,6 +61,8 @@ public class IncidenceMatrix<L extends Number, N> implements Graph<L, N> {
                 edgeId++;
             }
         }
+        
+        vertices.remove(vertex);
     }
 
     /**
