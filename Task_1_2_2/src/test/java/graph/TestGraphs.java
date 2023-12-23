@@ -99,7 +99,7 @@ class TestGraphs {
         graph.addEdge("CA", 5.0, expected.get(2), expected.get(0));
         graph.delEdge(ab);
         graph.delVertex(a);
-        Assertions.assertEquals(new ArrayList<Edge<Double, String>>(), graph.getGraphEdges());
+        Assertions.assertEquals(0, graph.getGraphEdges().size());
     }
 
     @ParameterizedTest
