@@ -93,10 +93,10 @@ class TestGraphs {
         var a = graph.addVertex("A");
         var b = graph.addVertex("B");
         var c = graph.addVertex("C");
-        var ab = graph.addEdge("AB", 1.0, a, b);
-        graph.addEdge("BC", 4.0, b, c);
+        var bc = graph.addEdge("BC", 4.0, b, c);
+        graph.addEdge("AB", 1.0, a, b);
         graph.addEdge("CA", 5.0, c, a);
-        graph.delEdge(ab);
+        graph.delEdge(bc);
         graph.delVertex(a);
         Assertions.assertEquals(0, graph.getGraphEdges().size());
     }
