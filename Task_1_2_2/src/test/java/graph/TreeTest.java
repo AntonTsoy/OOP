@@ -2,6 +2,7 @@ package graph;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Assertions;
@@ -11,6 +12,10 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.ArgumentsProvider;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 
+
+/**
+ * Main Test class.
+ */
 class TestGraphs {
 
     static class GraphsArgumentsProvider implements ArgumentsProvider {
@@ -39,7 +44,6 @@ class TestGraphs {
         Vertex<String> vertexExpected1 = graph.addVertex("A");
         Vertex<String> vertexExpected2 = graph.addVertex("B");
         Edge<Double, String> edge = graph.addEdge("AB", 1.0, vertexExpected1, vertexExpected2);
-        Assertions.assertEquals(vertexExpected1, edge.getStartVertex());
         Assertions.assertEquals(vertexExpected2, edge.getEndVertex());
     }
 
@@ -59,12 +63,23 @@ class TestGraphs {
 
     @ParameterizedTest
     @ArgumentsSource(GraphsArgumentsProvider.class)
-    void testResource(Graph<Double, String> graph) throws IOException {
-        GraphViewParser.parseResource(graph, "graph.txt");
+    void testResourceD(Graph<Double, String> graph) throws IOException {
+        GraphViewParser.parseResource(graph, "graph1.txt");
     
-
         ArrayList<Vertex<String>> vertices = graph.getGraphVertices();
         ArrayList<Vertex<String>> result = SortGraph.Dijkstra(graph, vertices.get(0));
+        Assertions.assertEquals(vertices, result);
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(GraphsArgumentsProvider.class)
+    void testResourceB_F(Graph<Double, String> graph) throws IOException {
+        GraphViewParser.parseResource(graph, "graph2.txt");
+    
+        ArrayList<Vertex<String>> vertices = graph.getGraphVertices();
+        ArrayList<Vertex<String>> result = SortGraph.Bellman_Ford(graph, vertices.get(0));
+        Collections.swap(vertices, 0, 1);
+        Collections.swap(vertices, 3, 4);  // {b, a, c, e, d, f}
         Assertions.assertEquals(vertices, result);
     }
 

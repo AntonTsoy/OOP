@@ -6,11 +6,6 @@ import java.util.HashMap;
 import java.util.PriorityQueue;
 
 
-/**
- * @param <N>
- * @param <N>
- * 
- */
 public class SortGraph<N> {
 
     private static class PriorityComparator<N> implements Comparator<Vertex<N>> {
@@ -57,14 +52,6 @@ public class SortGraph<N> {
     }
     
 
-    /**
-     * 
-     * @param <L>
-     * @param <N>
-     * @param graphView
-     * @param currentVertex
-     * @return
-     */
     public static <L extends Number, N> ArrayList<Vertex<N>> Dijkstra(
         Graph<L, N> graphView, Vertex<N> sourceVertex
     ) {
@@ -92,9 +79,6 @@ public class SortGraph<N> {
     }
 
 
-    /**
-     * 
-     */
     public static <L extends Number, N> ArrayList<Vertex<N>> Bellman_Ford(
         Graph<L, N> graphView, Vertex<N> sourceVertex
     ) {

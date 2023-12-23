@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+
 public class GraphViewParser {
     
     private static ArrayList<ArrayList<String>> graphStrings;
@@ -33,6 +34,7 @@ public class GraphViewParser {
             line = bufferedReader.readLine();
         }
     }
+
 
     public static <L extends Number, N> void parseResource(Graph<L, N> graph, String resourceTitle)
         throws IOException {

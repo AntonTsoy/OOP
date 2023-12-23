@@ -2,39 +2,31 @@ package graph;
 
 import java.util.ArrayList;
 
-/**
- * 
- */
+
 public class AdjacencyList<L extends Number, N> implements Graph<L, N> {
 
     private ArrayList<Vertex<N>> vertices;
     private ArrayList<ArrayList<Edge<L, N>>> incidenceList;
 
-    /**
-     * 
-     */
+
     public AdjacencyList() {
         this.vertices = new ArrayList<Vertex<N>>();
         this.incidenceList = new ArrayList<ArrayList<Edge<L, N>>>();
     }
 
-    /**
-     * 
-     */
+
     @Override
     public Vertex<N> addVertex(N name) {
-        Vertex<N> newVertex = new Vertex<N>(name);
+        Vertex<N> newVertex = new Vertex<>(name);
         vertices.add(newVertex);
         
-        var newEdges = new ArrayList<Edge<L, N>>();
+        ArrayList<Edge<L, N>> newEdges = new ArrayList<>();
         incidenceList.add(newEdges);
         
         return newVertex;
     }
 
-    /**
-     * 
-     */
+
     @Override
     public void delVertex(Vertex<N> vertex) {
         for (int i = 0; i < vertices.size(); i++) {
@@ -56,25 +48,19 @@ public class AdjacencyList<L extends Number, N> implements Graph<L, N> {
         vertices.remove(vertex);
     }
 
-    /**
-     * 
-     */
+
     @Override
     public ArrayList<Edge<L, N>> getIncidentEdges(Vertex<N> currentVeretex) {
         return new ArrayList<Edge<L, N>>(incidenceList.get(vertices.indexOf(currentVeretex)));
     }
 
-    /**
-     * 
-     */
+
     @Override
     public ArrayList<Vertex<N>> getGraphVertices() {
         return new ArrayList<Vertex<N>>(vertices);
     }
 
-    /**
-     * 
-     */
+
     @Override
     public ArrayList<Edge<L, N>> getGraphEdges() {
         ArrayList<Edge<L, N>> graphEdges = new ArrayList<>();
@@ -85,9 +71,7 @@ public class AdjacencyList<L extends Number, N> implements Graph<L, N> {
         return graphEdges;
     }
 
-    /**
-     * 
-     */
+
     @Override 
     public Edge<L, N> addEdge(N name, L len, Vertex<N> startVertex, Vertex<N> endVertex) {
         int startId = vertices.indexOf(startVertex);
@@ -97,9 +81,7 @@ public class AdjacencyList<L extends Number, N> implements Graph<L, N> {
         return newEdge;
     }
 
-    /**
-     * 
-     */
+
     @Override
     public void delEdge(Edge<L, N> edge) {
         int startVertexId = vertices.indexOf(edge.getStartVertex());

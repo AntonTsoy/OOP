@@ -2,28 +2,22 @@ package graph;
 
 import java.util.ArrayList;
 
-/**
- * 
- */
+
 public class AdjacencyMatrix<L extends Number, N> implements Graph<L, N> {
 
     private ArrayList<Vertex<N>> vertices;
     private ArrayList<ArrayList<L>> matrix;
     private ArrayList<Edge<L, N>> edges;
 
-    /**
-     * 
-     */
+
     public AdjacencyMatrix() {
         this.vertices = new ArrayList<Vertex<N>>();
         this.matrix = new ArrayList<ArrayList<L>>();
         this.edges = new ArrayList<Edge<L, N>>();
     }
 
-    /**
-     * 
-     */
-    @Override // НАДО ПРОВЕРЯТЬ НА NULL В БУДУЩЕМ!
+
+    @Override
     public Vertex<N> addVertex(N name) {
         Vertex<N> newVertex = new Vertex<N>(name);
         vertices.add(newVertex);
@@ -40,9 +34,7 @@ public class AdjacencyMatrix<L extends Number, N> implements Graph<L, N> {
         return newVertex;
     }
 
-    /**
-     * 
-     */
+
     @Override
     public void delVertex(Vertex<N> vertex) {
         int vertexId = vertices.indexOf(vertex);
@@ -65,9 +57,7 @@ public class AdjacencyMatrix<L extends Number, N> implements Graph<L, N> {
         vertices.remove(vertex);
     }
 
-    /**
-     * 
-     */
+
     @Override
     public ArrayList<Edge<L, N>> getIncidentEdges(Vertex<N> currentVeretex) {
         var incidentEdges = new ArrayList<Edge<L, N>>();
@@ -80,25 +70,19 @@ public class AdjacencyMatrix<L extends Number, N> implements Graph<L, N> {
         return incidentEdges;
     }
 
-    /**
-     * 
-     */
+
     @Override
     public ArrayList<Vertex<N>> getGraphVertices() {
         return new ArrayList<Vertex<N>>(vertices);
     }
 
-    /**
-     * 
-     */
+
     @Override
     public ArrayList<Edge<L, N>> getGraphEdges() {
         return new ArrayList<Edge<L, N>>(edges);
     }
 
-    /**
-     * 
-     */
+
     @Override
     public Edge<L, N> addEdge(N name, L len, Vertex<N> startVertex, Vertex<N> endVertex) {
         int startId = vertices.indexOf(startVertex);
@@ -110,9 +94,7 @@ public class AdjacencyMatrix<L extends Number, N> implements Graph<L, N> {
         return newEdge;
     }
 
-    /**
-     * 
-     */
+
     @Override
     public void delEdge(Edge<L, N> edge) {
         int startId = vertices.indexOf(edge.getStartVertex());
