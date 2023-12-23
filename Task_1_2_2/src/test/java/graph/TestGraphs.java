@@ -90,13 +90,12 @@ class TestGraphs {
     @ParameterizedTest
     @ArgumentsSource(GraphsArgumentsProvider.class)
     void testDeletions(Graph<Double, String> graph) {
-        ArrayList<Vertex<String>> expected = new ArrayList<>();
         var a = graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
-        var ab = graph.addEdge("AB", 1.0, expected.get(0), expected.get(1));
-        graph.addEdge("BC", 4.0, expected.get(1), expected.get(2));
-        graph.addEdge("CA", 5.0, expected.get(2), expected.get(0));
+        var b = graph.addVertex("B");
+        var c = graph.addVertex("C");
+        var ab = graph.addEdge("AB", 1.0, a, b);
+        graph.addEdge("BC", 4.0, b, c);
+        graph.addEdge("CA", 5.0, c, a);
         graph.delEdge(ab);
         graph.delVertex(a);
         Assertions.assertEquals(0, graph.getGraphEdges().size());

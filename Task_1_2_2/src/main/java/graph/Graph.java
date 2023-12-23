@@ -16,7 +16,7 @@ public interface Graph<L extends Number, N> {
      * @param name the name of the new vertex.
      * @return the newly added vertex.
      */
-    @ExcludeFromJacocoGeneratedReport
+    //@ExcludeFromJacocoGeneratedReport
     Vertex<N> addVertex(N name);
 
     /**
@@ -28,7 +28,7 @@ public interface Graph<L extends Number, N> {
      * @param endVertex   the ending vertex of the edge.
      * @return the newly added edge.
      */
-    @ExcludeFromJacocoGeneratedReport
+    //@ExcludeFromJacocoGeneratedReport
     Edge<L, N> addEdge(N name, L len, Vertex<N> startVertex, Vertex<N> endVertex);
 
     /**
@@ -36,7 +36,7 @@ public interface Graph<L extends Number, N> {
      *
      * @param vertex the vertex to be removed.
      */
-    @ExcludeFromJacocoGeneratedReport
+    //@ExcludeFromJacocoGeneratedReport
     void delVertex(Vertex<N> vertex);
 
     /**
@@ -44,7 +44,7 @@ public interface Graph<L extends Number, N> {
      *
      * @param edge the edge to be removed.
      */
-    @ExcludeFromJacocoGeneratedReport
+    //@ExcludeFromJacocoGeneratedReport
     void delEdge(Edge<L, N> edge);
 
     /**
@@ -53,7 +53,7 @@ public interface Graph<L extends Number, N> {
      * @param currentVertex the vertex to find incident edges for.
      * @return an ArrayList of incident edges.
      */
-    @ExcludeFromJacocoGeneratedReport
+    //@ExcludeFromJacocoGeneratedReport
     ArrayList<Edge<L, N>> getIncidentEdges(Vertex<N> currentVertex);
 
     /**
@@ -61,7 +61,7 @@ public interface Graph<L extends Number, N> {
      *
      * @return an ArrayList of vertices in the graph.
      */
-    @ExcludeFromJacocoGeneratedReport
+    //@ExcludeFromJacocoGeneratedReport
     ArrayList<Vertex<N>> getGraphVertices();
 
     /**
@@ -69,7 +69,7 @@ public interface Graph<L extends Number, N> {
      *
      * @return an ArrayList of edges in the graph.
      */
-    @ExcludeFromJacocoGeneratedReport
+    //@ExcludeFromJacocoGeneratedReport
     ArrayList<Edge<L, N>> getGraphEdges();
 
     /**
@@ -78,7 +78,7 @@ public interface Graph<L extends Number, N> {
      * @param edge    the edge to be modified.
      * @param newName the new name for the edge.
      */
-    @ExcludeFromJacocoGeneratedReport
+    //@ExcludeFromJacocoGeneratedReport
     default void changeEdge(Edge<L, N> edge, N newName) {
         edge.setEdgeName(newName);
     }
@@ -89,7 +89,7 @@ public interface Graph<L extends Number, N> {
      * @param vertex  the vertex to be modified.
      * @param newName the new name for the vertex.
      */
-    @ExcludeFromJacocoGeneratedReport
+    //@ExcludeFromJacocoGeneratedReport
     default void changeVertex(Vertex<N> vertex, N newName) {
         vertex.setVertexName(newName);
     }
