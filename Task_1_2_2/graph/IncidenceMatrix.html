@@ -276,7 +276,10 @@ implements <a href="Graph.html" title="interface in graph">Graph</a>&lt;L,&#8203
 <li class="blockList">
 <h4>IncidenceMatrix</h4>
 <pre>public&nbsp;IncidenceMatrix()</pre>
-<div class="block">Constructs an empty IncidenceMatrix graph.</div>
+<div class="block">Constructs an empty IncidenceMatrix graph.
+ Here we need lists of vertices and edges.
+ Alse we need table of edges existing (boolean value).
+ Rows and columns are corresponding to vertices.</div>
 </li>
 </ul>
 </li>
@@ -298,7 +301,10 @@ implements <a href="Graph.html" title="interface in graph">Graph</a>&lt;L,&#8203
 <li class="blockList">
 <h4>addVertex</h4>
 <pre class="methodSignature">public&nbsp;<a href="Vertex.html" title="class in graph">Vertex</a>&lt;<a href="IncidenceMatrix.html" title="type parameter in IncidenceMatrix">N</a>&gt;&nbsp;addVertex&#8203;(<a href="IncidenceMatrix.html" title="type parameter in IncidenceMatrix">N</a>&nbsp;name)</pre>
-<div class="block">Adds a new vertex to the graph with the specified name.</div>
+<div class="block">Adds a new vertex to the graph with the specified name.
+ We extends size of matrix in height and width.
+ For each list-element, which corresponds to the vertex.
+ We add a new column. For new vertex we add new row in the matrix.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="Graph.html#addVertex(N)">addVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in graph">Graph</a>&lt;<a href="IncidenceMatrix.html" title="type parameter in IncidenceMatrix">L</a> extends java.lang.Number,&#8203;<a href="IncidenceMatrix.html" title="type parameter in IncidenceMatrix">N</a>&gt;</code></dd>
@@ -316,7 +322,8 @@ implements <a href="Graph.html" title="interface in graph">Graph</a>&lt;L,&#8203
 <li class="blockList">
 <h4>delVertex</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;delVertex&#8203;(<a href="Vertex.html" title="class in graph">Vertex</a>&lt;<a href="IncidenceMatrix.html" title="type parameter in IncidenceMatrix">N</a>&gt;&nbsp;vertex)</pre>
-<div class="block">Removes the specified vertex from the graph.</div>
+<div class="block">Removes the specified vertex from the graph.
+ Also we remove row and column of this vertex in the matrix.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="Graph.html#delVertex(graph.Vertex)">delVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in graph">Graph</a>&lt;<a href="IncidenceMatrix.html" title="type parameter in IncidenceMatrix">L</a> extends java.lang.Number,&#8203;<a href="IncidenceMatrix.html" title="type parameter in IncidenceMatrix">N</a>&gt;</code></dd>
