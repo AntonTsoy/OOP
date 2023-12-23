@@ -9,15 +9,23 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-
+/**
+ * Utility class for parsing graph data from a resource file and populating a graph.
+ */
 public class GraphViewParser {
-    
+
+    // Holds the parsed graph data as a list of string lists.
     private static ArrayList<ArrayList<String>> graphStrings;
 
+    /**
+     * Splits the resource content into a list of string lists.
+     *
+     * @param resourceTitle the title of the resource file.
+     * @throws IOException if an I/O error occurs.
+     */
     private static void splitResource(String resourceTitle) throws IOException {
-        InputStream stream = 
+        InputStream stream =
             GraphViewParser.class.getClassLoader().getResourceAsStream(resourceTitle);
-        System.out.println((stream == null) + " " + stream);
         InputStreamReader streamReader = new InputStreamReader(stream, StandardCharsets.UTF_8);
         BufferedReader bufferedReader = new BufferedReader(streamReader);
 
@@ -35,7 +43,15 @@ public class GraphViewParser {
         }
     }
 
-
+    /**
+     * Parses the graph data from a resource file and populates the provided graph object.
+     *
+     * @param <L>           the type of the edge length.
+     * @param <N>           the type of the vertex name.
+     * @param graph         the graph to be populated.
+     * @param resourceTitle the title of the resource file.
+     * @throws IOException if an I/O error occurs.
+     */
     public static <L extends Number, N> void parseResource(Graph<L, N> graph, String resourceTitle)
         throws IOException {
 
@@ -51,9 +67,9 @@ public class GraphViewParser {
             currEdges = graphStrings.get(i);
             for (int j = 1; j < currEdges.size(); j++) {
                 try {
-                    String edgeName = verticesString.get(i-1) + verticesString.get(j-1);
+                    String edgeName = verticesString.get(i - 1) + verticesString.get(j - 1);
                     Double edgeLen = Double.parseDouble(currEdges.get(j));
-                    graph.addEdge((N) edgeName, (L) edgeLen, vertices.get(i-1), vertices.get(j-1));
+                    graph.addEdge((N) edgeName, (L) edgeLen, vertices.get(i - 1), vertices.get(j - 1));
                 } catch (NumberFormatException e) {
                     System.err.println("It's okay.");
                 }
