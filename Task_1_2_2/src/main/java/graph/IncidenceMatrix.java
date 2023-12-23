@@ -38,22 +38,30 @@ public class IncidenceMatrix<L extends Number, N> implements Graph<L, N> {
     /**
      * 
      */
-    @Override // УДАЛИТЬ ВСЕ EDGES!
+    @Override
     public void delVertex(Vertex<N> vertex) {
         int vertexId = vertices.indexOf(vertex);
-        for (int i = 0; i < edges.size(); i++) {
-            if (matrix.get(vertexId).get(i) != null) {
-                delEdge(edges.get(i));
+        for (int i = 0; i < matrix.size(); i++) {
+            matrix.get(i).remove(vertexId);
+        }
+        matrix.remove(vertexId);
+
+        int edgeId = 0;
+        while (edgeId < edges.size()) {
+            if (edges.get(edgeId).getStartVertex() == vertex) {
+                edges.remove(edgeId);
+            } else if (edges.get(edgeId).getEndVertex() == vertex) {
+                edges.remove(edgeId);
+            } else {
+                edgeId++;
             }
         }
-        vertices.remove(vertexId);
-        matrix.remove(vertexId);
     }
 
     /**
      * 
      */
-    @Override // BAD
+    @Override
     public ArrayList<Edge<L, N>> getIncidentEdges(Vertex<N> currentVertex) {
         var incidentEdges = new ArrayList<Edge<L, N>>();
         for (Edge<L, N> currEdge : edges) {

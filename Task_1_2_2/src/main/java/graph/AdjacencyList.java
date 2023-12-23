@@ -54,9 +54,9 @@ public class AdjacencyList<L extends Number, N> implements Graph<L, N> {
     /**
      * 
      */
-    @Override // BAD
+    @Override
     public ArrayList<Edge<L, N>> getIncidentEdges(Vertex<N> currentVeretex) {
-        return incidenceList.get(vertices.indexOf(currentVeretex));
+        return new ArrayList<Edge<L, N>>(incidenceList.get(vertices.indexOf(currentVeretex)));
     }
 
     /**

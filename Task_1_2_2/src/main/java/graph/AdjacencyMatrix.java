@@ -61,11 +61,11 @@ public class AdjacencyMatrix<L extends Number, N> implements Graph<L, N> {
     /**
      * 
      */
-    @Override // BAD
+    @Override
     public ArrayList<Edge<L, N>> getIncidentEdges(Vertex<N> currentVeretex) {
         var incidentEdges = new ArrayList<Edge<L, N>>();
         for (Edge<L, N> edge : edges) {
-            if (edge.getEndVertex() == currentVeretex) {
+            if (edge.getStartVertex() == currentVeretex) {
                 incidentEdges.add(edge);
             }
         }
