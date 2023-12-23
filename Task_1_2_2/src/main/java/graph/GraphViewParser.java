@@ -14,7 +14,9 @@ public class GraphViewParser {
     private static ArrayList<ArrayList<String>> graphStrings;
 
     private static void splitResource(String resourceTitle) throws IOException {
-        InputStream stream = GraphViewParser.class.getResourceAsStream(resourceTitle);
+        InputStream stream = 
+            GraphViewParser.class.getClassLoader().getResourceAsStream(resourceTitle);
+        System.out.println((stream == null) + " " + stream);
         InputStreamReader streamReader = new InputStreamReader(stream, StandardCharsets.UTF_8);
         BufferedReader bufferedReader = new BufferedReader(streamReader);
 
@@ -46,10 +48,12 @@ public class GraphViewParser {
         for (int i = 1; i < graphStrings.size(); i++) {
             currEdges = graphStrings.get(i);
             for (int j = 1; j < currEdges.size(); j++) {
-                if (currEdges.get(j) != "*") {
+                try {
                     String edgeName = verticesString.get(i-1) + verticesString.get(j-1);
                     Double edgeLen = Double.parseDouble(currEdges.get(j));
                     graph.addEdge((N) edgeName, (L) edgeLen, vertices.get(i-1), vertices.get(j-1));
+                } catch (NumberFormatException e) {
+                    System.err.println("It's okay.");
                 }
             }
         }
