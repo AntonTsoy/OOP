@@ -18,6 +18,9 @@ public class IncidenceMatrix<L extends Number, N> implements Graph<L, N> {
 
     /**
      * Constructs an empty IncidenceMatrix graph.
+     * Here we need lists of vertices and edges.
+     * Alse we need table of edges existing (boolean value).
+     * Rows and columns are corresponding to vertices.
      */
     public IncidenceMatrix() {
         this.vertices = new ArrayList<Vertex<N>>();
@@ -27,6 +30,9 @@ public class IncidenceMatrix<L extends Number, N> implements Graph<L, N> {
 
     /**
      * Adds a new vertex to the graph with the specified name.
+     * We extends size of matrix in height and width.
+     * For each list-element, which corresponds to the vertex.
+     * We add a new column. For new vertex we add new row in the matrix.
      *
      * @param name the name of the new vertex.
      * @return the newly added vertex.
@@ -52,6 +58,7 @@ public class IncidenceMatrix<L extends Number, N> implements Graph<L, N> {
 
     /**
      * Removes the specified vertex from the graph.
+     * Also we remove row and column of this vertex in the matrix.
      *
      * @param vertex the vertex to be removed.
      */

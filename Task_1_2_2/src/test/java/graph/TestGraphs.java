@@ -31,13 +31,14 @@ class TestGraphs {
         }
     }
 
+    @Test
     void testVertex() {
         Vertex<String> vertex = new Vertex<String>("123");
         vertex.setVertexName("abc");
         Assertions.assertEquals("abc", vertex.getVertexName());
     }
 
-     @Test
+    @Test
     void setVertexException() {
         Vertex<Double> vertex = new Vertex<>(1.0);
         assertThrows(IllegalArgumentException.class, () -> {
@@ -45,6 +46,7 @@ class TestGraphs {
         });
     }
 
+    @Test
     void testEdge() {
         Vertex<String> vertex1 = new Vertex<String>("1");
         Vertex<String> vertex2 = new Vertex<String>("2");
@@ -114,7 +116,7 @@ class TestGraphs {
 
     @ParameterizedTest
     @ArgumentsSource(GraphsArgumentsProvider.class)
-    void testResourceD(Graph<Double, String> graph) throws IOException {
+    void testResourceDijkstra(Graph<Double, String> graph) throws IOException {
         GraphViewParser.parseResource(graph, "graph1.txt");
     
         ArrayList<Vertex<String>> vertices = graph.getGraphVertices();
@@ -124,7 +126,7 @@ class TestGraphs {
 
     @ParameterizedTest
     @ArgumentsSource(GraphsArgumentsProvider.class)
-    void testResourceB_F(Graph<Double, String> graph) throws IOException {
+    void testResourceBellmanFord(Graph<Double, String> graph) throws IOException {
         GraphViewParser.parseResource(graph, "graph2.txt");
     
         ArrayList<Vertex<String>> vertices = graph.getGraphVertices();

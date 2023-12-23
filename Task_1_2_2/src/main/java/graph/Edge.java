@@ -60,14 +60,9 @@ public class Edge<L extends Number, N> {
      * Sets the length of the edge.
      *
      * @param len the new length for the edge.
-     * @throws IllegalArgumentException if the provided length is zero.
      */
     public void setEdgeLen(L len) {
-        if (Math.abs(len.doubleValue()) < 0.000001) {
-            throw new IllegalArgumentException("Len can't be ZERO");
-        } else {
-            this.edgeLen = len;
-        }
+        this.edgeLen = len;
     }
 
     /**

@@ -16,6 +16,7 @@ public class AdjacencyList<L extends Number, N> implements Graph<L, N> {
 
     /**
      * Constructs an empty AdjacencyList graph.
+     * Here we need the list of vertices and list of lists of edges.
      */
     public AdjacencyList() {
         this.vertices = new ArrayList<Vertex<N>>();
@@ -24,6 +25,8 @@ public class AdjacencyList<L extends Number, N> implements Graph<L, N> {
 
     /**
      * Adds a new vertex to the graph with the specified name.
+     * Also this function creates new list-elemnt in the incidenceList.
+     * Index of vertice corresponds the index of its list-element in incidenceList.
      *
      * @param name the name of the new vertex.
      * @return the newly added vertex.
@@ -40,7 +43,8 @@ public class AdjacencyList<L extends Number, N> implements Graph<L, N> {
     }
 
     /**
-     * Removes the specified vertex from the graph.
+     * Removes the specified vertex from the graph and removes all the edges linked with vertex.
+     * Removes corresponding list-element from incidenceList.
      *
      * @param vertex the vertex to be removed.
      */
@@ -50,8 +54,10 @@ public class AdjacencyList<L extends Number, N> implements Graph<L, N> {
             ArrayList<Edge<L, N>> curVertex = incidenceList.get(i);
             int edgeId = 0;
             while (edgeId < curVertex.size()) {
-                if (curVertex.get(edgeId).getStartVertex() == vertex 
-                    || curVertex.get(edgeId).getEndVertex() == vertex) {
+                if (
+                    curVertex.get(edgeId).getStartVertex() == vertex 
+                    || curVertex.get(edgeId).getEndVertex() == vertex
+                ) {
                     curVertex.remove(edgeId);
                 } else {
                     edgeId++;
@@ -102,6 +108,7 @@ public class AdjacencyList<L extends Number, N> implements Graph<L, N> {
 
     /**
      * Adds a new edge to the graph with the specified name, length, and start and end vertices.
+     * This method creates a new object of Edge. Start and end vertex of edge must be graph part.
      *
      * @param name        the name of the new edge.
      * @param len         the length of the new edge.

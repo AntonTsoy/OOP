@@ -17,7 +17,10 @@ public class AdjacencyMatrix<L extends Number, N> implements Graph<L, N> {
     private ArrayList<Edge<L, N>> edges;
 
     /**
-     * Constructs an empty AdjacencyMatrix graph.
+     * Constructs an empty AdjacencyMatrix graph. 
+     * Here we need lists of vertices and edges.
+     * Alse we need table of edges length.
+     * Rows and columns are corresponding to vertices.
      */
     public AdjacencyMatrix() {
         this.vertices = new ArrayList<Vertex<N>>();
@@ -27,6 +30,9 @@ public class AdjacencyMatrix<L extends Number, N> implements Graph<L, N> {
 
     /**
      * Adds a new vertex to the graph with the specified name.
+     * We extends size of matrix in height and width.
+     * For each list-element, which corresponds to the vertex.
+     * We add a new column. For new vertex we add new row in the matrix.
      *
      * @param name the name of the new vertex.
      * @return the newly added vertex.
@@ -52,6 +58,7 @@ public class AdjacencyMatrix<L extends Number, N> implements Graph<L, N> {
 
     /**
      * Removes the specified vertex from the graph.
+     * Also we remove row and column of this vertex in the matrix.
      *
      * @param vertex the vertex to be removed.
      */
@@ -120,6 +127,7 @@ public class AdjacencyMatrix<L extends Number, N> implements Graph<L, N> {
 
     /**
      * Adds a new edge to the graph with the specified name, length, and start and end vertices.
+     * In matrix we leave the data about edge length.
      *
      * @param name        the name of the new edge.
      * @param len         the length of the new edge.
