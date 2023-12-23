@@ -1,10 +1,13 @@
 package graph;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -32,6 +35,14 @@ class TestGraphs {
         Vertex<String> vertex = new Vertex<String>("123");
         vertex.setVertexName("abc");
         Assertions.assertEquals("abc", vertex.getVertexName());
+    }
+
+     @Test
+    void setVertexException() {
+        Vertex<Double> vertex = new Vertex<>(1.0);
+        assertThrows(IllegalArgumentException.class, () -> {
+            vertex.setVertexName(null);
+        });
     }
 
     void testEdge() {
