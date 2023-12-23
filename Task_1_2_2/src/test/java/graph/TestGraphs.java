@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.stream.Stream;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -29,6 +28,33 @@ class TestGraphs {
         }
     }
 
+    void testVertex() {
+        Vertex<String> vertex = new Vertex<String>("123");
+        vertex.setVertexName("abc");
+        Assertions.assertEquals("abc", vertex.getVertexName());
+    }
+
+    void testEdge() {
+        Vertex<String> vertex1 = new Vertex<String>("1");
+        Vertex<String> vertex2 = new Vertex<String>("2");
+        Edge<Integer, String> edge = new Edge("12", 10, vertex1, vertex2);
+        edge.setEdgeName("100");
+        edge.setEdgeLen(100);
+        Assertions.assertEquals(edge.getEdgeName(), edge.getEdgeLen().toString());
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(GraphsArgumentsProvider.class)
+    void testGraph(Graph<Double, String> graph) {
+        Vertex<String> vertexExpected1 = graph.addVertex("A");
+        Vertex<String> vertexExpected2 = graph.addVertex("B");
+        Edge<Double, String> edge = graph.addEdge("AB", 1.0, vertexExpected1, vertexExpected2);
+        graph.changeVertex(vertexExpected2, "C");
+        graph.changeEdge(edge, "AC");
+        Assertions.assertEquals(
+            vertexExpected1.getVertexName().toString() + "C", edge.getEdgeName()
+        );
+    }
     
     @ParameterizedTest
     @ArgumentsSource(GraphsArgumentsProvider.class)
@@ -49,7 +75,7 @@ class TestGraphs {
 
     @ParameterizedTest
     @ArgumentsSource(GraphsArgumentsProvider.class)
-    void testGraph(Graph<Double, String> graph) {
+    void testGraphs(Graph<Double, String> graph) {
         ArrayList<Vertex<String>> expected = new ArrayList<>();
         expected.add(graph.addVertex("A"));
         expected.add(graph.addVertex("B"));
@@ -57,8 +83,23 @@ class TestGraphs {
         graph.addEdge("AB", 1.0, expected.get(0), expected.get(1));
         graph.addEdge("BC", 4.0, expected.get(1), expected.get(2));
         graph.addEdge("CA", 5.0, expected.get(2), expected.get(0));
-        ArrayList<Vertex<String>> result = SortGraph.Dijkstra(graph, expected.get(0));
+        ArrayList<Vertex<String>> result = SortGraph.sortDijkstra(graph, expected.get(0));
         Assertions.assertEquals(expected, result);
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(GraphsArgumentsProvider.class)
+    void testDeletions(Graph<Double, String> graph) {
+        ArrayList<Vertex<String>> expected = new ArrayList<>();
+        var a = graph.addVertex("A");
+        graph.addVertex("B");
+        graph.addVertex("C");
+        var ab = graph.addEdge("AB", 1.0, expected.get(0), expected.get(1));
+        graph.addEdge("BC", 4.0, expected.get(1), expected.get(2));
+        graph.addEdge("CA", 5.0, expected.get(2), expected.get(0));
+        graph.delEdge(ab);
+        graph.delVertex(a);
+        Assertions.assertEquals(new ArrayList<Edge<Double, String>>(), graph.getGraphEdges());
     }
 
     @ParameterizedTest
@@ -67,7 +108,7 @@ class TestGraphs {
         GraphViewParser.parseResource(graph, "graph1.txt");
     
         ArrayList<Vertex<String>> vertices = graph.getGraphVertices();
-        ArrayList<Vertex<String>> result = SortGraph.Dijkstra(graph, vertices.get(0));
+        ArrayList<Vertex<String>> result = SortGraph.sortDijkstra(graph, vertices.get(0));
         Assertions.assertEquals(vertices, result);
     }
 
@@ -77,10 +118,11 @@ class TestGraphs {
         GraphViewParser.parseResource(graph, "graph2.txt");
     
         ArrayList<Vertex<String>> vertices = graph.getGraphVertices();
-        ArrayList<Vertex<String>> result = SortGraph.Bellman_Ford(graph, vertices.get(0));
+        ArrayList<Vertex<String>> result = SortGraph.sortBellmanFord(graph, vertices.get(0));
         Collections.swap(vertices, 0, 1);
         Collections.swap(vertices, 3, 4);  // {b, a, c, e, d, f}
         Assertions.assertEquals(vertices, result);
     }
 
+    
 }

@@ -68,7 +68,8 @@ public class AdjacencyMatrix<L extends Number, N> implements Graph<L, N> {
         // Remove edges associated with the vertex.
         int edgeId = 0;
         while (edgeId < edges.size()) {
-            if (edges.get(edgeId).getStartVertex() == vertex || edges.get(edgeId).getEndVertex() == vertex) {
+            if (edges.get(edgeId).getStartVertex() == vertex 
+                || edges.get(edgeId).getEndVertex() == vertex) {
                 edges.remove(edgeId);
             } else {
                 edgeId++;

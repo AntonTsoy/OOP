@@ -90,7 +90,7 @@ public class SortGraph<N> {
      * @param sourceVertex the source vertex.
      * @return an ArrayList of vertices sorted by their distances from the source.
      */
-    public static <L extends Number, N> ArrayList<Vertex<N>> Dijkstra(
+    public static <L extends Number, N> ArrayList<Vertex<N>> sortDijkstra(
         Graph<L, N> graphView, Vertex<N> sourceVertex
     ) {
         HashMap<Vertex<N>, Double> distanceMap = new HashMap<>();
@@ -124,7 +124,7 @@ public class SortGraph<N> {
      * @param sourceVertex the source vertex.
      * @return an ArrayList of vertices sorted by their distances from the source.
      */
-    public static <L extends Number, N> ArrayList<Vertex<N>> Bellman_Ford(
+    public static <L extends Number, N> ArrayList<Vertex<N>> sortBellmanFord(
         Graph<L, N> graphView, Vertex<N> sourceVertex
     ) {
         HashMap<Vertex<N>, Double> distanceMap = new HashMap<>();

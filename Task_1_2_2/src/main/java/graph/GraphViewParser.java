@@ -69,7 +69,9 @@ public class GraphViewParser {
                 try {
                     String edgeName = verticesString.get(i - 1) + verticesString.get(j - 1);
                     Double edgeLen = Double.parseDouble(currEdges.get(j));
-                    graph.addEdge((N) edgeName, (L) edgeLen, vertices.get(i - 1), vertices.get(j - 1));
+                    graph.addEdge(
+                        (N) edgeName, (L) edgeLen, vertices.get(i - 1), vertices.get(j - 1)
+                    );
                 } catch (NumberFormatException e) {
                     System.err.println("It's okay.");
                 }

@@ -50,7 +50,8 @@ public class AdjacencyList<L extends Number, N> implements Graph<L, N> {
             ArrayList<Edge<L, N>> curVertex = incidenceList.get(i);
             int edgeId = 0;
             while (edgeId < curVertex.size()) {
-                if (curVertex.get(edgeId).getStartVertex() == vertex || curVertex.get(edgeId).getEndVertex() == vertex) {
+                if (curVertex.get(edgeId).getStartVertex() == vertex 
+                    || curVertex.get(edgeId).getEndVertex() == vertex) {
                     curVertex.remove(edgeId);
                 } else {
                     edgeId++;
