@@ -27,8 +27,8 @@
     catch(err) {
     }
 //-->
-var data = {"i0":2,"i1":2,"i2":2,"i3":1,"i4":2,"i5":2,"i6":2,"i7":2};
-var tabs = {65535:["t0","All Classes"],1:["t1","Interface Summary"],2:["t2","Class Summary"]};
+var data = {"i0":2,"i1":2,"i2":2,"i3":32,"i4":1,"i5":2,"i6":2,"i7":2,"i8":2};
+var tabs = {65535:["t0","All Classes"],1:["t1","Interface Summary"],2:["t2","Class Summary"],32:["t6","Annotation Types Summary"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -104,7 +104,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <table class="typeSummary">
-<caption><span id="t0" class="activeTableTab"><span>All Classes</span><span class="tabEnd">&nbsp;</span></span><span id="t1" class="tableTab"><span><a href="javascript:show(1);">Interface Summary</a></span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Class Summary</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Classes</span><span class="tabEnd">&nbsp;</span></span><span id="t1" class="tableTab"><span><a href="javascript:show(1);">Interface Summary</a></span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Class Summary</a></span><span class="tabEnd">&nbsp;</span></span><span id="t6" class="tableTab"><span><a href="javascript:show(32);">Annotation Types Summary</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Class</th>
 <th class="colLast" scope="col">Description</th>
@@ -128,28 +128,36 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </th>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><a href="graph/Graph.html" title="interface in graph">Graph</a>&lt;<a href="graph/Graph.html" title="type parameter in Graph">L</a> extends java.lang.Number,&#8203;<a href="graph/Graph.html" title="type parameter in Graph">N</a>&gt;</td>
-<th class="colLast" scope="row">&nbsp;</th>
+<td class="colFirst"><a href="graph/ExcludeFromJacocoGeneratedReport.html" title="annotation in graph">ExcludeFromJacocoGeneratedReport</a></td>
+<th class="colLast" scope="row">
+<div class="block">Excluding From Jacoco Test Report interface.</div>
+</th>
 </tr>
 <tr id="i4" class="altColor">
+<td class="colFirst"><a href="graph/Graph.html" title="interface in graph">Graph</a>&lt;<a href="graph/Graph.html" title="type parameter in Graph">L</a> extends java.lang.Number,&#8203;<a href="graph/Graph.html" title="type parameter in Graph">N</a>&gt;</td>
+<th class="colLast" scope="row">
+<div class="block">The Graph interface defines the basic structure and operations for a graph data structure.</div>
+</th>
+</tr>
+<tr id="i5" class="rowColor">
 <td class="colFirst"><a href="graph/GraphViewParser.html" title="class in graph">GraphViewParser</a></td>
 <th class="colLast" scope="row">
 <div class="block">Utility class for parsing graph data from a resource file and populating a graph.</div>
 </th>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><a href="graph/IncidenceMatrix.html" title="class in graph">IncidenceMatrix</a>&lt;<a href="graph/IncidenceMatrix.html" title="type parameter in IncidenceMatrix">L</a> extends java.lang.Number,&#8203;<a href="graph/IncidenceMatrix.html" title="type parameter in IncidenceMatrix">N</a>&gt;</td>
 <th class="colLast" scope="row">
 <div class="block">Represents a graph using an incidence matrix.</div>
 </th>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><a href="graph/SortGraph.html" title="class in graph">SortGraph</a>&lt;<a href="graph/SortGraph.html" title="type parameter in SortGraph">N</a>&gt;</td>
 <th class="colLast" scope="row">
 <div class="block">Utility class for sorting graphs using various algorithms.</div>
 </th>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><a href="graph/Vertex.html" title="class in graph">Vertex</a>&lt;<a href="graph/Vertex.html" title="type parameter in Vertex">N</a>&gt;</td>
 <th class="colLast" scope="row">
 <div class="block">Represents a vertex in a graph.</div>

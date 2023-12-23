@@ -122,11 +122,17 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>L</code> - the type of the edge length.</dd>
+<dd><code>N</code> - the type of the vertex name.</dd>
+</dl>
+<dl>
 <dt>All Known Implementing Classes:</dt>
 <dd><code><a href="AdjacencyList.html" title="class in graph">AdjacencyList</a></code>, <code><a href="AdjacencyMatrix.html" title="class in graph">AdjacencyMatrix</a></code>, <code><a href="IncidenceMatrix.html" title="class in graph">IncidenceMatrix</a></code></dd>
 </dl>
 <hr>
 <pre>public interface <span class="typeNameLabel">Graph&lt;L extends java.lang.Number,&#8203;N&gt;</span></pre>
+<div class="block">The Graph interface defines the basic structure and operations for a graph data structure.</div>
 </li>
 </ul>
 </div>
@@ -153,49 +159,67 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
        <a href="Graph.html" title="type parameter in Graph">L</a>&nbsp;len,
        <a href="Vertex.html" title="class in graph">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">N</a>&gt;&nbsp;startVertex,
        <a href="Vertex.html" title="class in graph">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">N</a>&gt;&nbsp;endVertex)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Adds a new edge to the graph with the specified name, length, and start and end vertices.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="Vertex.html" title="class in graph">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">N</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addVertex(N)">addVertex</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">N</a>&nbsp;name)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Adds a new vertex to the graph with the specified name.</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>default void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#changeEdge(graph.Edge,N)">changeEdge</a></span>&#8203;(<a href="Edge.html" title="class in graph">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">L</a>,&#8203;<a href="Graph.html" title="type parameter in Graph">N</a>&gt;&nbsp;edge,
           <a href="Graph.html" title="type parameter in Graph">N</a>&nbsp;newName)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Default method to change the name of an edge.</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>default void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#changeVertex(graph.Vertex,N)">changeVertex</a></span>&#8203;(<a href="Vertex.html" title="class in graph">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">N</a>&gt;&nbsp;vertex,
             <a href="Graph.html" title="type parameter in Graph">N</a>&nbsp;newName)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Default method to change the name of a vertex.</div>
+</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#delEdge(graph.Edge)">delEdge</a></span>&#8203;(<a href="Edge.html" title="class in graph">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">L</a>,&#8203;<a href="Graph.html" title="type parameter in Graph">N</a>&gt;&nbsp;edge)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Removes the specified edge from the graph.</div>
+</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#delVertex(graph.Vertex)">delVertex</a></span>&#8203;(<a href="Vertex.html" title="class in graph">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">N</a>&gt;&nbsp;vertex)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Removes the specified vertex from the graph.</div>
+</td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>java.util.ArrayList&lt;<a href="Edge.html" title="class in graph">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">L</a>,&#8203;<a href="Graph.html" title="type parameter in Graph">N</a>&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getGraphEdges()">getGraphEdges</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Retrieves the edges of the graph.</div>
+</td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>java.util.ArrayList&lt;<a href="Vertex.html" title="class in graph">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">N</a>&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getGraphVertices()">getGraphVertices</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Retrieves the vertices of the graph.</div>
+</td>
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>java.util.ArrayList&lt;<a href="Edge.html" title="class in graph">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">L</a>,&#8203;<a href="Graph.html" title="type parameter in Graph">N</a>&gt;&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getIncidentEdges(graph.Vertex)">getIncidentEdges</a></span>&#8203;(<a href="Vertex.html" title="class in graph">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">N</a>&gt;&nbsp;currentVeretex)</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getIncidentEdges(graph.Vertex)">getIncidentEdges</a></span>&#8203;(<a href="Vertex.html" title="class in graph">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">N</a>&gt;&nbsp;currentVertex)</code></th>
+<td class="colLast">
+<div class="block">Retrieves the incident edges of the specified vertex.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -223,6 +247,13 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <h4>addVertex</h4>
 <pre class="methodSignature"><a href="Vertex.html" title="class in graph">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">N</a>&gt;&nbsp;addVertex&#8203;(<a href="Graph.html" title="type parameter in Graph">N</a>&nbsp;name)</pre>
+<div class="block">Adds a new vertex to the graph with the specified name.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>name</code> - the name of the new vertex.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the newly added vertex.</dd>
+</dl>
 </li>
 </ul>
 <a id="addEdge(java.lang.Object,java.lang.Number,graph.Vertex,graph.Vertex)">
@@ -237,6 +268,16 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
                         <a href="Graph.html" title="type parameter in Graph">L</a>&nbsp;len,
                         <a href="Vertex.html" title="class in graph">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">N</a>&gt;&nbsp;startVertex,
                         <a href="Vertex.html" title="class in graph">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">N</a>&gt;&nbsp;endVertex)</pre>
+<div class="block">Adds a new edge to the graph with the specified name, length, and start and end vertices.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>name</code> - the name of the new edge.</dd>
+<dd><code>len</code> - the length of the new edge.</dd>
+<dd><code>startVertex</code> - the starting vertex of the edge.</dd>
+<dd><code>endVertex</code> - the ending vertex of the edge.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the newly added edge.</dd>
+</dl>
 </li>
 </ul>
 <a id="delVertex(graph.Vertex)">
@@ -246,6 +287,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <h4>delVertex</h4>
 <pre class="methodSignature">void&nbsp;delVertex&#8203;(<a href="Vertex.html" title="class in graph">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">N</a>&gt;&nbsp;vertex)</pre>
+<div class="block">Removes the specified vertex from the graph.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>vertex</code> - the vertex to be removed.</dd>
+</dl>
 </li>
 </ul>
 <a id="delEdge(graph.Edge)">
@@ -255,6 +301,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <h4>delEdge</h4>
 <pre class="methodSignature">void&nbsp;delEdge&#8203;(<a href="Edge.html" title="class in graph">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">L</a>,&#8203;<a href="Graph.html" title="type parameter in Graph">N</a>&gt;&nbsp;edge)</pre>
+<div class="block">Removes the specified edge from the graph.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>edge</code> - the edge to be removed.</dd>
+</dl>
 </li>
 </ul>
 <a id="getIncidentEdges(graph.Vertex)">
@@ -263,7 +314,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <h4>getIncidentEdges</h4>
-<pre class="methodSignature">java.util.ArrayList&lt;<a href="Edge.html" title="class in graph">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">L</a>,&#8203;<a href="Graph.html" title="type parameter in Graph">N</a>&gt;&gt;&nbsp;getIncidentEdges&#8203;(<a href="Vertex.html" title="class in graph">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">N</a>&gt;&nbsp;currentVeretex)</pre>
+<pre class="methodSignature">java.util.ArrayList&lt;<a href="Edge.html" title="class in graph">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">L</a>,&#8203;<a href="Graph.html" title="type parameter in Graph">N</a>&gt;&gt;&nbsp;getIncidentEdges&#8203;(<a href="Vertex.html" title="class in graph">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">N</a>&gt;&nbsp;currentVertex)</pre>
+<div class="block">Retrieves the incident edges of the specified vertex.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>currentVertex</code> - the vertex to find incident edges for.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>an ArrayList of incident edges.</dd>
+</dl>
 </li>
 </ul>
 <a id="getGraphVertices()">
@@ -273,6 +331,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <h4>getGraphVertices</h4>
 <pre class="methodSignature">java.util.ArrayList&lt;<a href="Vertex.html" title="class in graph">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">N</a>&gt;&gt;&nbsp;getGraphVertices()</pre>
+<div class="block">Retrieves the vertices of the graph.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>an ArrayList of vertices in the graph.</dd>
+</dl>
 </li>
 </ul>
 <a id="getGraphEdges()">
@@ -282,6 +345,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <h4>getGraphEdges</h4>
 <pre class="methodSignature">java.util.ArrayList&lt;<a href="Edge.html" title="class in graph">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">L</a>,&#8203;<a href="Graph.html" title="type parameter in Graph">N</a>&gt;&gt;&nbsp;getGraphEdges()</pre>
+<div class="block">Retrieves the edges of the graph.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>an ArrayList of edges in the graph.</dd>
+</dl>
 </li>
 </ul>
 <a id="changeEdge(graph.Edge,java.lang.Object)">
@@ -294,6 +362,12 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <h4>changeEdge</h4>
 <pre class="methodSignature">default&nbsp;void&nbsp;changeEdge&#8203;(<a href="Edge.html" title="class in graph">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">L</a>,&#8203;<a href="Graph.html" title="type parameter in Graph">N</a>&gt;&nbsp;edge,
                         <a href="Graph.html" title="type parameter in Graph">N</a>&nbsp;newName)</pre>
+<div class="block">Default method to change the name of an edge.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>edge</code> - the edge to be modified.</dd>
+<dd><code>newName</code> - the new name for the edge.</dd>
+</dl>
 </li>
 </ul>
 <a id="changeVertex(graph.Vertex,java.lang.Object)">
@@ -306,6 +380,12 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <h4>changeVertex</h4>
 <pre class="methodSignature">default&nbsp;void&nbsp;changeVertex&#8203;(<a href="Vertex.html" title="class in graph">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">N</a>&gt;&nbsp;vertex,
                           <a href="Graph.html" title="type parameter in Graph">N</a>&nbsp;newName)</pre>
+<div class="block">Default method to change the name of a vertex.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>vertex</code> - the vertex to be modified.</dd>
+<dd><code>newName</code> - the new name for the vertex.</dd>
+</dl>
 </li>
 </ul>
 </li>
