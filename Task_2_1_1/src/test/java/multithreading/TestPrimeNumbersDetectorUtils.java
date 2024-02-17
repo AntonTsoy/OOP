@@ -1,15 +1,15 @@
 package multithreading;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 
 /**
  * Класс для тестирования вспомогательных функций для Детектеров.
  */
-class PrimeNumbersDetectorUtilsTest {
+class TestPrimeNumbersDetectorUtils {
 
     @Test
     void isPrimeNegativeNumbers() {

@@ -13,8 +13,7 @@ public class TaskDelimiter {
      * @throws IllegalArgumentException если номер нити больше их количества или нитей много.
      */
     public static int lenThreadPart(int threadIdx, int threadQnt, int taskQnt)
-        throws IllegalArgumentException 
-    {
+        throws IllegalArgumentException {
         checkArguments(threadIdx, threadQnt, taskQnt);
         int baseLenPart = taskQnt / threadQnt;
         return threadIdx < taskQnt % threadQnt ? baseLenPart + 1 : baseLenPart;
@@ -30,8 +29,7 @@ public class TaskDelimiter {
      * @throws IllegalArgumentException если номер нити больше их количества или нитей много.
      */
     public static int offsetThreadPart(int threadIdx, int threadQnt, int taskQnt)
-        throws IllegalArgumentException 
-    {
+        throws IllegalArgumentException {
         checkArguments(threadIdx, threadQnt, taskQnt);
         int baseOffsetPart = taskQnt / threadQnt * threadIdx;
         int choosenThreads = taskQnt % threadQnt;
@@ -44,8 +42,7 @@ public class TaskDelimiter {
 
 
     private static void checkArguments(int threadIdx, int threadQnt, int taskQnt) 
-        throws IllegalArgumentException 
-    {
+        throws IllegalArgumentException {
         if (threadIdx >= threadQnt || threadIdx < 0) {
             var message = String.format("Your threadIdx can be in [0, %d)", threadQnt);
             throw new IllegalArgumentException(message);

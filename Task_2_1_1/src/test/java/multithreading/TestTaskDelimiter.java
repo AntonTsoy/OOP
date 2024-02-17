@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Класс для тестирования Делителя задач между потоками.
  */
-class TaskDelimiterTest {
+class TestTaskDelimiter {
 
     @Test
     void lenThreadCorrectLength() {
