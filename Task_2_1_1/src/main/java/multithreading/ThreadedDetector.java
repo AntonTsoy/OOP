@@ -46,7 +46,7 @@ public class ThreadedDetector implements PrimeNumbersDetector {
         }
 
         if (numbers.length == 0) {
-            return true;
+            return false;
         }
 
         this.numbers = numbers;
