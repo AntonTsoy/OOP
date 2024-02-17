@@ -1,6 +1,8 @@
 package multithreading;
 
-
+/**
+ * Класс для разделения задач между потоками.
+ */
 public class TaskDelimiter {
 
     /**
