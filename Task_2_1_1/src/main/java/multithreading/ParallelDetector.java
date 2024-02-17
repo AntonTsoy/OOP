@@ -23,6 +23,7 @@ public class ParallelDetector implements PrimeNumbersDetector {
         );
     }
 
+    /*
     public static void main(String[] args) {
         ParallelDetector solution1 = new ParallelDetector();
         
@@ -46,4 +47,5 @@ public class ParallelDetector implements PrimeNumbersDetector {
         System.out.println("Time working: " + executionTime + " ms");
         System.out.println(answer);
     }
+    */
 }

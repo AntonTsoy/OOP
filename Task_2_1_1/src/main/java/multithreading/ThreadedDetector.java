@@ -90,6 +90,7 @@ public class ThreadedDetector implements PrimeNumbersDetector {
         return result.get();
     }
 
+    /*
     public static void main(String[] args) {
         ThreadedDetector solution1 = new ThreadedDetector(5);
         Integer[] numbers = new Integer[200000];
@@ -112,4 +113,5 @@ public class ThreadedDetector implements PrimeNumbersDetector {
         System.out.println("Time working: " + executionTime + " ms");
         System.out.println(answer);
     }
+    */
 }
