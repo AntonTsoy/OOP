@@ -14,7 +14,7 @@ public class ThreadedDetector implements PrimeNumbersDetector {
     /**
      * Метод инициализатор многопоточного решения.
      *
-     * @param threadQuantity
+     * @param threadQuantity количество желаемых потоков.
      */
     public ThreadedDetector(int threadQuantity) {
         this.threadQuantity = threadQuantity;
