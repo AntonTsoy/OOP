@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"multithreading","l":"ParallelDetector"},{"p":"multithreading","l":"PrimeNumbersDetector"},{"p":"multithreading","l":"PrimeNumbersDetectorUtils"},{"p":"multithreading","l":"SequentialDetector"},{"p":"multithreading","l":"TaskDelimiter"},{"p":"multithreading","l":"ThreadedDetector"}]
