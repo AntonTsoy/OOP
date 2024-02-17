@@ -11,10 +11,23 @@ public class ThreadedDetector implements PrimeNumbersDetector {
     private final int threadQuantity;
     private Integer[] numbers;
 
+    /**
+     * Метод инициализатор многопоточного решения.
+     *
+     * @param threadQuantity
+     */
     public ThreadedDetector(int threadQuantity) {
         this.threadQuantity = threadQuantity;
     }
 
+    /**
+     * Функция создаёт новый поток.
+     *
+     * @param offset с какого индекса поток будет проверять массив.
+     * @param len сколько элементов проверит поток.
+     * @param result есть ли НЕпростое число.
+     * @return новый поток.
+     */
     private Thread createThread(int offset, int len, AtomicBoolean result) {
         var newThread = new Thread(
             () -> {
@@ -39,14 +52,19 @@ public class ThreadedDetector implements PrimeNumbersDetector {
         return newThread;
     }
 
+    /**
+     * Функция для проверки присутствия непростых чисел в массиве.
+     *
+     * @param numbers is checking numbers.
+     * @return true if numbers are not all prime.
+     */
     @Override
     public boolean isNotPrimeNumbers(Integer[] numbers) {
-        if (threadQuantity <= 0) {
-            throw new RuntimeException("It's stupid to create zero and less number of threads!");
-        }
-
         if (numbers.length == 0) {
             return false;
+        }
+        if (threadQuantity <= 0) {
+            throw new RuntimeException("It's stupid to create zero and less number of threads!");
         }
 
         this.numbers = numbers;

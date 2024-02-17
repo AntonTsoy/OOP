@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+
+/**
+ * Класс для тестирования вспомогательных функций для Детектеров.
+ */
 class PrimeNumbersDetectorUtilsTest {
 
     @Test

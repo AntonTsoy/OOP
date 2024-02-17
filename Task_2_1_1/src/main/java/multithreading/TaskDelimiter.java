@@ -3,6 +3,15 @@ package multithreading;
 
 public class TaskDelimiter {
 
+    /**
+     * Функция для получения количества проверяемых чисел.
+     *
+     * @param threadIdx номер текущего потока.
+     * @param threadQnt сколько всего потоков.
+     * @param taskQnt сколько всего чисел в массиве.
+     * @return количество проверяемых чисел.
+     * @throws IllegalArgumentException.
+     */
     public static int lenThreadPart(int threadIdx, int threadQnt, int taskQnt)
     throws IllegalArgumentException {
         checkArguments(threadIdx, threadQnt, taskQnt);
@@ -10,7 +19,15 @@ public class TaskDelimiter {
         return threadIdx < taskQnt % threadQnt ? baseLenPart + 1 : baseLenPart;
     }
 
-    
+    /**
+     * Функция для получения начального индекса в массиве для проверки.
+     *
+     * @param threadIdx номер текущего потока.
+     * @param threadQnt сколько всего потоков.
+     * @param taskQnt сколько всего чисел в массиве.
+     * @return количество проверяемых чисел.
+     * @throws IllegalArgumentException.
+     */
     public static int offsetThreadPart(int threadIdx, int threadQnt, int taskQnt)
     throws IllegalArgumentException {
         checkArguments(threadIdx, threadQnt, taskQnt);

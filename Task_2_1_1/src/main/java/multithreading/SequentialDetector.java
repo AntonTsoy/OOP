@@ -6,6 +6,12 @@ package multithreading;
  */
 public class SequentialDetector implements PrimeNumbersDetector {
 
+    /**
+     * Функция для проверки присутствия непростых чисел в массиве.
+     *
+     * @param numbers is checking numbers.
+     * @return true if numbers are not all prime.
+     */
     @Override
     public boolean isNotPrimeNumbers(Integer[] numbers) {
 

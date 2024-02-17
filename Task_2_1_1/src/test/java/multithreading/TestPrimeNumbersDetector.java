@@ -10,6 +10,9 @@ import org.junit.jupiter.params.provider.ArgumentsProvider;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 
 
+/**
+ * Класс для тестирования работы Детектеров.
+ */
 public class TestPrimeNumbersDetector {
 
     @ParameterizedTest()

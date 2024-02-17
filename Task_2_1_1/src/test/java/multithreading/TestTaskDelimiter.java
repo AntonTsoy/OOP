@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-
+/**
+ * Класс для тестирования Делителя задач между потоками.
+ */
 class TaskDelimiterTest {
 
     @Test
