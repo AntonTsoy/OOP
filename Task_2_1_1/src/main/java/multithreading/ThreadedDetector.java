@@ -89,29 +89,4 @@ public class ThreadedDetector implements PrimeNumbersDetector {
 
         return result.get();
     }
-
-    /*
-    public static void main(String[] args) {
-        ThreadedDetector solution1 = new ThreadedDetector(5);
-        Integer[] numbers = new Integer[200000];
-        Integer num = 2;
-        int counter = 0;
-        while (counter < 200000) {
-            if (PrimeNumbersDetectorUtils.isPrimeNumber(num)) {
-                numbers[counter] = num;
-                counter++;
-            }
-            num++;
-        }
-
-        long startTime = System.currentTimeMillis();
-
-        boolean answer = solution1.isNotPrimeNumbers(numbers);
-
-        long endTime = System.currentTimeMillis();
-        long executionTime = endTime - startTime;
-        System.out.println("Time working: " + executionTime + " ms");
-        System.out.println(answer);
-    }
-    */
 }

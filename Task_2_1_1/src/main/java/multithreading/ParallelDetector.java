@@ -22,30 +22,4 @@ public class ParallelDetector implements PrimeNumbersDetector {
             num -> !PrimeNumbersDetectorUtils.isPrimeNumber(num)
         );
     }
-
-    /*
-    public static void main(String[] args) {
-        ParallelDetector solution1 = new ParallelDetector();
-        
-        Integer[] numbers = new Integer[500000];
-        Integer num = 2;
-        int counter = 0;
-        while (counter < 500000) {
-            if (PrimeNumbersDetectorUtils.isPrimeNumber(num)) {
-                numbers[counter] = num;
-                counter++;
-            }
-            num++;
-        }
-
-        long startTime = System.currentTimeMillis();
-
-        boolean answer = solution1.isNotPrimeNumbers(numbers);
-
-        long endTime = System.currentTimeMillis();
-        long executionTime = endTime - startTime;
-        System.out.println("Time working: " + executionTime + " ms");
-        System.out.println(answer);
-    }
-    */
 }
