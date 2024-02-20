@@ -11,7 +11,7 @@ public class PrimeNumbersDetectorUtils {
      * @param number is checking number.
      * @return true if number is prime.
      */
-    static boolean isPrimeNumber(Integer number) {
+    static boolean isPrimeNumber(int number) {
         if (number < 2) {
             return false;
         } else {

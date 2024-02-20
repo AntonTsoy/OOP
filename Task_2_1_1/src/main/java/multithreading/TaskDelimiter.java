@@ -10,12 +10,13 @@ public class TaskDelimiter {
      *
      * @param threadIdx номер текущего потока.
      * @param threadQnt сколько всего потоков.
-     * @param taskQnt сколько всего чисел в массиве.
+     * @param taskQnt   сколько всего чисел в массиве.
      * @return количество проверяемых чисел.
-     * @throws IllegalArgumentException если номер нити больше их количества или нитей много.
+     * @throws IllegalArgumentException если номер нити больше их количества или
+     *                                  нитей много.
      */
     public static int lenThreadPart(int threadIdx, int threadQnt, int taskQnt)
-        throws IllegalArgumentException {
+            throws IllegalArgumentException {
         checkArguments(threadIdx, threadQnt, taskQnt);
         int baseLenPart = taskQnt / threadQnt;
         return threadIdx < taskQnt % threadQnt ? baseLenPart + 1 : baseLenPart;
@@ -26,25 +27,25 @@ public class TaskDelimiter {
      *
      * @param threadIdx номер текущего потока.
      * @param threadQnt сколько всего потоков.
-     * @param taskQnt сколько всего чисел в массиве.
+     * @param taskQnt   сколько всего чисел в массиве.
      * @return количество проверяемых чисел.
-     * @throws IllegalArgumentException если номер нити больше их количества или нитей много.
+     * @throws IllegalArgumentException если номер нити больше их количества или
+     *                                  нитей много.
      */
     public static int offsetThreadPart(int threadIdx, int threadQnt, int taskQnt)
-        throws IllegalArgumentException {
+            throws IllegalArgumentException {
         checkArguments(threadIdx, threadQnt, taskQnt);
         int baseOffsetPart = taskQnt / threadQnt * threadIdx;
         int choosenThreads = taskQnt % threadQnt;
-        
+
         if (threadIdx < choosenThreads) {
             return baseOffsetPart + threadIdx;
         }
         return baseOffsetPart + choosenThreads;
     }
 
-
-    private static void checkArguments(int threadIdx, int threadQnt, int taskQnt) 
-        throws IllegalArgumentException {
+    private static void checkArguments(int threadIdx, int threadQnt, int taskQnt)
+            throws IllegalArgumentException {
         if (threadIdx >= threadQnt || threadIdx < 0) {
             var message = String.format("Your threadIdx can be in [0, %d)", threadQnt);
             throw new IllegalArgumentException(message);

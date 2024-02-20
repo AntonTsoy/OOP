@@ -1,5 +1,8 @@
 package multithreading;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 /**
  * Класс реализующий последовательное решение.
  * Просто идём по всему массиву и проверяем встретившееся число.
@@ -14,13 +17,7 @@ public class SequentialDetector implements PrimeNumbersDetector {
      */
     @Override
     public boolean isNotPrimeNumbers(Integer[] numbers) {
-
-        for (Integer number : numbers) {
-            if (!PrimeNumbersDetectorUtils.isPrimeNumber(number)) {
-                return true;
-            }
-        }
-
-        return false;
+        List<Integer> numList = new ArrayList<>(Arrays.asList(numbers));
+        return !numList.stream().noneMatch(num -> !PrimeNumbersDetectorUtils.isPrimeNumber(num));
     }
 }
