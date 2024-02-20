@@ -16,6 +16,9 @@ public class ThreadedDetector implements PrimeNumbersDetector {
      * @param threadQuantity количество желаемых потоков.
      */
     public ThreadedDetector(int threadQuantity) {
+        if (threadQuantity <= 0) {
+            throw new RuntimeException("It's stupid to create zero and less number of threads!");
+        }
         this.threadQuantity = threadQuantity;
     }
 
@@ -60,7 +63,7 @@ public class ThreadedDetector implements PrimeNumbersDetector {
     public boolean isNotPrimeNumbers(Integer[] numbers) {
         if (numbers.length == 0) {
             return false;
-        }
+        } 
 
         AtomicBoolean result = new AtomicBoolean(false);
         final Thread[] threads = new Thread[threadQuantity];
