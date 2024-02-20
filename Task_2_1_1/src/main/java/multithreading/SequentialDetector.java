@@ -3,6 +3,7 @@ package multithreading;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 /**
  * Класс реализующий последовательное решение.
  * Просто идём по всему массиву и проверяем встретившееся число.
