@@ -34,6 +34,9 @@ public class ThreadedDetector implements PrimeNumbersDetector {
         var newThread = new Thread(
                 () -> {
                     for (int idx = offset; idx < offset + len; idx++) {
+                        if (result.get()){
+                            break;
+                        }
                         if (!PrimeNumbersDetectorUtils.isPrimeNumber(numbers[idx])) {
                             result.set(true);
                             break;
@@ -46,8 +49,6 @@ public class ThreadedDetector implements PrimeNumbersDetector {
                     synchronized (System.err) {
                         System.err.println("Thread with offset - " + offset + ":");
                         exception.printStackTrace(System.err);
-                        // попробуй здесь бросить исключение
-                        // https://stackoverflow-com.translate.goog/questions/6546193/how-to-catch-an-exception-from-a-thread?_x_tr_sl=en&_x_tr_tl=ru&_x_tr_hl=ru&_x_tr_pto=sc
                     }
                 });
         return newThread;
@@ -76,7 +77,6 @@ public class ThreadedDetector implements PrimeNumbersDetector {
         }
 
         try {
-            // тут главный поток ждёт, но можно его тоже загрузить
             for (int threadIdx = 0; threadIdx < threadQuantity; threadIdx++) {
                 threads[threadIdx].join();
             }
