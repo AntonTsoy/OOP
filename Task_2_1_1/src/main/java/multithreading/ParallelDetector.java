@@ -1,6 +1,5 @@
 package multithreading;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,7 +16,7 @@ public class ParallelDetector implements PrimeNumbersDetector {
      */
     @Override
     public boolean isNotPrimeNumbers(Integer[] numbers) {
-        List<Integer> numList = new ArrayList<>(Arrays.asList(numbers));
+        List<Integer> numList = Arrays.asList(numbers);
         return !numList.parallelStream().noneMatch(
             num -> !PrimeNumbersDetectorUtils.isPrimeNumber(num)
         );

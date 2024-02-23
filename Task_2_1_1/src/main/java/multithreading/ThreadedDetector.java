@@ -17,7 +17,9 @@ public class ThreadedDetector implements PrimeNumbersDetector {
      */
     public ThreadedDetector(int threadQuantity) {
         if (threadQuantity <= 0) {
-            throw new RuntimeException("It's stupid to create zero and less number of threads!");
+            throw new IllegalArgumentException(
+                "It's stupid to create zero and less number of threads!"
+            );
         }
         this.threadQuantity = threadQuantity;
     }
@@ -34,7 +36,7 @@ public class ThreadedDetector implements PrimeNumbersDetector {
         var newThread = new Thread(
                 () -> {
                     for (int idx = offset; idx < offset + len; idx++) {
-                        if (result.get()){
+                        if (result.get()) {
                             break;
                         }
                         if (!PrimeNumbersDetectorUtils.isPrimeNumber(numbers[idx])) {
