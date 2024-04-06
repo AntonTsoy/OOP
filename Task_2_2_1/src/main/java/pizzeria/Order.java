@@ -1,7 +1,9 @@
 package pizzeria;
 
-import java.io.Serializable;
 
-public class Order implements Serializable {
+/**
+ * 
+ */
+public class Order {
     
 }

@@ -1,5 +1,9 @@
 package pizzeria;
 
-public class PizzeriaConfig {
 
+/**
+ * 
+ */
+public class PizzeriaConfig {
+    
 }
