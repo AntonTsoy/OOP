@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ConcurrentModificationException;
+
 
 public class BlockingDeskTest {
 
@@ -28,6 +30,9 @@ public class BlockingDeskTest {
         taskLawyer = () -> {
             try {
                 Order freeCrminal = prison.pop();
+                if (freeCrminal == null) {
+                    throw new ConcurrentModificationException();
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -54,9 +59,9 @@ public class BlockingDeskTest {
         lawyer2.join();
 
         lawyer1.run();
+        lawyer1.join();
         lawyer2.run();
         police1.run();
-
         police1.join();
         lawyer2.join();
 
