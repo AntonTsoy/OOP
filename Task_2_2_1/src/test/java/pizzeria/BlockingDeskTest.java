@@ -1,5 +1,6 @@
 package pizzeria;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -29,10 +30,7 @@ public class BlockingDeskTest {
 
         taskLawyer = () -> {
             try {
-                Order freeCrminal = prison.pop();
-                if (freeCrminal == null) {
-                    throw new ConcurrentModificationException();
-                }
+                prison.pop();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -44,27 +42,19 @@ public class BlockingDeskTest {
         Thread police1 = new Thread(taskPolice);
         Thread police2 = new Thread(taskPolice);
         Thread police3 = new Thread(taskPolice);
+        Thread lawyer = new Thread(taskLawyer);
+        lawyer.start();
         police1.start();
         police2.start();
-        police1.join();
-        police2.join();
         police3.start();
 
-        Thread lawyer1 = new Thread(taskLawyer);
-        Thread lawyer2 = new Thread(taskLawyer);
-        lawyer1.start();
-        lawyer1.join();
-        police3.join();
-        lawyer2.start();
-        lawyer2.join();
-
-        lawyer1.run();
-        lawyer1.join();
-        lawyer2.run();
-        police1.run();
         police1.join();
-        lawyer2.join();
-
-        assertTrue(prison.isEmpty());
+        police2.join();
+        police3.join();
+        if (!lawyer.isAlive()) {
+            assertEquals(2, prison.size());
+        } else {
+            throw new ConcurrentModificationException();
+        }
     }
 }

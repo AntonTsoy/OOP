@@ -11,8 +11,6 @@ public class BlockingDesk {
     @Expose
     private int limit;
 
-    private Object pushLock = new Object();
-    private Object popLock = new Object();
 
     public BlockingDesk() {
         this.limit = -1;
@@ -25,36 +23,31 @@ public class BlockingDesk {
     }
 
 
-    public void push(Order newOrder) throws InterruptedException {
-        synchronized (this.pushLock) {
-            if (this.limit > 0 && this.desk.size() >= this.limit) {
-                this.pushLock.wait();
+    public synchronized void push(Order newOrder) throws InterruptedException {
+        if (this.limit > 0) {
+            while (this.desk.size() == this.limit) {
+                wait();
             }
         }
-        synchronized (this.popLock) {
-            this.desk.add(newOrder);
-            this.popLock.notify();
-        }
+        this.desk.add(newOrder);
+        notifyAll();
     }
 
-    public Order pop() throws InterruptedException {
+    public synchronized Order pop() throws InterruptedException {
         Order takenOrder;
-        synchronized (this.popLock) {
-            if (this.desk.size() == 0) {
-                this.popLock.wait();
-            }
+        while (this.desk.size() == 0) {
+            wait();
         }
-        synchronized (this.pushLock) {
-            takenOrder = desk.poll();
-            this.pushLock.notify();
-        }
-
+        takenOrder = this.desk.poll();
+        notifyAll();
         return takenOrder;
     }
 
-    public boolean isEmpty() {
-        synchronized (this.desk) {
-            return this.desk.size() == 0;
-        }
+    public synchronized boolean isEmpty() {
+        return this.desk.size() == 0;
+    }
+
+    public synchronized int size() {
+        return this.desk.size();
     }
 }
