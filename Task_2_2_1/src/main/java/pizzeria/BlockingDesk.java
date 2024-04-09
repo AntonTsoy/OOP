@@ -26,10 +26,12 @@ public class BlockingDesk {
 
 
     public void push(Order newOrder) throws InterruptedException {
-        synchronized (this.desk) {
+        synchronized (this.pushLock) {
             if (this.limit > 0 && this.desk.size() >= this.limit) {
                 this.pushLock.wait();
             }
+        }
+        synchronized (this.popLock) {
             this.desk.add(newOrder);
             this.popLock.notify();
         }
@@ -37,10 +39,12 @@ public class BlockingDesk {
 
     public Order pop() throws InterruptedException {
         Order takenOrder;
-        synchronized (this.desk) {
+        synchronized (this.popLock) {
             if (this.desk.size() == 0) {
                 this.popLock.wait();
             }
+        }
+        synchronized (this.pushLock) {
             takenOrder = desk.poll();
             this.pushLock.notify();
         }
