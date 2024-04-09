@@ -37,6 +37,18 @@ public class Courier implements Runnable {
     }
 
 
+    public int getCourierId() {
+        return this.id;
+    }
+
+    public int getCourierSpeed() {
+        return this.speed;
+    }
+
+    public int getCourierPackCapacity() {
+        return this.capacity;
+    }
+
     public void setStore(BlockingDesk storeQueue) {
         if (this.storeQueue == null && storeQueue == null) {
             this.storeQueue = storeQueue;
@@ -81,5 +93,11 @@ public class Courier implements Runnable {
                 // TODO Auto-generated catch block
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Курьер #" + this.id + " со скоростью " + this.speed +
+               " и вместимостью " + this.capacity;
     }
 }

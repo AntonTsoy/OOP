@@ -24,7 +24,7 @@ public class Order {
     }
 
     public void nextState() {
-        if (this.currStateId < statesSize - 1) {
+        if (this.currStateId < Order.statesSize - 1) {
             this.currStateId++;
         }
     }
@@ -33,5 +33,14 @@ public class Order {
         if (this.currStateId > 0) {
             this.currStateId--;
         }
+    }
+ 
+    public String getCurrentState() {
+        return Order.states[this.currStateId];
+    }
+
+    @Override 
+    public String toString() {
+        return getCurrentState();
     }
 }

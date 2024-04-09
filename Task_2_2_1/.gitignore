@@ -1,7 +1,7 @@
 .gradle
 docs/
 build/
-Test.java
+TestTest.java
 !gradle/wrapper/gradle-wrapper.jar
 
 

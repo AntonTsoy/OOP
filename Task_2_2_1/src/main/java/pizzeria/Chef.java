@@ -24,6 +24,15 @@ public class Chef implements Runnable {
         setQueues(orders, storehouse);
     }
 
+
+    public int getChefId() {
+        return this.id;
+    }
+
+    public int getChefSpeed() {
+        return this.speed;
+    }
+
     public void setQueues(BlockingDesk orders, BlockingDesk storehouse) {
         if (this.orderQueue == null && orders == null) {
             this.orderQueue = orders;
@@ -66,5 +75,10 @@ public class Chef implements Runnable {
                 return;
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Повар #" + this.id + " co скоростью " + this.speed;
     }
 }
