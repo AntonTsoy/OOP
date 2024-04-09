@@ -21,7 +21,7 @@ public class PizzeriaConfigTest {
             .setPrettyPrinting()
             .create();
         PizzeriaConfig config = gson.fromJson(new FileReader(
-            "src/test/java/resources/PizzeriaConfig.json"), PizzeriaConfig.class);
+            "/src/test/java/resources/PizzeriaConfig.json"), PizzeriaConfig.class);
         
         Chef[] chefs = config.getChefs();
         for (int i = 0; i < chefs.length; i++) {
