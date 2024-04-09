@@ -8,7 +8,6 @@ import com.google.gson.annotations.Expose;
 public class BlockingDesk {
     @Expose
     private ArrayDeque<Order> desk;
-    //@Expose
     private int limit;
 
 

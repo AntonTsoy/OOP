@@ -34,14 +34,14 @@ public class Chef implements Runnable {
     }
 
     public void setQueues(BlockingDesk orders, BlockingDesk storehouse) {
-        if (this.orderQueue == null && orders == null) {
+        if (this.orderQueue == null && orders != null) {
             this.orderQueue = orders;
         } else {
             System.err.println("Повар пытается поменять текущую очередь заказов!!!");
             throw new RuntimeException();
         }
 
-        if (this.storeQueue == null && storehouse == null) {
+        if (this.storeQueue == null && storehouse != null) {
             this.storeQueue = storehouse;
         } else {
             System.err.println("Повар пытается поменять текущую очередь склада!!!");
@@ -60,18 +60,36 @@ public class Chef implements Runnable {
             }
 
             try {
+                this.currOrder.nextState();
                 Thread.sleep(this.speed);
             } catch (InterruptedException e) {
+                this.currOrder.prevState();
+                try {
+                    this.orderQueue.addFirst(this.currOrder);
+                } catch (InterruptedException error) {
+                    System.err.println("Повар #" + this.id + " был остановлен, пока он добавлял заказ обратно в очередь");
+                    error.printStackTrace();
+                    throw new RuntimeException();
+                }
                 System.out.println("Повар #" + this.id + 
                     " не успел завершить заказ и выкинул остатки.");
                 return;
             }
 
             try {
+                this.currOrder.nextState();
                 storeQueue.push(this.currOrder);
             } catch (InterruptedException e) {
+                this.currOrder.resetState();
                 System.out.println("Повар #" + this.id + 
                     " слишком долго ждал, когда склад освободится, поэтому оставил пиццу себе");
+                return;
+            }
+            
+            try {
+                this.currOrder.nextState();
+            } catch (InterruptedException e) {
+                System.out.println("Повар #" + this.id + " завершил работу");
                 return;
             }
         }

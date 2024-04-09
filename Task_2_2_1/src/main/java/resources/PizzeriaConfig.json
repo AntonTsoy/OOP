@@ -17,10 +17,10 @@
         },
         {
             "id": 20,
-            "speed": 21,
+            "speed": 17,
             "capacity" : 3
         }
     ],
     "storehouseCapacity": 8,
-    "workMins" : 240
+    "workMins" : 1000
 }

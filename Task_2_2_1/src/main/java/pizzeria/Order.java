@@ -23,9 +23,17 @@ public class Order {
         this.currStateId = 0;
     }
 
-    public void nextState() {
+    public void resetState() {
+        this.currStateId = 0;
+    }
+
+    public void nextState() throws InterruptedException {
         if (this.currStateId < Order.statesSize - 1) {
             this.currStateId++;
+        }
+        
+        if (Thread.currentThread().isInterrupted()) {
+            throw new InterruptedException();
         }
     }
 
