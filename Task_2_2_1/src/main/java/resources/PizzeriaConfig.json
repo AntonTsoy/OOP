@@ -22,5 +22,5 @@
         }
     ],
     "storehouseCapacity": 8,
-    "workMins" : 1000
+    "workMins" : 200
 }
