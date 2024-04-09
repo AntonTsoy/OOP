@@ -15,9 +15,9 @@ public class PizzeriaTest {
     @Test
     void mainPizzeriaTest() throws FileNotFoundException, InterruptedException, IOException {
         Pizzeria dodoPizza = new Pizzeria(
-            new FileReader("/src/main/java/resources/PizzeriaConfig.json"),
-            new FileReader("/src/main/java/resources/Orders.json"),
-            new FileReader("/src/main/java/resources/Store.json")
+            new FileReader("src/main/resources/PizzeriaConfig.json"),
+            new FileReader("src/main/resources/Orders.json"),
+            new FileReader("src/main/resources/Store.json")
         );
         assertNotEquals(null, dodoPizza);
     }
@@ -25,14 +25,14 @@ public class PizzeriaTest {
     @Test
     void mainWorkingTest() throws IOException, InterruptedException {
         Pizzeria dodoPizza = new Pizzeria(
-            new FileReader("/src/main/java/resources/PizzeriaConfig.json"),
-            new FileReader("/src/main/java/resources/Orders.json"),
-            new FileReader("/src/main/java/resources/Store.json")
+            new FileReader("/src/main/resources/PizzeriaConfig.json"),
+            new FileReader("/src/main/resources/Orders.json"),
+            new FileReader("/src/main/resources/Store.json")
         );
 
         dodoPizza.workingDay(
-            new FileWriter("/src/test/java/resources/Orders.json"),
-            new FileWriter("/src/test/java/resources/Store.json")
+            new FileWriter("src/test/resources/Orders.json"),
+            new FileWriter("src/test/resources/Store.json")
         );
     }
 }
