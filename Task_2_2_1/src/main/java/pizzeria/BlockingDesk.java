@@ -8,7 +8,7 @@ import com.google.gson.annotations.Expose;
 public class BlockingDesk {
     @Expose
     private ArrayDeque<Order> desk;
-    @Expose
+    //@Expose
     private int limit;
 
 
@@ -22,6 +22,16 @@ public class BlockingDesk {
         this.desk = new ArrayDeque<Order>();
     }
 
+
+    public synchronized void addFirst(Order newOrder) throws InterruptedException {
+        if (this.limit > 0) {
+            while (this.desk.size() == this.limit) {
+                wait();
+            }
+        }
+        this.desk.addFirst(newOrder);
+        notifyAll();
+    }
 
     public synchronized void push(Order newOrder) throws InterruptedException {
         if (this.limit > 0) {
@@ -41,6 +51,13 @@ public class BlockingDesk {
         takenOrder = this.desk.poll();
         notifyAll();
         return takenOrder;
+    }
+
+    public synchronized Order freePop() {
+        if (this.desk.size() == 0) {
+            return null;
+        }
+        return this.desk.poll();
     }
 
     public synchronized boolean isEmpty() {
