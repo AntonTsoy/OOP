@@ -25,9 +25,9 @@ public class PizzeriaTest {
     @Test
     void mainWorkingTest() throws IOException, InterruptedException {
         Pizzeria dodoPizza = new Pizzeria(
-            new FileReader("/src/main/resources/PizzeriaConfig.json"),
-            new FileReader("/src/main/resources/Orders.json"),
-            new FileReader("/src/main/resources/Store.json")
+            new FileReader("src/main/resources/PizzeriaConfig.json"),
+            new FileReader("src/main/resources/Orders.json"),
+            new FileReader("src/main/resources/Store.json")
         );
 
         dodoPizza.workingDay(
