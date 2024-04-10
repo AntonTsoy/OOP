@@ -61,7 +61,7 @@ public class Courier implements Runnable {
 
     @Override
     public void run() {
-        Date date = new Date();
+        Date timer = new Date();
         while (this.isPizzeriaOpen || !this.storeQueue.isEmpty()) {
             try {
                 Order takenOrder = this.storeQueue.pop();
@@ -94,11 +94,11 @@ public class Courier implements Runnable {
 
             while (!this.backpack.empty()) {
                 long difTime;
-                long startTime = date.getTime();
+                long startTime = timer.getTime();
                 try {
                     Thread.sleep(this.speed);
                 } catch (InterruptedException e) {
-                    difTime = date.getTime() - startTime;
+                    difTime = timer.getTime() - startTime;
                     this.isPizzeriaOpen = false;
                     try {
                         Thread.sleep(this.speed - difTime);
