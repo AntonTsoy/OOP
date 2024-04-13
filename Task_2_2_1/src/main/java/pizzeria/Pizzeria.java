@@ -27,12 +27,14 @@ public class Pizzeria {
     private final List<Courier> couriers;
     private List<Thread> workers;
 
-    private BlockingDesk orderQueue;
-    private BlockingDesk storeQueue;
+    private BlockingDesk orderQueue; // Эти поля можно не заводить. Просто передавать класс
+    private BlockingDesk storeQueue; // конфиг в фабрику и она уже будет нитям давать необходимое
 
+    
     /**
      * Тут мы создаем пиццерию, т.е. просто запихиваем в объект конфиг данные о складе и времени
      * работы пиццерии, задаём курьеров и поваров
+     *
      * @throws JsonIOException 
      * @throws JsonSyntaxException 
      * @throws InterruptedException 
@@ -60,9 +62,11 @@ public class Pizzeria {
             chef.setQueues(orderQueue, storeQueue);
             this.workers.add(new Thread(chef));
         }
+        System.err.println(couriers);
         for (Courier courier : couriers) {
             courier.setStore(storeQueue);
             this.workers.add(new Thread(courier));
+            System.err.println(courier + " был добавлен в штат");
         }
 
     }
@@ -70,12 +74,13 @@ public class Pizzeria {
     public void workingDay(Writer writeOrders, Writer writeStore) throws IOException, InterruptedException {
         for (Thread worker : this.workers) {
             worker.start();
+            System.err.println("Рабочий запущен в работу");
         }
 
         try {
             Thread.sleep(getWorkMins());
         } catch (InterruptedException e) {
-            System.err.println("Налоговая на законно закрыла пиццерию!!!");
+            System.err.println("Налоговая не законно закрыла пиццерию!!!");
             throw new RuntimeException();
         }
 

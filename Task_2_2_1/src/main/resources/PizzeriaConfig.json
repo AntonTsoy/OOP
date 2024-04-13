@@ -1,10 +1,6 @@
 {
     "chefs" : [
         {
-            "id": 8,
-            "speed": 50
-        },
-        {
             "id": 3,
             "speed": 20
         }
@@ -14,13 +10,8 @@
             "id": 40,
             "speed": 8,
             "capacity" : 4
-        },
-        {
-            "id": 20,
-            "speed": 17,
-            "capacity" : 3
         }
     ],
     "storehouseCapacity": 8,
-    "workMins" : 200
+    "workMins" : 5000
 }

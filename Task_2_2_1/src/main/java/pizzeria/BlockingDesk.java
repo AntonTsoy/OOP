@@ -12,7 +12,7 @@ public class BlockingDesk {
 
 
     public BlockingDesk() {
-        this.limit = -1;
+        this.limit = Integer.MIN_VALUE;
         this.desk = new ArrayDeque<Order>();
     }
 
@@ -23,7 +23,7 @@ public class BlockingDesk {
 
 
     public synchronized void addFirst(Order newOrder) throws InterruptedException {
-        if (this.limit > 0) {
+        if (this.limit != Integer.MIN_VALUE) {
             while (this.desk.size() == this.limit) {
                 wait();
             }
@@ -33,7 +33,7 @@ public class BlockingDesk {
     }
 
     public synchronized void push(Order newOrder) throws InterruptedException {
-        if (this.limit > 0) {
+        if (this.limit != Integer.MIN_VALUE) {
             while (this.desk.size() == this.limit) {
                 wait();
             }
@@ -44,7 +44,7 @@ public class BlockingDesk {
 
     public synchronized Order pop() throws InterruptedException {
         Order takenOrder;
-        while (this.desk.size() == 0) {
+        while (this.desk.isEmpty()) {
             wait();
         }
         takenOrder = this.desk.poll();
@@ -53,17 +53,24 @@ public class BlockingDesk {
     }
 
     public synchronized Order freePop() {
-        if (this.desk.size() == 0) {
+        if (this.desk.isEmpty()) {
             return null;
         }
         return this.desk.poll();
     }
 
-    public synchronized boolean isEmpty() {
-        return this.desk.size() == 0;
+    // SYNCHRONIZED или нет - вот в чем вопрос
+    public boolean isEmpty() {
+        return this.desk.isEmpty();
     }
 
-    public synchronized int size() {
+    // SYNCHRONIZED или нет - вот в чем вопрос
+    public int size() {
         return this.desk.size();
+    }
+
+    @Override
+    public String toString() {
+        return this.desk.toString();
     }
 }

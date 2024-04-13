@@ -52,46 +52,7 @@ public class Chef implements Runnable {
     @Override
     public void run() {
         while (true) {
-            try {
-                this.currOrder = orderQueue.pop();
-            } catch (InterruptedException e) {
-                System.out.println("Повар #" + this.id + " завершил работу");
-                return;
-            }
-
-            try {
-                this.currOrder.nextState();
-                Thread.sleep(this.speed);
-            } catch (InterruptedException e) {
-                this.currOrder.prevState();
-                try {
-                    this.orderQueue.addFirst(this.currOrder);
-                } catch (InterruptedException error) {
-                    System.err.println("Повар #" + this.id + " был остановлен, пока он добавлял заказ обратно в очередь");
-                    error.printStackTrace();
-                    throw new RuntimeException();
-                }
-                System.out.println("Повар #" + this.id + 
-                    " не успел завершить заказ и выкинул остатки.");
-                return;
-            }
-
-            try {
-                this.currOrder.nextState();
-                storeQueue.push(this.currOrder);
-            } catch (InterruptedException e) {
-                this.currOrder.resetState();
-                System.out.println("Повар #" + this.id + 
-                    " слишком долго ждал, когда склад освободится, поэтому оставил пиццу себе");
-                return;
-            }
             
-            try {
-                this.currOrder.nextState();
-            } catch (InterruptedException e) {
-                System.out.println("Повар #" + this.id + " завершил работу");
-                return;
-            }
         }
     }
 
