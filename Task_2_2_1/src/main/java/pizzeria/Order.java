@@ -5,46 +5,24 @@ import com.google.gson.annotations.Expose;
 /**
  * 
  */
-public class Order {
-    private final static int statesSize = 6;
-    private final static String[] states = {
-        "В очереди заказов",
-        "Пиццу готовит повар",
-        "В очереди на склад",
-        "Лежит на складе",
-        "Доставляется курьером",
-        "Заказ выполнен"
-    };
+public enum Order {
+
+    ORDERS_LIST ("Заказ лежит в очереди"),
+    COOKING ("Пиццу готовит повар"),
+    STORE_QUEUE ("Повар стоит в очереди на склад"),
+    STOREHOUSE ("Пицца лежит на складе"),
+    DELIVERING ("Пиццу везёт курьер"),
+    COMPLETE ("Заказ окончен. Доставка выполнена");
 
     @Expose
-    private int currStateId;
+    private String stateInfo;
 
-    public Order() {
-        this.currStateId = 0;
+    Order(String info) {
+        this.stateInfo = info;
     }
 
-    public void resetState() {
-        this.currStateId = 0;
-    }
-
-    public void nextState() {
-        if (this.currStateId < Order.statesSize - 1) {
-            this.currStateId++;
-        }
-    }
-
-    public void prevState() {
-        if (this.currStateId > 0) {
-            this.currStateId--;
-        }
-    }
- 
-    public String getCurrentState() {
-        return Order.states[this.currStateId];
-    }
-
-    @Override 
+    @Override
     public String toString() {
-        return getCurrentState();
+        return this.stateInfo;
     }
 }

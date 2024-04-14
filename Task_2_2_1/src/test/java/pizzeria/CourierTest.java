@@ -15,8 +15,8 @@ public class CourierTest {
     void setUp() throws InterruptedException {
         cnt = 0;
         tasksList = new BlockingDesk(3);
-        tasksList.addFirst(new Order());
-        tasksList.push(new Order());
+        tasksList.addFirst(Order.STOREHOUSE);
+        tasksList.push(Order.DELIVERING);
     }
 
     @Test

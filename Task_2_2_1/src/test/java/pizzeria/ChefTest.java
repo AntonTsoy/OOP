@@ -38,11 +38,10 @@ public class ChefTest {
 
         @Override
         public void run() {
-            Order completedOrder = new Order();
+            Order completedOrder = Order.COOKING;
             try {
                 this.kithenTasks.push(completedOrder);
             } catch (InterruptedException e) {
-                System.err.println("Что-то пошло с поваром не так, он прервался");
                 e.printStackTrace();
             }
         }

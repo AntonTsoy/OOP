@@ -3,16 +3,18 @@ package pizzeria;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.ConcurrentModificationException;
-
 import java.util.Date;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.junit.jupiter.api.Test;
 
 
 public class BlockingDeskTest {
 
     BlockingDesk deque;
+    final static Logger logger = LogManager.getLogger(ChefTest.class);
 
     public static class Baker implements Runnable {
 
@@ -23,16 +25,14 @@ public class BlockingDeskTest {
         }
 
         public void run() {
-            Order newCake = new Order();
-            newCake.nextState();
+            Order newCake = Order.ORDERS_LIST;
             try {
                 Thread.sleep(100);
                 this.bakerBox.push(newCake);
             } catch (InterruptedException e) {
-                newCake.resetState();
                 return;
             }
-            System.err.println("Пекарь завершил приготовление пирога и положил его в бокс");
+            logger.info("Пекарь завершил приготовление пирога и положил его в бокс");
         }
     }
 
@@ -62,7 +62,6 @@ public class BlockingDeskTest {
             }
             System.err.println("Курьер до сих пор жив");
 
-            this.currCake.nextState();
 
             long diffTime = -1;
             long startTime = new Date().getTime();
@@ -82,7 +81,6 @@ public class BlockingDeskTest {
                 }
             }
 
-            this.currCake.nextState();
             System.err.println("Курьер выполнил доставку: " + this.currCake);
         }
     }
@@ -121,7 +119,7 @@ public class BlockingDeskTest {
         deque = new BlockingDesk(2);
 
         Runnable taskPolice = () -> {
-            Order caughtCriminal = new Order();
+            Order caughtCriminal = Order.ORDERS_LIST;
             try {
                 deque.push(caughtCriminal);
             } catch (InterruptedException e) {
