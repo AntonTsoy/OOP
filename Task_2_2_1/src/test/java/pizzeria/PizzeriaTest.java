@@ -10,6 +10,9 @@ import java.util.Date;
 import org.junit.jupiter.api.Test;
 
 
+/**
+ * Общий тест пицерии.
+ */
 public class PizzeriaTest {
 
     @Test

@@ -10,6 +10,9 @@ import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
 
 
+/**
+ * Тест блокирующейся очереди.
+ */
 public class BlockingDeskTest {
 
     BlockingDesk deque;

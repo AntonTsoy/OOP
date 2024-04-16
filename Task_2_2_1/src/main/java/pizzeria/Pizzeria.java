@@ -11,9 +11,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 
-
 /**
- * 
+ * Класс, представляющий работу пиццерии.
  */
 public class Pizzeria {
 
@@ -24,18 +23,20 @@ public class Pizzeria {
     private List<Worker> workers;
     private ArrayList<Thread> workerThreads;
 
-    private BlockingDesk orderQueue; // Эти поля можно не заводить. Просто передавать класс
-    private BlockingDesk storeQueue; // конфиг в фабрику и она уже будет нитям давать необходимое
+    private BlockingDesk orderQueue;
+    private BlockingDesk storeQueue;
 
-    
+
     /**
-     * Тут мы создаем пиццерию, т.е. просто запихиваем в объект конфиг данные о складе и времени
-     * работы пиццерии, задаём курьеров и поваров
-     *
-     * @throws JsonIOException 
-     * @throws JsonSyntaxException 
-     * @throws InterruptedException 
-     * @throws IOException 
+     * Конструктор класса. Принимает на вход конфигурацию пиццерии и исходные данные по заказам и складу.
+     * 
+     * @param readConfig   Поток чтения с конфигурацией пиццерии.
+     * @param readOrders   Поток чтения с исходными данными по заказам.
+     * @param readStore    Поток чтения с исходными данными по складу.
+     * @throws JsonSyntaxException    В случае ошибки парсинга JSON.
+     * @throws JsonIOException       В случае ошибки ввода-вывода при работе с JSON.
+     * @throws InterruptedException  В случае прерывания потока.
+     * @throws IOException            В случае ошибки ввода-вывода.
      */
     public Pizzeria(Reader readConfig, Reader readOrders, Reader readStore) 
         throws JsonSyntaxException, JsonIOException, InterruptedException, IOException
@@ -61,13 +62,13 @@ public class Pizzeria {
         }
     }
 
-
     /**
+     * Запускает рабочий день пиццерии.
      * 
-     * @param writeOrders
-     * @param writeStore
-     * @throws IOException
-     * @throws InterruptedException
+     * @param writeOrders Поток записи данных о заказах.
+     * @param writeStore  Поток записи данных о складе.
+     * @throws IOException        В случае ошибки ввода-вывода.
+     * @throws InterruptedException  В случае прерывания потока.
      */
     public void workingDay(Writer writeOrders, Writer writeStore) throws IOException, InterruptedException {
         for (Thread worker : this.workerThreads) {
@@ -91,12 +92,12 @@ public class Pizzeria {
         serializeQueues(writeOrders, writeStore);
     }
 
-
     /**
+     * Сериализует данные о заказах и складе.
      * 
-     * @param writeOrders
-     * @param writeStore
-     * @throws IOException
+     * @param writeOrders Поток записи данных о заказах.
+     * @param writeStore  Поток записи данных о складе.
+     * @throws IOException  В случае ошибки ввода-вывода.
      */
     public void serializeQueues(Writer writeOrders, Writer writeStore) throws IOException {
         writeOrders.write(this.gson.toJson(orderQueue));
@@ -105,28 +106,28 @@ public class Pizzeria {
         writeStore.flush();
     }
 
-
     /**
+     * Возвращает вместимость склада.
      * 
-     * @return
+     * @return Вместимость склада.
      */
     public int getStorehouseCapacity() {
         return this.storehouseCapacity;
     }
 
-
     /**
+     * Возвращает продолжительность рабочего дня.
      * 
-     * @return
+     * @return Продолжительность рабочего дня.
      */
     public int getWorkMins() {
         return this.workMins;
     }
 
-
     /**
+     * Возвращает список работников пиццерии.
      * 
-     * @return
+     * @return Список работников пиццерии.
      */
     public List<Worker> getWorkers() {
         return this.workers;

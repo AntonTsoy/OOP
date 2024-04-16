@@ -6,6 +6,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
+/**
+ * Тест курьеров.
+ */
 public class CourierTest {
 
     BlockingDesk tasksList;

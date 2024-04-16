@@ -6,9 +6,8 @@ import java.util.List;
 
 import com.google.gson.annotations.Expose;
 
-
 /**
- * 
+ * Класс, представляющий конфигурацию пиццерии.
  */
 public class PizzeriaConfig {
     @Expose
@@ -22,8 +21,9 @@ public class PizzeriaConfig {
 
 
     /**
-     * 
-     * @return
+     * Возвращает массив поваров.
+     *
+     * @return Массив поваров.
      */
     public Chef[] getChefs() {
         return this.chefs;
@@ -31,8 +31,9 @@ public class PizzeriaConfig {
 
 
     /**
-     * 
-     * @return
+     * Возвращает массив курьеров.
+     *
+     * @return Массив курьеров.
      */
     public Courier[] getCouriers() {
         return this.couriers;
@@ -40,8 +41,9 @@ public class PizzeriaConfig {
 
 
     /**
-     * 
-     * @return
+     * Возвращает список всех работников пиццерии (поваров и курьеров).
+     *
+     * @return Список всех работников пиццерии.
      */
     public List<Worker> getAllWorkers() {
         ArrayList<Worker> workers = new ArrayList<Worker>(Arrays.asList(getChefs()));
@@ -51,17 +53,19 @@ public class PizzeriaConfig {
 
 
     /**
-     * 
-     * @return
+     * Возвращает вместимость склада.
+     *
+     * @return Вместимость склада.
      */
     public int getStorehouseCapacity() {
         return this.storehouseCapacity;
     }
 
-
+    
     /**
-     * 
-     * @return
+     * Возвращает продолжительность рабочего дня.
+     *
+     * @return Продолжительность рабочего дня.
      */
     public int getWorkMins() {
         return this.workMins;
