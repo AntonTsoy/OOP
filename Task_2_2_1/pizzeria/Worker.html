@@ -81,6 +81,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">Worker</span><span class="extends-implements">
 extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a></span></div>
+<div class="block">Интерфейс, представляющий работника пиццерии. Он может являться задачей потока.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -97,13 +98,19 @@ extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getId()" class="member-name-link">getId</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Возвращает идентификатор работника.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#getInfo()" class="member-name-link">getInfo</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">Возвращает информацию о работнике.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getSpeed()" class="member-name-link">getSpeed</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Возвращает скорость работы работника.</div>
+</div>
 </div>
 </div>
 </div>
@@ -125,8 +132,10 @@ extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <section class="detail" id="getId()">
 <h3>getId</h3>
 <div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">getId</span>()</div>
+<div class="block">Возвращает идентификатор работника.</div>
 <dl class="notes">
 <dt>Returns:</dt>
+<dd>Идентификатор работника.</dd>
 </dl>
 </section>
 </li>
@@ -134,8 +143,10 @@ extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <section class="detail" id="getSpeed()">
 <h3>getSpeed</h3>
 <div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">getSpeed</span>()</div>
+<div class="block">Возвращает скорость работы работника.</div>
 <dl class="notes">
 <dt>Returns:</dt>
+<dd>Скорость работы работника.</dd>
 </dl>
 </section>
 </li>
@@ -143,8 +154,10 @@ extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/ja
 <section class="detail" id="getInfo()">
 <h3>getInfo</h3>
 <div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getInfo</span>()</div>
+<div class="block">Возвращает информацию о работнике.</div>
 <dl class="notes">
 <dt>Returns:</dt>
+<dd>Информация о работнике.</dd>
 </dl>
 </section>
 </li>

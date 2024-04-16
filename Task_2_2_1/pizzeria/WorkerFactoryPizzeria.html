@@ -76,6 +76,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">WorkerFactoryPizzeria</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Фабрика работников для пиццерии. Она нанимает работников и настраивает их очереди работы.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -89,7 +90,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(pizzeria.BlockingDesk,pizzeria.BlockingDesk)" class="member-name-link">WorkerFactoryPizzeria</a><wbr>(<a href="BlockingDesk.html" title="class in pizzeria">BlockingDesk</a>&nbsp;source,
  <a href="BlockingDesk.html" title="class in pizzeria">BlockingDesk</a>&nbsp;destination)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Создает новую фабрику работников с указанными очередями.</div>
+</div>
 </div>
 </section>
 </li>
@@ -106,7 +109,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Thread.html" title="class or interface in java.lang" class="external-link">Thread</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hireWorker(pizzeria.Worker)" class="member-name-link">hireWorker</a><wbr>(<a href="Worker.html" title="interface in pizzeria">Worker</a>&nbsp;worker)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Нанимает работника и настраивает его очереди в соответствии с его типом.</div>
+</div>
 </div>
 </div>
 </div>
@@ -129,6 +134,12 @@ loadScripts(document, 'script');</script>
 <h3>WorkerFactoryPizzeria</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">WorkerFactoryPizzeria</span><wbr><span class="parameters">(<a href="BlockingDesk.html" title="class in pizzeria">BlockingDesk</a>&nbsp;source,
  <a href="BlockingDesk.html" title="class in pizzeria">BlockingDesk</a>&nbsp;destination)</span></div>
+<div class="block">Создает новую фабрику работников с указанными очередями.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>source</code> - Исходная очередь.</dd>
+<dd><code>destination</code> - Целевая очередь.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -143,6 +154,13 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="hireWorker(pizzeria.Worker)">
 <h3>hireWorker</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Thread.html" title="class or interface in java.lang" class="external-link">Thread</a></span>&nbsp;<span class="element-name">hireWorker</span><wbr><span class="parameters">(<a href="Worker.html" title="interface in pizzeria">Worker</a>&nbsp;worker)</span></div>
+<div class="block">Нанимает работника и настраивает его очереди в соответствии с его типом.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>worker</code> - Работник, которого нужно нанять.</dd>
+<dt>Returns:</dt>
+<dd>Новая нить, на которой будет запущен работник.</dd>
+</dl>
 </section>
 </li>
 </ul>

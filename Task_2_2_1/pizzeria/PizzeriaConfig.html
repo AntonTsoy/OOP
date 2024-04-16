@@ -76,6 +76,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">PizzeriaConfig</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Класс, представляющий конфигурацию пиццерии.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -105,19 +106,29 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Worker.html" title="interface in pizzeria">Worker</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAllWorkers()" class="member-name-link">getAllWorkers</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает список всех работников пиццерии (поваров и курьеров).</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Chef.html" title="class in pizzeria">Chef</a>[]</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getChefs()" class="member-name-link">getChefs</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает массив поваров.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Courier.html" title="class in pizzeria">Courier</a>[]</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCouriers()" class="member-name-link">getCouriers</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает массив курьеров.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getStorehouseCapacity()" class="member-name-link">getStorehouseCapacity</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает вместимость склада.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getWorkMins()" class="member-name-link">getWorkMins</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает продолжительность рабочего дня.</div>
+</div>
 </div>
 </div>
 </div>
@@ -153,8 +164,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getChefs()">
 <h3>getChefs</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Chef.html" title="class in pizzeria">Chef</a>[]</span>&nbsp;<span class="element-name">getChefs</span>()</div>
+<div class="block">Возвращает массив поваров.</div>
 <dl class="notes">
 <dt>Returns:</dt>
+<dd>Массив поваров.</dd>
 </dl>
 </section>
 </li>
@@ -162,8 +175,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getCouriers()">
 <h3>getCouriers</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Courier.html" title="class in pizzeria">Courier</a>[]</span>&nbsp;<span class="element-name">getCouriers</span>()</div>
+<div class="block">Возвращает массив курьеров.</div>
 <dl class="notes">
 <dt>Returns:</dt>
+<dd>Массив курьеров.</dd>
 </dl>
 </section>
 </li>
@@ -171,8 +186,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getAllWorkers()">
 <h3>getAllWorkers</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Worker.html" title="interface in pizzeria">Worker</a>&gt;</span>&nbsp;<span class="element-name">getAllWorkers</span>()</div>
+<div class="block">Возвращает список всех работников пиццерии (поваров и курьеров).</div>
 <dl class="notes">
 <dt>Returns:</dt>
+<dd>Список всех работников пиццерии.</dd>
 </dl>
 </section>
 </li>
@@ -180,8 +197,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getStorehouseCapacity()">
 <h3>getStorehouseCapacity</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getStorehouseCapacity</span>()</div>
+<div class="block">Возвращает вместимость склада.</div>
 <dl class="notes">
 <dt>Returns:</dt>
+<dd>Вместимость склада.</dd>
 </dl>
 </section>
 </li>
@@ -189,8 +208,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getWorkMins()">
 <h3>getWorkMins</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getWorkMins</span>()</div>
+<div class="block">Возвращает продолжительность рабочего дня.</div>
 <dl class="notes">
 <dt>Returns:</dt>
+<dd>Продолжительность рабочего дня.</dd>
 </dl>
 </section>
 </li>

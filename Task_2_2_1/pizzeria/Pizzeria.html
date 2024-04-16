@@ -76,6 +76,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Pizzeria</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Класс, представляющий работу пиццерии.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -91,7 +92,7 @@ loadScripts(document, 'script');</script>
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Reader.html" title="class or interface in java.io" class="external-link">Reader</a>&nbsp;readOrders,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Reader.html" title="class or interface in java.io" class="external-link">Reader</a>&nbsp;readStore)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Тут мы создаем пиццерию, т.е.</div>
+<div class="block">Конструктор класса.</div>
 </div>
 </div>
 </section>
@@ -109,21 +110,31 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getStorehouseCapacity()" class="member-name-link">getStorehouseCapacity</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает вместимость склада.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Worker.html" title="interface in pizzeria">Worker</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getWorkers()" class="member-name-link">getWorkers</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает список работников пиццерии.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getWorkMins()" class="member-name-link">getWorkMins</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает продолжительность рабочего дня.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#serializeQueues(java.io.Writer,java.io.Writer)" class="member-name-link">serializeQueues</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Writer.html" title="class or interface in java.io" class="external-link">Writer</a>&nbsp;writeOrders,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Writer.html" title="class or interface in java.io" class="external-link">Writer</a>&nbsp;writeStore)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Сериализует данные о заказах и складе.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#workingDay(java.io.Writer,java.io.Writer)" class="member-name-link">workingDay</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Writer.html" title="class or interface in java.io" class="external-link">Writer</a>&nbsp;writeOrders,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Writer.html" title="class or interface in java.io" class="external-link">Writer</a>&nbsp;writeStore)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Запускает рабочий день пиццерии.</div>
+</div>
 </div>
 </div>
 </div>
@@ -151,14 +162,17 @@ loadScripts(document, 'script');</script>
 com.google.gson.JsonIOException,
 <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a>,
 <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></span></div>
-<div class="block">Тут мы создаем пиццерию, т.е. просто запихиваем в объект конфиг данные о складе и времени
- работы пиццерии, задаём курьеров и поваров</div>
+<div class="block">Конструктор класса. Принимает на вход конфигурацию пиццерии и исходные данные по заказам и складу.</div>
 <dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>readConfig</code> - Поток чтения с конфигурацией пиццерии.</dd>
+<dd><code>readOrders</code> - Поток чтения с исходными данными по заказам.</dd>
+<dd><code>readStore</code> - Поток чтения с исходными данными по складу.</dd>
 <dt>Throws:</dt>
-<dd><code>com.google.gson.JsonIOException</code></dd>
-<dd><code>com.google.gson.JsonSyntaxException</code></dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code></dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code></dd>
+<dd><code>com.google.gson.JsonSyntaxException</code> - В случае ошибки парсинга JSON.</dd>
+<dd><code>com.google.gson.JsonIOException</code> - В случае ошибки ввода-вывода при работе с JSON.</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code> - В случае прерывания потока.</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - В случае ошибки ввода-вывода.</dd>
 </dl>
 </section>
 </li>
@@ -177,13 +191,14 @@ com.google.gson.JsonIOException,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Writer.html" title="class or interface in java.io" class="external-link">Writer</a>&nbsp;writeStore)</span>
                 throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a>,
 <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
+<div class="block">Запускает рабочий день пиццерии.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>writeOrders</code> - </dd>
-<dd><code>writeStore</code> - </dd>
+<dd><code>writeOrders</code> - Поток записи данных о заказах.</dd>
+<dd><code>writeStore</code> - Поток записи данных о складе.</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code></dd>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - В случае ошибки ввода-вывода.</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code> - В случае прерывания потока.</dd>
 </dl>
 </section>
 </li>
@@ -193,12 +208,13 @@ com.google.gson.JsonIOException,
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">serializeQueues</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Writer.html" title="class or interface in java.io" class="external-link">Writer</a>&nbsp;writeOrders,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Writer.html" title="class or interface in java.io" class="external-link">Writer</a>&nbsp;writeStore)</span>
                      throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></span></div>
+<div class="block">Сериализует данные о заказах и складе.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>writeOrders</code> - </dd>
-<dd><code>writeStore</code> - </dd>
+<dd><code>writeOrders</code> - Поток записи данных о заказах.</dd>
+<dd><code>writeStore</code> - Поток записи данных о складе.</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - В случае ошибки ввода-вывода.</dd>
 </dl>
 </section>
 </li>
@@ -206,8 +222,10 @@ com.google.gson.JsonIOException,
 <section class="detail" id="getStorehouseCapacity()">
 <h3>getStorehouseCapacity</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getStorehouseCapacity</span>()</div>
+<div class="block">Возвращает вместимость склада.</div>
 <dl class="notes">
 <dt>Returns:</dt>
+<dd>Вместимость склада.</dd>
 </dl>
 </section>
 </li>
@@ -215,8 +233,10 @@ com.google.gson.JsonIOException,
 <section class="detail" id="getWorkMins()">
 <h3>getWorkMins</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getWorkMins</span>()</div>
+<div class="block">Возвращает продолжительность рабочего дня.</div>
 <dl class="notes">
 <dt>Returns:</dt>
+<dd>Продолжительность рабочего дня.</dd>
 </dl>
 </section>
 </li>
@@ -224,8 +244,10 @@ com.google.gson.JsonIOException,
 <section class="detail" id="getWorkers()">
 <h3>getWorkers</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Worker.html" title="interface in pizzeria">Worker</a>&gt;</span>&nbsp;<span class="element-name">getWorkers</span>()</div>
+<div class="block">Возвращает список работников пиццерии.</div>
 <dl class="notes">
 <dt>Returns:</dt>
+<dd>Список работников пиццерии.</dd>
 </dl>
 </section>
 </li>
