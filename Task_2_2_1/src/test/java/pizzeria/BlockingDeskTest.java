@@ -3,7 +3,6 @@ package pizzeria;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-import java.util.ConcurrentModificationException;
 import java.util.Date;
 
 import org.apache.logging.log4j.LogManager;

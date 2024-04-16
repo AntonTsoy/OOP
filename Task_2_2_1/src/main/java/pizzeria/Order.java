@@ -2,6 +2,7 @@ package pizzeria;
 
 import com.google.gson.annotations.Expose;
 
+
 /**
  * 
  */
@@ -31,7 +32,7 @@ public class Order {
         this.currStateId = 0;
     }
 
-    public void nextState(){
+    public void nextState() {
         if (this.currStateId < Order.statesSize - 1) {
             this.currStateId++;
         }
