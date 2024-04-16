@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.util.Date;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
@@ -14,18 +13,28 @@ import org.junit.jupiter.api.Test;
  * Тест блокирующейся очереди.
  */
 public class BlockingDeskTest {
-
-    BlockingDesk deque;
     final static Logger logger = LogManager.getLogger(ChefTest.class);
+    BlockingDesk deque;
 
+    /**
+     * Класс пекаря.
+     */
     public static class Baker implements Runnable {
 
         private BlockingDesk bakerBox;
 
+        /**
+         * Инициализатор.
+         *
+         * @param box для заказов.
+         */
         public Baker(BlockingDesk box) {
             this.bakerBox = box;
         }
 
+        /**
+         * Запуск задачи.
+         */
         public void run() {
             Order newCake = new Order();
             try {
@@ -38,15 +47,26 @@ public class BlockingDeskTest {
         }
     }
 
+    /**
+     * Класс доставщика.
+     */
     public static class Deliver implements Runnable {
 
         private BlockingDesk deliverBox;
         private Order currCake;
 
+        /**
+         * Инициализатор.
+         *
+         * @param box для заказов.
+         */
         public Deliver(BlockingDesk box) {
             this.deliverBox = box;
         }
 
+        /**
+         * Запуск задачи.
+         */
         public void run() {
             try {
                 this.currCake = this.deliverBox.pop();

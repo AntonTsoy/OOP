@@ -1,7 +1,6 @@
 package pizzeria;
 
 import com.google.gson.annotations.Expose;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

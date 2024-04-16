@@ -1,10 +1,9 @@
 package pizzeria;
 
+import com.google.gson.annotations.Expose;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import com.google.gson.annotations.Expose;
 
 /**
  * Класс, представляющий конфигурацию пиццерии.
