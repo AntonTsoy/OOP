@@ -1,15 +1,14 @@
 package pizzeria;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonSyntaxException;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonIOException;
-import com.google.gson.JsonSyntaxException;
 
 /**
  * Класс, представляющий работу пиццерии.
@@ -28,8 +27,9 @@ public class Pizzeria {
 
 
     /**
-     * Конструктор класса. Принимает на вход конфигурацию пиццерии и исходные данные по заказам и складу.
-     * 
+     * Конструктор класса. Принимает на вход конфигурацию пиццерии и исходные данные по заказам и
+     * складу.
+     *
      * @param readConfig   Поток чтения с конфигурацией пиццерии.
      * @param readOrders   Поток чтения с исходными данными по заказам.
      * @param readStore    Поток чтения с исходными данными по складу.
@@ -39,8 +39,7 @@ public class Pizzeria {
      * @throws IOException            В случае ошибки ввода-вывода.
      */
     public Pizzeria(Reader readConfig, Reader readOrders, Reader readStore) 
-        throws JsonSyntaxException, JsonIOException, InterruptedException, IOException
-    {
+        throws JsonSyntaxException, JsonIOException, InterruptedException, IOException {
         this.gson = new GsonBuilder()
             .excludeFieldsWithoutExposeAnnotation()
             .setPrettyPrinting()

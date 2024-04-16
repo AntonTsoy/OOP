@@ -18,7 +18,8 @@ public class Chef implements Worker {
     private BlockingDesk storeQueue;
     private Order currOrder = null;
 
-    final static Logger logger = LogManager.getLogger(Chef.class);
+    static final Logger logger = LogManager.getLogger(Chef.class);
+
 
     /**
      * Создает нового повора с указанным идентификатором и скоростью.

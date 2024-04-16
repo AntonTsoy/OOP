@@ -23,7 +23,7 @@ public class Courier implements Worker {
     private BlockingDesk storeQueue;
     private Stack<Order> backpack;
 
-    final static Logger logger = LogManager.getLogger(Courier.class);
+    static final Logger logger = LogManager.getLogger(Courier.class);
 
 
     /**

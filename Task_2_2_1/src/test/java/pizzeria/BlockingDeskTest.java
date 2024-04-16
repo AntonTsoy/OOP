@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
  * Тест блокирующейся очереди.
  */
 public class BlockingDeskTest {
-    final static Logger logger = LogManager.getLogger(ChefTest.class);
+    static final Logger logger = LogManager.getLogger(ChefTest.class);
     BlockingDesk deque;
 
     /**
