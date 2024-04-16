@@ -81,6 +81,7 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Chef</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="Worker.html" title="interface in pizzeria">Worker</a></span></div>
+<div class="block">Представляет повора в пиццерии.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -94,12 +95,16 @@ implements <a href="Worker.html" title="interface in pizzeria">Worker</a></span>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,int)" class="member-name-link">Chef</a><wbr>(int&nbsp;chefId,
  int&nbsp;chefSpeed)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Создает нового повора с указанным идентификатором и скоростью.</div>
+</div>
 <div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(int,int,pizzeria.BlockingDesk,pizzeria.BlockingDesk)" class="member-name-link">Chef</a><wbr>(int&nbsp;chefId,
  int&nbsp;chefSpeed,
  <a href="BlockingDesk.html" title="class in pizzeria">BlockingDesk</a>&nbsp;orders,
  <a href="BlockingDesk.html" title="class in pizzeria">BlockingDesk</a>&nbsp;storehouse)</code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Создает нового повора с указанным идентификатором, скоростью, очередью заказов и складом.</div>
+</div>
 </div>
 </section>
 </li>
@@ -116,17 +121,25 @@ implements <a href="Worker.html" title="interface in pizzeria">Worker</a></span>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getId()" class="member-name-link">getId</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает идентификатор повора.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSpeed()" class="member-name-link">getSpeed</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает скорость приготовления пиццы.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#run()" class="member-name-link">run</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Запускает работу повора.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setQueues(pizzeria.BlockingDesk,pizzeria.BlockingDesk)" class="member-name-link">setQueues</a><wbr>(<a href="BlockingDesk.html" title="class in pizzeria">BlockingDesk</a>&nbsp;orders,
  <a href="BlockingDesk.html" title="class in pizzeria">BlockingDesk</a>&nbsp;storehouse)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Устанавливает очереди для заказов и склада.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -155,6 +168,12 @@ implements <a href="Worker.html" title="interface in pizzeria">Worker</a></span>
 <h3>Chef</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Chef</span><wbr><span class="parameters">(int&nbsp;chefId,
  int&nbsp;chefSpeed)</span></div>
+<div class="block">Создает нового повора с указанным идентификатором и скоростью.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>chefId</code> - идентификатор повора.</dd>
+<dd><code>chefSpeed</code> - скорость приготовления пиццы.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -164,6 +183,14 @@ implements <a href="Worker.html" title="interface in pizzeria">Worker</a></span>
  int&nbsp;chefSpeed,
  <a href="BlockingDesk.html" title="class in pizzeria">BlockingDesk</a>&nbsp;orders,
  <a href="BlockingDesk.html" title="class in pizzeria">BlockingDesk</a>&nbsp;storehouse)</span></div>
+<div class="block">Создает нового повора с указанным идентификатором, скоростью, очередью заказов и складом.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>chefId</code> - идентификатор повора.</dd>
+<dd><code>chefSpeed</code> - скорость приготовления пиццы.</dd>
+<dd><code>orders</code> - очередь заказов.</dd>
+<dd><code>storehouse</code> - склад для готовых заказов.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -178,10 +205,12 @@ implements <a href="Worker.html" title="interface in pizzeria">Worker</a></span>
 <section class="detail" id="getId()">
 <h3>getId</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getId</span>()</div>
+<div class="block">Возвращает идентификатор повора.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Worker.html#getId()">getId</a></code>&nbsp;in interface&nbsp;<code><a href="Worker.html" title="interface in pizzeria">Worker</a></code></dd>
 <dt>Returns:</dt>
+<dd>идентификатор повора.</dd>
 </dl>
 </section>
 </li>
@@ -189,10 +218,12 @@ implements <a href="Worker.html" title="interface in pizzeria">Worker</a></span>
 <section class="detail" id="getSpeed()">
 <h3>getSpeed</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getSpeed</span>()</div>
+<div class="block">Возвращает скорость приготовления пиццы.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Worker.html#getSpeed()">getSpeed</a></code>&nbsp;in interface&nbsp;<code><a href="Worker.html" title="interface in pizzeria">Worker</a></code></dd>
 <dt>Returns:</dt>
+<dd>скорость приготовления пиццы.</dd>
 </dl>
 </section>
 </li>
@@ -201,12 +232,19 @@ implements <a href="Worker.html" title="interface in pizzeria">Worker</a></span>
 <h3>setQueues</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setQueues</span><wbr><span class="parameters">(<a href="BlockingDesk.html" title="class in pizzeria">BlockingDesk</a>&nbsp;orders,
  <a href="BlockingDesk.html" title="class in pizzeria">BlockingDesk</a>&nbsp;storehouse)</span></div>
+<div class="block">Устанавливает очереди для заказов и склада.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>orders</code> - очередь заказов.</dd>
+<dd><code>storehouse</code> - склад для готовых заказов.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="run()">
 <h3>run</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">run</span>()</div>
+<div class="block">Запускает работу повора.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html#run()" title="class or interface in java.lang" class="external-link">run</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a></code></dd>
