@@ -74,7 +74,7 @@ public class Chef implements Worker {
             }
 
             logger.info(this + " повар взял заказ: " + currOrder);
-            currOrder = Order.COOKING;
+            this.currOrder.nextState();
             logger.info(this + " повар готовит пиццу.");
             try {
                 Thread.sleep(this.speed);
@@ -83,26 +83,25 @@ public class Chef implements Worker {
                 break;
             }
 
-            currOrder = Order.STORE_QUEUE;
+            this.currOrder.nextState();
             logger.info(this + " повар c заказом стоит в очереди на склад.");
             try {
-                currOrder = Order.STOREHOUSE;
                 storeQueue.push(currOrder);
             } catch (InterruptedException e) {
-                currOrder = Order.STORE_QUEUE;
                 logger.info(this + " повар получил сообщение о закрытии, пока стоял у склада.");
                 break;
             }
-            logger.info(this + " повар выполнил заказ: " + currOrder);
+            this.currOrder.nextState();
+            logger.info(this + " повар доставил пиццу на склад: " + this.currOrder);
         }
         logger.info(this + " повар ушел с работы.");
 
-        if (currOrder != null && currOrder.ordinal() <= Order.STOREHOUSE.ordinal()) {
+        if (this.currOrder != null && this.currOrder.getStateId() < 3) {
             try {
-                currOrder = Order.ORDERS_LIST;
+                currOrder.resetState();
                 orderQueue.addFirst(currOrder);
             } catch (InterruptedException e) {
-                logger.error("Нить была прервана второй раз подряд!");
+                logger.error("Нить была прервана второй раз подряд!!!");
             }
         }
     }

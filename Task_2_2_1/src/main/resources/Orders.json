@@ -1,6 +1,15 @@
 {
   "desk": [
     {
+      "orderId": 1,
+      "currStateId": 0
+    },
+    {
+      "orderId": 2,
+      "currStateId": 0
+    },
+    {
+      "orderId": 3,
       "currStateId": 0
     }
   ]

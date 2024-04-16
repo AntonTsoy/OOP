@@ -20,15 +20,15 @@ public class ChefTest {
     
     @Test
     void testChefsCommunication() throws InterruptedException {
-        toDoList.push(Order.ORDERS_LIST.updateId());
-        toDoList.push(Order.ORDERS_LIST.updateId());
-        toDoList.push(Order.ORDERS_LIST.updateId());
+        toDoList.push(new Order());
+        toDoList.push(new Order());
+        toDoList.push(new Order());
         System.out.println("TODO: " + toDoList);
         Thread chef1 = new Thread(new Chef(1, 30, toDoList, doneList));
         Thread chef2 = new Thread(new Chef(2, 50, toDoList, doneList));
         chef1.start();
         chef2.start();
-        Thread.sleep(140);
+        Thread.sleep(120);
         chef1.interrupt();
         chef2.interrupt();
         chef1.join();

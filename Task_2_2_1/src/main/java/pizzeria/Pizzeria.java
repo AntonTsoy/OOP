@@ -47,14 +47,16 @@ public class Pizzeria {
         PizzeriaConfig config = gson.fromJson(readConfig, PizzeriaConfig.class);
         this.orderQueue = gson.fromJson(readOrders, BlockingDesk.class);
         this.storeQueue = gson.fromJson(readStore, BlockingDesk.class);
-        WorkerFactoryPizzeria workerFactory = new WorkerFactoryPizzeria(storeQueue, orderQueue);
+        System.out.println(this.orderQueue);
+        System.out.println(this.storeQueue);
+        WorkerFactoryPizzeria workerFactory = new WorkerFactoryPizzeria(orderQueue, storeQueue);
 
         this.storehouseCapacity = config.getStorehouseCapacity();
         this.workMins = config.getWorkMins();
         this.workers = config.getAllWorkers();
 
         this.workerThreads = new ArrayList<Thread>();
-        for (Worker worker : workers) {
+        for (Worker worker : this.workers) {
             workerThreads.add(workerFactory.hireWorker(worker));
         }
     }
@@ -70,13 +72,12 @@ public class Pizzeria {
     public void workingDay(Writer writeOrders, Writer writeStore) throws IOException, InterruptedException {
         for (Thread worker : this.workerThreads) {
             worker.start();
-            System.err.println("Рабочий запущен в работу");
         }
 
         try {
             Thread.sleep(getWorkMins());
         } catch (InterruptedException e) {
-            System.err.println("Налоговая не законно закрыла пиццерию!!!");
+            System.out.println("Налоговая не законно закрыла пиццерию!!!");
             throw new RuntimeException();
         }
 

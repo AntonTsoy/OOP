@@ -1,17 +1,17 @@
 {
     "chefs" : [
         {
-            "id": 3,
-            "speed": 20
+            "id": 1,
+            "speed": 45
         }
     ],
     "couriers" : [
         {
-            "id": 40,
-            "speed": 8,
+            "id": 20,
+            "speed": 60,
             "capacity" : 4
         }
     ],
     "storehouseCapacity": 8,
-    "workMins" : 5000
+    "workMins" : 100
 }

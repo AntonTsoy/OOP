@@ -5,38 +5,54 @@ import com.google.gson.annotations.Expose;
 /**
  * 
  */
-public enum Order {
-
-    ORDERS_LIST ("{Заказ лежит в очереди}"),
-    COOKING ("{Пиццу готовит повар}"),
-    STORE_QUEUE ("{Повар стоит в очереди на склад}"),
-    STOREHOUSE ("{Пицца лежит на складе}"),
-    DELIVERING ("{Пиццу везёт курьер}"),
-    COMPLETE ("{Заказ окончен. Доставка выполнена}");
+public class Order {
+    private final static int statesSize = 6;
+    private final static String[] states = {
+        "В очереди заказов",
+        "Пиццу готовит повар",
+        "В очереди на склад",
+        "Лежит на складе",
+        "Доставляется курьером",
+        "Заказ выполнен"
+    };
+    private static int ordersCnt = 0;
 
     @Expose
     private int orderId;
     @Expose
-    private String stateInfo;
+    private int currStateId;
 
-    Order(String info) {
-        this.stateInfo = info;
+    public Order() {
+        this.currStateId = 0;
+        this.orderId = ordersCnt++;
     }
 
-    public void setId(int newId) {
-        this.orderId = newId;
+    public void resetState() {
+        this.currStateId = 0;
     }
 
-    public int getId() {
-        return this.orderId;
+    public void nextState(){
+        if (this.currStateId < Order.statesSize - 1) {
+            this.currStateId++;
+        }
     }
 
-    public void updateId() {
-        this.orderId++;
+    public void prevState() {
+        if (this.currStateId > 0) {
+            this.currStateId--;
+        }
     }
 
-    @Override
+    public int getStateId() {
+        return this.currStateId;
+    }
+ 
+    public String getCurrentState() {
+        return Order.states[this.currStateId];
+    }
+
+    @Override 
     public String toString() {
-        return "#" + getId() + " " + this.stateInfo;
+        return "{#" + orderId + " " + getCurrentState() + "}";
     }
 }

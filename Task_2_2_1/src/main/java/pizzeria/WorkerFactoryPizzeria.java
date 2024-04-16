@@ -14,10 +14,10 @@ public class WorkerFactoryPizzeria {
 
     public Thread hireWorker(Worker worker) {
         switch (worker.getClass().getName()) {
-            case "Chef":
+            case "pizzeria.Chef":
                 ((Chef)worker).setQueues(source, destination);
                 break;
-            case "Courier":
+            case "pizzeria.Courier":
                 ((Courier)worker).setStore(destination);
                 break;
         }

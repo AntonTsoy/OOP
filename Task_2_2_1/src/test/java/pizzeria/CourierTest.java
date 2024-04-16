@@ -9,19 +9,31 @@ import org.junit.jupiter.api.Test;
 public class CourierTest {
 
     BlockingDesk tasksList;
-    static int cnt;
 
     @BeforeEach
-    void setUp() throws InterruptedException {
-        cnt = 0;
-        tasksList = new BlockingDesk(3);
-        tasksList.addFirst(Order.STOREHOUSE);
-        tasksList.push(Order.DELIVERING);
+    void setUp() {
+        tasksList = new BlockingDesk(6);
     }
 
     @Test
-    void test() {
-        
+    void test() throws InterruptedException {
+        tasksList.addFirst(new Order());
+        tasksList.push(new Order());
+        tasksList.addFirst(new Order());
+        tasksList.push(new Order());
+        tasksList.addFirst(new Order());
+        tasksList.push(new Order());
+        Thread deliver1 = new Thread(new Courier(100, 60, 2, tasksList));
+        Thread deliver2 = new Thread(new Courier(200, 55, 3, tasksList));
+        deliver1.start();
+        deliver2.start();
+        Thread.sleep(90);
+        deliver1.interrupt();
+        deliver2.interrupt();
+        deliver1.join();
+        deliver2.join();
+        System.out.println(tasksList);
+        assertEquals(0, tasksList.size());
     }
 
 }

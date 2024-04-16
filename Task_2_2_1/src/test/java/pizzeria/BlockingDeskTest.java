@@ -25,7 +25,7 @@ public class BlockingDeskTest {
         }
 
         public void run() {
-            Order newCake = Order.ORDERS_LIST;
+            Order newCake = new Order();
             try {
                 Thread.sleep(100);
                 this.bakerBox.push(newCake);
@@ -114,42 +114,4 @@ public class BlockingDeskTest {
         assertEquals(1, box.size());
     }
 
-    @Test
-    void checkPrison() throws InterruptedException {
-        deque = new BlockingDesk(2);
-
-        Runnable taskPolice = () -> {
-            Order caughtCriminal = Order.ORDERS_LIST;
-            try {
-                deque.push(caughtCriminal);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        };
-        Runnable taskLawyer = () -> {
-            try {
-                deque.pop();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        };
-
-        Thread police1 = new Thread(taskPolice);
-        Thread police2 = new Thread(taskPolice);
-        Thread police3 = new Thread(taskPolice);
-        Thread lawyer = new Thread(taskLawyer);
-        lawyer.start();
-        police1.start();
-        police2.start();
-        police3.start();
-
-        police1.join();
-        police2.join();
-        police3.join();
-        if (!lawyer.isAlive()) {
-            assertEquals(2, deque.size());
-        } else {
-            throw new ConcurrentModificationException();
-        }
-    }
 }

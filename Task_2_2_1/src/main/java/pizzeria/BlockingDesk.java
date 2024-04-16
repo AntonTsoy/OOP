@@ -59,13 +59,13 @@ public class BlockingDesk {
         return this.desk.poll();
     }
 
-    // SYNCHRONIZED или нет - вот в чем вопрос
-    public boolean isEmpty() {
+
+    public synchronized boolean isEmpty() {
         return this.desk.isEmpty();
     }
 
-    // SYNCHRONIZED или нет - вот в чем вопрос
-    public int size() {
+
+    public synchronized int size() {
         return this.desk.size();
     }
 
