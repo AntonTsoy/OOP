@@ -44,12 +44,10 @@ public class Pizzeria {
             .excludeFieldsWithoutExposeAnnotation()
             .setPrettyPrinting()
             .create();
-        PizzeriaConfig config = gson.fromJson(readConfig, PizzeriaConfig.class);
         this.orderQueue = gson.fromJson(readOrders, BlockingDesk.class);
         this.storeQueue = gson.fromJson(readStore, BlockingDesk.class);
-        System.out.println(this.orderQueue);
-        System.out.println(this.storeQueue);
         WorkerFactoryPizzeria workerFactory = new WorkerFactoryPizzeria(orderQueue, storeQueue);
+        PizzeriaConfig config = gson.fromJson(readConfig, PizzeriaConfig.class);
 
         this.storehouseCapacity = config.getStorehouseCapacity();
         this.workMins = config.getWorkMins();
@@ -63,13 +61,14 @@ public class Pizzeria {
 
     /**
      * Запускает рабочий день пиццерии.
-     * 
+     *
      * @param writeOrders Поток записи данных о заказах.
      * @param writeStore  Поток записи данных о складе.
      * @throws IOException        В случае ошибки ввода-вывода.
      * @throws InterruptedException  В случае прерывания потока.
      */
-    public void workingDay(Writer writeOrders, Writer writeStore) throws IOException, InterruptedException {
+    public void workingDay(Writer writeOrders, Writer writeStore) 
+        throws IOException, InterruptedException {
         for (Thread worker : this.workerThreads) {
             worker.start();
         }
@@ -107,7 +106,7 @@ public class Pizzeria {
 
     /**
      * Возвращает вместимость склада.
-     * 
+     *
      * @return Вместимость склада.
      */
     public int getStorehouseCapacity() {

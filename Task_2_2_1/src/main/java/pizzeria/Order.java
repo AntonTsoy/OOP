@@ -6,8 +6,8 @@ import com.google.gson.annotations.Expose;
  * Представляет заказ в пиццерии.
  */
 public class Order {
-    private final static int statesSize = 6;
-    private final static String[] states = {
+    private static final int statesSize = 6;
+    private static final String[] states = {
         "В очереди заказов",
         "Пиццу готовит повар",
         "В очереди на склад",

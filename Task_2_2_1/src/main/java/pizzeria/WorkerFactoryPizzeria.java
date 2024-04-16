@@ -28,11 +28,13 @@ public class WorkerFactoryPizzeria {
     public Thread hireWorker(Worker worker) {
         switch (worker.getClass().getName()) {
             case "pizzeria.Chef":
-                ((Chef)worker).setQueues(source, destination);
+                ((Chef) worker).setQueues(source, destination);
                 break;
             case "pizzeria.Courier":
-                ((Courier)worker).setStore(destination);
+                ((Courier) worker).setStore(destination);
                 break;
+            default:
+                return null;
         }
         return new Thread(worker);
     }
