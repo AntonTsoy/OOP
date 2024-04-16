@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -22,9 +21,8 @@ public class Pizzeria {
     private int storehouseCapacity;
     private int workMins;
 
-    private final List<Chef> chefs;
-    private final List<Courier> couriers;
-    private List<Thread> workers;
+    private List<Worker> workers;
+    private ArrayList<Thread> workerThreads;
 
     private BlockingDesk orderQueue; // Эти поля можно не заводить. Просто передавать класс
     private BlockingDesk storeQueue; // конфиг в фабрику и она уже будет нитям давать необходимое
@@ -47,31 +45,30 @@ public class Pizzeria {
             .setPrettyPrinting()
             .create();
         PizzeriaConfig config = gson.fromJson(readConfig, PizzeriaConfig.class);
+        this.orderQueue = gson.fromJson(readOrders, BlockingDesk.class);
+        this.storeQueue = gson.fromJson(readStore, BlockingDesk.class);
+        WorkerFactoryPizzeria workerFactory = new WorkerFactoryPizzeria(storeQueue, orderQueue);
 
         this.storehouseCapacity = config.getStorehouseCapacity();
         this.workMins = config.getWorkMins();
+        this.workers = config.getAllWorkers();
 
-        this.orderQueue = gson.fromJson(readOrders, BlockingDesk.class);
-        this.storeQueue = gson.fromJson(readStore, BlockingDesk.class);
-
-        this.chefs = new ArrayList<Chef>(Arrays.asList(config.getChefs()));
-        this.couriers = new ArrayList<Courier>(Arrays.asList(config.getCouriers()));
-        this.workers = new ArrayList<Thread>();
-        for (Chef chef : chefs) {
-            chef.setQueues(orderQueue, storeQueue);
-            this.workers.add(new Thread(chef));
+        this.workerThreads = new ArrayList<Thread>();
+        for (Worker worker : workers) {
+            workerThreads.add(workerFactory.hireWorker(worker));
         }
-        System.err.println(couriers);
-        for (Courier courier : couriers) {
-            courier.setStore(storeQueue);
-            this.workers.add(new Thread(courier));
-            System.err.println(courier + " был добавлен в штат");
-        }
-
     }
 
+
+    /**
+     * 
+     * @param writeOrders
+     * @param writeStore
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public void workingDay(Writer writeOrders, Writer writeStore) throws IOException, InterruptedException {
-        for (Thread worker : this.workers) {
+        for (Thread worker : this.workerThreads) {
             worker.start();
             System.err.println("Рабочий запущен в работу");
         }
@@ -83,46 +80,54 @@ public class Pizzeria {
             throw new RuntimeException();
         }
 
-        for (Thread worker : this.workers) {
+        for (Thread worker : this.workerThreads) {
             worker.interrupt();
         }
-        for (Thread worker: this.workers) {
+        for (Thread worker : this.workerThreads) {
             worker.join();
         }
 
         serializeQueues(writeOrders, writeStore);
     }
 
+
+    /**
+     * 
+     * @param writeOrders
+     * @param writeStore
+     * @throws IOException
+     */
     public void serializeQueues(Writer writeOrders, Writer writeStore) throws IOException {
         writeOrders.write(this.gson.toJson(orderQueue));
-        writeOrders.flush();
-
         writeStore.write(this.gson.toJson(storeQueue));
+        writeOrders.flush();
         writeStore.flush();
     }
 
-   
+
+    /**
+     * 
+     * @return
+     */
     public int getStorehouseCapacity() {
-        return storehouseCapacity;
+        return this.storehouseCapacity;
     }
 
+
+    /**
+     * 
+     * @return
+     */
     public int getWorkMins() {
-        return workMins;
+        return this.workMins;
     }
 
-    public List<Chef> getChefs() {
-        return chefs;
-    }
 
-    public List<Courier> getCouriers() {
-        return couriers;
-    }
-
-    public BlockingDesk getOrderQueue() {
-        return orderQueue;
-    }
-
-    public BlockingDesk getStoreQueue() {
-        return storeQueue;
+    /**
+     * 
+     * @return
+     */
+    public List<Worker> getWorkers() {
+        return this.workers;
     }
 }

@@ -5,7 +5,11 @@ import java.util.Stack;
 
 import com.google.gson.annotations.Expose;
 
-public class Courier implements Runnable {
+
+/**
+ * 
+ */
+public class Courier implements Worker {
     
     @Expose
     private final int id;
@@ -28,24 +32,19 @@ public class Courier implements Runnable {
     }
 
     public Courier(int courierId, int courierSpeed, int packCapacity, BlockingDesk storeQueue) {
-        this.id = courierId;
-        this.speed = courierSpeed;
-        this.capacity = packCapacity;
-        this.isPizzeriaOpen = true;
-        this.backpack = new Stack<Order>();
+        this(courierId, courierSpeed, packCapacity);
         setStore(storeQueue);
     }
 
-
-    public int getCourierId() {
+    public int getId() {
         return this.id;
     }
 
-    public int getCourierSpeed() {
+    public int getSpeed() {
         return this.speed;
     }
 
-    public int getCourierPackCapacity() {
+    public int getPackCapacity() {
         return this.capacity;
     }
 
@@ -66,7 +65,6 @@ public class Courier implements Runnable {
 
     @Override
     public String toString() {
-        return "Курьер #" + this.id + " со скоростью " + this.speed +
-               " и вместимостью " + this.capacity;
+        return getInfo();
     }
 }

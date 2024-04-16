@@ -1,6 +1,7 @@
 package pizzeria;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+//import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,42 +9,32 @@ import org.junit.jupiter.api.Test;
 
 public class ChefTest {
 
-    BlockingDesk tasksList;
+    BlockingDesk toDoList;
+    BlockingDesk doneList;
 
     @BeforeEach
     void setUp() {
-        tasksList = new BlockingDesk();
+        toDoList = new BlockingDesk();
+        doneList = new BlockingDesk();
     }
     
     @Test
     void testChefsCommunication() throws InterruptedException {
-
-        Thread chef1 = new Thread(new ChefRun(tasksList));
-        Thread chef2 = new Thread(new ChefRun(tasksList));
+        toDoList.push(Order.ORDERS_LIST.updateId());
+        toDoList.push(Order.ORDERS_LIST.updateId());
+        toDoList.push(Order.ORDERS_LIST.updateId());
+        System.out.println("TODO: " + toDoList);
+        Thread chef1 = new Thread(new Chef(1, 30, toDoList, doneList));
+        Thread chef2 = new Thread(new Chef(2, 50, toDoList, doneList));
         chef1.start();
         chef2.start();
+        Thread.sleep(140);
+        chef1.interrupt();
+        chef2.interrupt();
         chef1.join();
         chef2.join();
-        System.err.println(tasksList);
-        assertEquals(2, tasksList.size());
-    }
-
-    private static class ChefRun implements Runnable {
-
-        BlockingDesk kithenTasks;
-
-        public ChefRun(BlockingDesk tasks) {
-            this.kithenTasks = tasks;
-        }
-
-        @Override
-        public void run() {
-            Order completedOrder = Order.COOKING;
-            try {
-                this.kithenTasks.push(completedOrder);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+        System.out.println("TODO: " + toDoList);
+        System.out.println("DONE: " + doneList);
+        assertTrue(toDoList.size() == 0 && doneList.size() == 3);
     }
 }
