@@ -1,8 +1,7 @@
 package pizzeria;
 
-import java.util.ArrayDeque;
-
 import com.google.gson.annotations.Expose;
+import java.util.ArrayDeque;
 
 /**
  * Представляет блокирующуюся очередь заказов.

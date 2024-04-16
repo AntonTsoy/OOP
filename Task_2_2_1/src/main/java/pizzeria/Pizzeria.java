@@ -92,7 +92,7 @@ public class Pizzeria {
 
     /**
      * Сериализует данные о заказах и складе.
-     * 
+     *
      * @param writeOrders Поток записи данных о заказах.
      * @param writeStore  Поток записи данных о складе.
      * @throws IOException  В случае ошибки ввода-вывода.
@@ -115,7 +115,7 @@ public class Pizzeria {
 
     /**
      * Возвращает продолжительность рабочего дня.
-     * 
+     *
      * @return Продолжительность рабочего дня.
      */
     public int getWorkMins() {
@@ -124,7 +124,7 @@ public class Pizzeria {
 
     /**
      * Возвращает список работников пиццерии.
-     * 
+     *
      * @return Список работников пиццерии.
      */
     public List<Worker> getWorkers() {

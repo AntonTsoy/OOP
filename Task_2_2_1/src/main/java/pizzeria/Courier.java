@@ -97,7 +97,7 @@ public class Courier implements Worker {
     /**
      * Определяем склад, из которого курьер будет получать заказы.
      *
-     * @param storeQueue
+     * @param storeQueue склад.
      */
     public void setStore(BlockingDesk storeQueue) {
         if (this.storeQueue == null && storeQueue != null) {
