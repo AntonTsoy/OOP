@@ -5,9 +5,8 @@ import com.google.gson.annotations.Expose;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
 /**
- * 
+ * Представляет повора в пиццерии.
  */
 public class Chef implements Worker {
     
@@ -22,34 +21,59 @@ public class Chef implements Worker {
 
     final static Logger logger = LogManager.getLogger(Chef.class);
 
-
+    /**
+     * Создает нового повора с указанным идентификатором и скоростью.
+     *
+     * @param chefId    идентификатор повора.
+     * @param chefSpeed скорость приготовления пиццы.
+     */
     public Chef(int chefId, int chefSpeed) {
         this.id = chefId;
         this.speed = chefSpeed;
     }
 
-
+    /**
+     * Создает нового повора с указанным идентификатором, скоростью, очередью заказов и складом.
+     *
+     * @param chefId       идентификатор повора.
+     * @param chefSpeed    скорость приготовления пиццы.
+     * @param orders       очередь заказов.
+     * @param storehouse   склад для готовых заказов.
+     */
     public Chef(int chefId, int chefSpeed, BlockingDesk orders, BlockingDesk storehouse) {
         this(chefId, chefSpeed);
         setQueues(orders, storehouse);
     }
 
-
+    /**
+     * Возвращает идентификатор повора.
+     *
+     * @return идентификатор повора.
+     */
     public int getId() {
         return this.id;
     }
 
-
+    /**
+     * Возвращает скорость приготовления пиццы.
+     *
+     * @return скорость приготовления пиццы.
+     */
     public int getSpeed() {
         return this.speed;
     }
 
-
+    /**
+     * Устанавливает очереди для заказов и склада.
+     *
+     * @param orders     очередь заказов.
+     * @param storehouse склад для готовых заказов.
+     */
     public void setQueues(BlockingDesk orders, BlockingDesk storehouse) {
         if (this.orderQueue == null && orders != null) {
             this.orderQueue = orders;
         } else {
-            logger.error(this + " повар пытается поменять текущую очередь склада!");
+            logger.error(this + " повар пытается поменять текущую очередь заказов!");
             throw new RuntimeException();
         }
 
@@ -61,7 +85,9 @@ public class Chef implements Worker {
         }
     }
 
-
+    /**
+     * Запускает работу повора.
+     */
     @Override
     public void run() {
         logger.info(this + " повар пришел на работу.");
@@ -105,7 +131,6 @@ public class Chef implements Worker {
             }
         }
     }
-
 
     @Override
     public String toString() {

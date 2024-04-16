@@ -4,24 +4,38 @@ import java.util.ArrayDeque;
 
 import com.google.gson.annotations.Expose;
 
-
+/**
+ * Представляет блокирующуюся очередь заказов.
+ */
 public class BlockingDesk {
     @Expose
     private ArrayDeque<Order> desk;
     private int limit;
 
-
+    /**
+     * Создает новый блокирующуюся очередь без ограничения по количеству заказов.
+     */
     public BlockingDesk() {
         this.limit = Integer.MIN_VALUE;
         this.desk = new ArrayDeque<Order>();
     }
 
+    /**
+     * Создает новый блокирующуюся очередь с указанным ограничением по количеству заказов.
+     *
+     * @param deskLimit предельное количество заказов на столе.
+     */
     public BlockingDesk(int deskLimit) {
         this.limit = deskLimit;
         this.desk = new ArrayDeque<Order>();
     }
 
-
+    /**
+     * Добавляет новый заказ в начало очереди.
+     *
+     * @param newOrder новый заказ.
+     * @throws InterruptedException если поток был прерван во время ожидания.
+     */
     public synchronized void addFirst(Order newOrder) throws InterruptedException {
         if (this.limit != Integer.MIN_VALUE) {
             while (this.desk.size() == this.limit) {
@@ -32,6 +46,12 @@ public class BlockingDesk {
         notifyAll();
     }
 
+    /**
+     * Добавляет новый заказ в конец очереди.
+     *
+     * @param newOrder новый заказ.
+     * @throws InterruptedException если поток был прерван во время ожидания.
+     */
     public synchronized void push(Order newOrder) throws InterruptedException {
         if (this.limit != Integer.MIN_VALUE) {
             while (this.desk.size() == this.limit) {
@@ -42,6 +62,12 @@ public class BlockingDesk {
         notifyAll();
     }
 
+    /**
+     * Извлекает заказ из начала очереди.
+     *
+     * @return извлеченный заказ.
+     * @throws InterruptedException если поток был прерван во время ожидания.
+     */
     public synchronized Order pop() throws InterruptedException {
         Order takenOrder;
         while (this.desk.isEmpty()) {
@@ -52,6 +78,11 @@ public class BlockingDesk {
         return takenOrder;
     }
 
+    /**
+     * Извлекает заказ из начала очереди, если он есть.
+     *
+     * @return извлеченный заказ, или null, если стол пуст.
+     */
     public synchronized Order freePop() {
         if (this.desk.isEmpty()) {
             return null;
@@ -59,12 +90,20 @@ public class BlockingDesk {
         return this.desk.poll();
     }
 
-
+    /**
+     * Проверяет, пуста ли очередь.
+     *
+     * @return true, если список пуст, в противном случае - false.
+     */
     public synchronized boolean isEmpty() {
         return this.desk.isEmpty();
     }
 
-
+    /**
+     * Возвращает количество заказов на списке заказов.
+     *
+     * @return количество заказов в очерди.
+     */
     public synchronized int size() {
         return this.desk.size();
     }

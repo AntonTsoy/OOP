@@ -172,11 +172,6 @@ public class Courier implements Worker {
     }
 
 
-    /**
-     * Печатает на экран базовую информацию о курьере, как и о трудих рабочих.
-     *
-     * @return строку с информацией.
-     */
     @Override
     public String toString() {
         return getInfo();
