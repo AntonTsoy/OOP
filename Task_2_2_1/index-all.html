@@ -72,11 +72,17 @@ loadScripts(document, 'script');</script>
 <dt><a href="pizzeria/Chef.html#%3Cinit%3E(int,int,pizzeria.BlockingDesk,pizzeria.BlockingDesk)" class="member-name-link">Chef(int, int, BlockingDesk, BlockingDesk)</a> - Constructor for class pizzeria.<a href="pizzeria/Chef.html" title="class in pizzeria">Chef</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pizzeria/Courier.html" class="type-name-link" title="class in pizzeria">Courier</a> - Class in <a href="pizzeria/package-summary.html">pizzeria</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Класс рабочего курьера, который может быть задачей для потока.</div>
+</dd>
 <dt><a href="pizzeria/Courier.html#%3Cinit%3E(int,int,int)" class="member-name-link">Courier(int, int, int)</a> - Constructor for class pizzeria.<a href="pizzeria/Courier.html" title="class in pizzeria">Courier</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Базовая инициализация без очереди склада.</div>
+</dd>
 <dt><a href="pizzeria/Courier.html#%3Cinit%3E(int,int,int,pizzeria.BlockingDesk)" class="member-name-link">Courier(int, int, int, BlockingDesk)</a> - Constructor for class pizzeria.<a href="pizzeria/Courier.html" title="class in pizzeria">Courier</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Полная инициализация всех параметров.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:F">F</h2>
 <dl class="index">
@@ -96,17 +102,23 @@ loadScripts(document, 'script');</script>
 <dt><a href="pizzeria/Chef.html#getId()" class="member-name-link">getId()</a> - Method in class pizzeria.<a href="pizzeria/Chef.html" title="class in pizzeria">Chef</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pizzeria/Courier.html#getId()" class="member-name-link">getId()</a> - Method in class pizzeria.<a href="pizzeria/Courier.html" title="class in pizzeria">Courier</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Функция вернет номер курьера.</div>
+</dd>
 <dt><a href="pizzeria/Worker.html#getId()" class="member-name-link">getId()</a> - Method in interface pizzeria.<a href="pizzeria/Worker.html" title="interface in pizzeria">Worker</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pizzeria/Worker.html#getInfo()" class="member-name-link">getInfo()</a> - Method in interface pizzeria.<a href="pizzeria/Worker.html" title="interface in pizzeria">Worker</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pizzeria/Courier.html#getPackCapacity()" class="member-name-link">getPackCapacity()</a> - Method in class pizzeria.<a href="pizzeria/Courier.html" title="class in pizzeria">Courier</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Функция вернет вместимость курьерского рюкзака.</div>
+</dd>
 <dt><a href="pizzeria/Chef.html#getSpeed()" class="member-name-link">getSpeed()</a> - Method in class pizzeria.<a href="pizzeria/Chef.html" title="class in pizzeria">Chef</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pizzeria/Courier.html#getSpeed()" class="member-name-link">getSpeed()</a> - Method in class pizzeria.<a href="pizzeria/Courier.html" title="class in pizzeria">Courier</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Функция вернет скорость доставки заказов курьером.</div>
+</dd>
 <dt><a href="pizzeria/Worker.html#getSpeed()" class="member-name-link">getSpeed()</a> - Method in interface pizzeria.<a href="pizzeria/Worker.html" title="interface in pizzeria">Worker</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pizzeria/Order.html#getStateId()" class="member-name-link">getStateId()</a> - Method in class pizzeria.<a href="pizzeria/Order.html" title="class in pizzeria">Order</a></dt>
@@ -172,7 +184,9 @@ loadScripts(document, 'script');</script>
 <dt><a href="pizzeria/Chef.html#run()" class="member-name-link">run()</a> - Method in class pizzeria.<a href="pizzeria/Chef.html" title="class in pizzeria">Chef</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pizzeria/Courier.html#run()" class="member-name-link">run()</a> - Method in class pizzeria.<a href="pizzeria/Courier.html" title="class in pizzeria">Courier</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Исоплнение задачи курьера по доставке заказов со склада.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:S">S</h2>
 <dl class="index">
@@ -181,7 +195,9 @@ loadScripts(document, 'script');</script>
 <dt><a href="pizzeria/Chef.html#setQueues(pizzeria.BlockingDesk,pizzeria.BlockingDesk)" class="member-name-link">setQueues(BlockingDesk, BlockingDesk)</a> - Method in class pizzeria.<a href="pizzeria/Chef.html" title="class in pizzeria">Chef</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pizzeria/Courier.html#setStore(pizzeria.BlockingDesk)" class="member-name-link">setStore(BlockingDesk)</a> - Method in class pizzeria.<a href="pizzeria/Courier.html" title="class in pizzeria">Courier</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Определяем склад, из которого курьер будет получать заказы.</div>
+</dd>
 <dt><a href="pizzeria/BlockingDesk.html#size()" class="member-name-link">size()</a> - Method in class pizzeria.<a href="pizzeria/BlockingDesk.html" title="class in pizzeria">BlockingDesk</a></dt>
 <dd>&nbsp;</dd>
 </dl>
@@ -192,14 +208,18 @@ loadScripts(document, 'script');</script>
 <dt><a href="pizzeria/Chef.html#toString()" class="member-name-link">toString()</a> - Method in class pizzeria.<a href="pizzeria/Chef.html" title="class in pizzeria">Chef</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pizzeria/Courier.html#toString()" class="member-name-link">toString()</a> - Method in class pizzeria.<a href="pizzeria/Courier.html" title="class in pizzeria">Courier</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Печатает на экран базовую информацию о курьере, как и о трудих рабочих.</div>
+</dd>
 <dt><a href="pizzeria/Order.html#toString()" class="member-name-link">toString()</a> - Method in class pizzeria.<a href="pizzeria/Order.html" title="class in pizzeria">Order</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:W">W</h2>
 <dl class="index">
 <dt><a href="pizzeria/Courier.html#wearBackpack()" class="member-name-link">wearBackpack()</a> - Method in class pizzeria.<a href="pizzeria/Courier.html" title="class in pizzeria">Courier</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Определяет рюкзак курьера, как пустой стек.</div>
+</dd>
 <dt><a href="pizzeria/Worker.html" class="type-name-link" title="interface in pizzeria">Worker</a> - Interface in <a href="pizzeria/package-summary.html">pizzeria</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="pizzeria/WorkerFactoryPizzeria.html" class="type-name-link" title="class in pizzeria">WorkerFactoryPizzeria</a> - Class in <a href="pizzeria/package-summary.html">pizzeria</a></dt>

@@ -81,6 +81,7 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Courier</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="Worker.html" title="interface in pizzeria">Worker</a></span></div>
+<div class="block">Класс рабочего курьера, который может быть задачей для потока.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -95,12 +96,16 @@ implements <a href="Worker.html" title="interface in pizzeria">Worker</a></span>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,int,int)" class="member-name-link">Courier</a><wbr>(int&nbsp;courierId,
  int&nbsp;courierSpeed,
  int&nbsp;packCapacity)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Базовая инициализация без очереди склада.</div>
+</div>
 <div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(int,int,int,pizzeria.BlockingDesk)" class="member-name-link">Courier</a><wbr>(int&nbsp;courierId,
  int&nbsp;courierSpeed,
  int&nbsp;packCapacity,
  <a href="BlockingDesk.html" title="class in pizzeria">BlockingDesk</a>&nbsp;storeQueue)</code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Полная инициализация всех параметров.</div>
+</div>
 </div>
 </section>
 </li>
@@ -117,25 +122,39 @@ implements <a href="Worker.html" title="interface in pizzeria">Worker</a></span>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getId()" class="member-name-link">getId</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Функция вернет номер курьера.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPackCapacity()" class="member-name-link">getPackCapacity</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Функция вернет вместимость курьерского рюкзака.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSpeed()" class="member-name-link">getSpeed</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Функция вернет скорость доставки заказов курьером.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#run()" class="member-name-link">run</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Исоплнение задачи курьера по доставке заказов со склада.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setStore(pizzeria.BlockingDesk)" class="member-name-link">setStore</a><wbr>(<a href="BlockingDesk.html" title="class in pizzeria">BlockingDesk</a>&nbsp;storeQueue)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Определяем склад, из которого курьер будет получать заказы.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Печатает на экран базовую информацию о курьере, как и о трудих рабочих.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#wearBackpack()" class="member-name-link">wearBackpack</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Определяет рюкзак курьера, как пустой стек.</div>
+</div>
 </div>
 </div>
 </div>
@@ -162,6 +181,13 @@ implements <a href="Worker.html" title="interface in pizzeria">Worker</a></span>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Courier</span><wbr><span class="parameters">(int&nbsp;courierId,
  int&nbsp;courierSpeed,
  int&nbsp;packCapacity)</span></div>
+<div class="block">Базовая инициализация без очереди склада.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>courierId</code> - номер курьера.</dd>
+<dd><code>courierSpeed</code> - сколько милисекунд работает курьер.</dd>
+<dd><code>packCapacity</code> - сколько пицц можно переносить в рюкзаке.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -171,6 +197,14 @@ implements <a href="Worker.html" title="interface in pizzeria">Worker</a></span>
  int&nbsp;courierSpeed,
  int&nbsp;packCapacity,
  <a href="BlockingDesk.html" title="class in pizzeria">BlockingDesk</a>&nbsp;storeQueue)</span></div>
+<div class="block">Полная инициализация всех параметров.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>courierId</code> - номер курьера.</dd>
+<dd><code>courierSpeed</code> - сколько милисекунд работает курьер.</dd>
+<dd><code>packCapacity</code> - сколько пицц можно переносить в рюкзаке.</dd>
+<dd><code>storeQueue</code> - очередь склада.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -185,10 +219,12 @@ implements <a href="Worker.html" title="interface in pizzeria">Worker</a></span>
 <section class="detail" id="getId()">
 <h3>getId</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getId</span>()</div>
+<div class="block">Функция вернет номер курьера.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Worker.html#getId()">getId</a></code>&nbsp;in interface&nbsp;<code><a href="Worker.html" title="interface in pizzeria">Worker</a></code></dd>
 <dt>Returns:</dt>
+<dd>courierId.</dd>
 </dl>
 </section>
 </li>
@@ -196,10 +232,12 @@ implements <a href="Worker.html" title="interface in pizzeria">Worker</a></span>
 <section class="detail" id="getSpeed()">
 <h3>getSpeed</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getSpeed</span>()</div>
+<div class="block">Функция вернет скорость доставки заказов курьером.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Worker.html#getSpeed()">getSpeed</a></code>&nbsp;in interface&nbsp;<code><a href="Worker.html" title="interface in pizzeria">Worker</a></code></dd>
 <dt>Returns:</dt>
+<dd>courierSpeed.</dd>
 </dl>
 </section>
 </li>
@@ -207,24 +245,43 @@ implements <a href="Worker.html" title="interface in pizzeria">Worker</a></span>
 <section class="detail" id="getPackCapacity()">
 <h3>getPackCapacity</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getPackCapacity</span>()</div>
+<div class="block">Функция вернет вместимость курьерского рюкзака.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>backpackCapacity.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="wearBackpack()">
 <h3>wearBackpack</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">wearBackpack</span>()</div>
+<div class="block">Определяет рюкзак курьера, как пустой стек.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="setStore(pizzeria.BlockingDesk)">
 <h3>setStore</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setStore</span><wbr><span class="parameters">(<a href="BlockingDesk.html" title="class in pizzeria">BlockingDesk</a>&nbsp;storeQueue)</span></div>
+<div class="block">Определяем склад, из которого курьер будет получать заказы.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>storeQueue</code> - </dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="run()">
 <h3>run</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">run</span>()</div>
+<div class="block">Исоплнение задачи курьера по доставке заказов со склада. Курьер сначала будет ждать,
+ пока не появится первая пицца, которую он может сложить в свой рюкзак. Затем, сложив её он
+ попробует взять ещё пиццы со склада, если пиццы больше нет, то он поедет развозить взятые
+ заказы. Если пицца ещё есть, то он будет брать новые заказы, пока не заполнится его
+ портфель. Потом он доставить взятые пиццы. Курьер будет исполнять этот цикл, пока пиццерия
+ не закрылась или пока не опустел склад.
+ Если пиццерия закрылась в разгар работы курьера, то курьер будет доставлять заказы пока
+ не опустеет склад.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html#run()" title="class or interface in java.lang" class="external-link">run</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a></code></dd>
@@ -235,9 +292,12 @@ implements <a href="Worker.html" title="interface in pizzeria">Worker</a></span>
 <section class="detail" id="toString()">
 <h3>toString</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">toString</span>()</div>
+<div class="block">Печатает на экран базовую информацию о курьере, как и о трудих рабочих.</div>
 <dl class="notes">
 <dt>Overrides:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
+<dt>Returns:</dt>
+<dd>строку с информацией.</dd>
 </dl>
 </section>
 </li>
