@@ -26,15 +26,12 @@ public class WorkerFactoryPizzeria {
      * @return Новая нить, на которой будет запущен работник.
      */
     public Thread hireWorker(Worker worker) {
-        switch (worker.getClass().getName()) {
-            case "pizzeria.Chef":
-                ((Chef) worker).setQueues(source, destination);
-                break;
-            case "pizzeria.Courier":
-                ((Courier) worker).setStore(destination);
-                break;
-            default:
-                return null;
+        if (worker instanceof Chef chef) {
+            chef.setQueues(source, destination);
+        } else if (worker instanceof Courier courier) {
+            courier.setStore(destination);
+        } else {
+            return null;
         }
         return new Thread(worker);
     }
