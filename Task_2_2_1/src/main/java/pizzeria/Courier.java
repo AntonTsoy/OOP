@@ -104,7 +104,6 @@ public class Courier implements Worker {
             this.storeQueue = storeQueue;
         } else {
             logger.error(this + " курьер пытается поменять текущую очередь склада!");
-            throw new RuntimeException();
         }
     }
 

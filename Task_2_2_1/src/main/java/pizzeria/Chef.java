@@ -74,14 +74,12 @@ public class Chef implements Worker {
             this.orderQueue = orders;
         } else {
             logger.error(this + " повар пытается поменять текущую очередь заказов!");
-            throw new RuntimeException();
         }
 
         if (this.storeQueue == null && storehouse != null) {
             this.storeQueue = storehouse;
         } else {
             logger.error(this + " повар пытается поменять текущую очередь склада!");
-            throw new RuntimeException();
         }
     }
 
@@ -99,7 +97,7 @@ public class Chef implements Worker {
                 break;
             }
 
-            logger.info(this + " повар взял заказ: " + currOrder);
+            logger.info(this + " повар взял заказ: " + this.currOrder);
             this.currOrder.nextState();
             logger.info(this + " повар готовит пиццу.");
             try {
@@ -112,7 +110,7 @@ public class Chef implements Worker {
             this.currOrder.nextState();
             logger.info(this + " повар c заказом стоит в очереди на склад.");
             try {
-                storeQueue.push(currOrder);
+                storeQueue.push(this.currOrder);
             } catch (InterruptedException e) {
                 logger.info(this + " повар получил сообщение о закрытии, пока стоял у склада.");
                 break;
@@ -125,7 +123,7 @@ public class Chef implements Worker {
         if (this.currOrder != null && this.currOrder.getStateId() < 3) {
             try {
                 currOrder.resetState();
-                orderQueue.addFirst(currOrder);
+                orderQueue.addFirst(this.currOrder);
             } catch (InterruptedException e) {
                 logger.error("Нить была прервана второй раз подряд!!!");
             }
