@@ -31,7 +31,7 @@ public class Main extends Application {
     private static final String FOOD_IMAGE = Main.class.getResource("img/apple.png").toExternalForm();
 
     private GraphicsContext gc;
-    private List<Point> snakeBody = new ArrayList();
+    private List<Point> snakeBody = new ArrayList<Point>();
     private Point snakeHead;
     private Image foodImage;
     private int foodX;
