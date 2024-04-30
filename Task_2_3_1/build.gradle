@@ -49,6 +49,6 @@ test {
 
 jacocoTestReport {
     reports {
-        xml.required = true
+        xml.required = false
     }
 }
