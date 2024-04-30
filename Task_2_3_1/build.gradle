@@ -33,10 +33,22 @@ javafx {
 
 dependencies {
     implementation("org.openjfx:javafx-fxml:17.0.10")
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+test {
+    useJUnitPlatform()
 }
 
 jacocoTestReport {
     reports {
-        xml.required = false
+        xml.required = true
     }
 }
