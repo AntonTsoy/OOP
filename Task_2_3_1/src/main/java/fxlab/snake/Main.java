@@ -81,7 +81,7 @@ public class Main extends Application {
         snakeHead = snakeBody.get(0);
         generateFood();
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(130), e -> run(gc)));
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(300), e -> run(gc)));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
