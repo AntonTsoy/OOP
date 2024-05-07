@@ -31,9 +31,12 @@ public class Main extends Application {
     private static final String FOOD_IMAGE = Main.class.getResource("img/apple.png").toExternalForm();
 
     private GraphicsContext gc;
+    //SNAKE-BEGIN///////////////////////////////////////////
     private List<Point> snakeBody = new ArrayList<Point>();
     private Point snakeHead;
+    //SNAKE-END/////////////////////////////////////////////
     private Image foodImage;
+    //
     private int foodX;
     private int foodY;
     private boolean gameOver;
@@ -42,12 +45,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Snake");
-        Group root = new Group();
         Canvas canvas = new Canvas(WIDTH, HEIGHT);
+        Group root = new Group();
         root.getChildren().add(canvas);
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
+        primaryStage.setTitle("Snake");
         primaryStage.show();
         gc = canvas.getGraphicsContext2D();
 
@@ -98,6 +101,7 @@ public class Main extends Application {
         drawSnake(gc);
         drawScore();
 
+//SNAKE-BEGIN///////////////////////////////////////////////////
         for (int i = snakeBody.size() - 1; i >= 1; i--) {
             snakeBody.get(i).x = snakeBody.get(i - 1).x;
             snakeBody.get(i).y = snakeBody.get(i - 1).y;
@@ -117,9 +121,9 @@ public class Main extends Application {
                 moveDown();
                 break;
         }
-
         gameOver();
         eatFood();
+//SNAKE-END//////////////////////////////////////////////////////
     }
 
     private void drawBackground(GraphicsContext gc) {
@@ -135,6 +139,7 @@ public class Main extends Application {
         }
     }
 
+//FOOD-BEGIN////////////////////////////////////////////////////////////////////
     private void generateFood() {
         start:
         while (true) {
@@ -150,6 +155,7 @@ public class Main extends Application {
             break;
         }
     }
+//FOOD-END////////////////////////////////////////////////////////////////////////
 
     private void drawFood(GraphicsContext gc) {
         gc.drawImage(foodImage, foodX * SQUARE_SIZE, foodY * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
@@ -165,6 +171,7 @@ public class Main extends Application {
         }
     }
 
+//SNAKE-BEGIN/////////////////////////////////////////////////////////
     private void moveRight() {
         snakeHead.x = (snakeHead.x + 1) % COLUMNS;
     }
@@ -198,6 +205,7 @@ public class Main extends Application {
             score += 5;
         }
     }
+//SNAKE-END//////////////////////////////////////////////////////////////
 
     private void drawScore() {
         gc.setFill(Color.WHITE);
