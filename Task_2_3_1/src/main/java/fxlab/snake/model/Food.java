@@ -7,8 +7,8 @@ import fxlab.snake.Point;
  */
 public class Food {
 
-    private final int COLUMNS; 
-    private final int ROWS; 
+    private final int columns; 
+    private final int rows; 
 
     private Point food; 
 
@@ -19,8 +19,8 @@ public class Food {
      * @param rows The number of rows.
      */
     public Food(int cols, int rows) {
-        this.COLUMNS = cols; 
-        this.ROWS = rows; 
+        this.columns = cols; 
+        this.rows = rows; 
         this.food = new Point(-1, -1); 
     }
     
@@ -32,8 +32,8 @@ public class Food {
     public void generateFood(Snake snake) {
         start: 
         while (true) {
-            this.food.setX((int)(Math.random() * this.COLUMNS));
-            this.food.setY((int)(Math.random() * this.ROWS));
+            this.food.setX((int) (Math.random() * this.columns));
+            this.food.setY((int) (Math.random() * this.rows));
 
             for (Point snakePoint : snake.getSnakeBody()) {
                 if (snakePoint.getX() == food.getX() && snakePoint.getY() == food.getY()) {

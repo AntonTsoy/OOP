@@ -26,13 +26,13 @@ import fxlab.snake.model.Food;
  */
 public class Main extends Application {
 
-    private static final int WIDTH = 800; // The width of the game window
-    private static final int HEIGHT = WIDTH; // The height of the game window
-    private static final int ROWS = 20; // The number of rows in the game grid
-    private static final int COLUMNS = ROWS; // The number of columns in the game grid
-    private static final int SQUARE_SIZE = WIDTH / ROWS; // The size of each square in the grid
-    private static final int FOOD_CNT = 4; // The number of different food images
-    private static String[] FOOD_IMAGES = new String[FOOD_CNT]; // Array to store paths to food images
+    private static final int width = 800; // The width of the game window
+    private static final int height = width; // The height of the game window
+    private static final int rows = 20; // The number of rows in the game grid
+    private static final int columns = rows; // The number of columns in the game grid
+    private static final int squareSize = width / rows; // The size of each square in the grid
+    private static final int foodCnt = 4; // The number of different food images
+    private static String[] foodImages = new String[foodCnt]; // Array to store paths to food images
 
     private GraphicsContext graphContext; // Graphics context for rendering
     private Image foodImage; // The image of the food
@@ -48,12 +48,12 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Initialization of food images array
-        for (int i = 0; i < FOOD_CNT; i++) {
-            FOOD_IMAGES[i] = Main.class.getResource("img/" + i + ".png").toExternalForm();
+        for (int i = 0; i < foodCnt; i++) {
+            foodImages[i] = Main.class.getResource("img/" + i + ".png").toExternalForm();
         }
 
         // Initialization of the game canvas and scene
-        Canvas canvas = new Canvas(WIDTH, HEIGHT);
+        Canvas canvas = new Canvas(width, height);
         Group root = new Group();
         root.getChildren().add(canvas);
         Scene scene = new Scene(root);
@@ -63,10 +63,10 @@ public class Main extends Application {
 
         // Initialization of graphics context and game objects
         graphContext = canvas.getGraphicsContext2D();
-        snake = new Snake(COLUMNS, ROWS);
-        food = new Food(COLUMNS, ROWS);
+        snake = new Snake(columns, rows);
+        food = new Food(columns, rows);
         food.generateFood(snake);
-        foodImage = new Image(FOOD_IMAGES[(int)(Math.random() * FOOD_CNT)]);
+        foodImage = new Image(foodImages[(int) (Math.random() * foodCnt)]);
 
         // Event handler for keyboard input
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -102,7 +102,7 @@ public class Main extends Application {
         if (snake.isGameOver()) {
             graphContext.setFill(Color.RED);
             graphContext.setFont(new Font("Digital-7", 70));
-            graphContext.fillText("Game Over", WIDTH / 3.5, HEIGHT / 2);
+            graphContext.fillText("Game Over", width / 3.5, height / 2);
             return;
         }
 
@@ -116,7 +116,7 @@ public class Main extends Application {
         snake.move();
         if (snake.isEatenFood(food)) {
             food.generateFood(snake);
-            foodImage = new Image(FOOD_IMAGES[(int)(Math.random() * FOOD_CNT)]);
+            foodImage = new Image(foodImages[(int) (Math.random() * foodCnt)]);
         }
     }
 
@@ -127,14 +127,14 @@ public class Main extends Application {
      */
     private void drawBackground(GraphicsContext graphContext) {
         // Drawing background grid
-        for (int i = 0; i < ROWS; i++) {
-            for (int j = 0; j < COLUMNS; j++) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
                 if ((i + j) % 2 == 0) {
                     graphContext.setFill(Color.web("AAD751"));
                 } else {
                     graphContext.setFill(Color.web("A2D149"));
                 }
-                graphContext.fillRect(i * SQUARE_SIZE, j * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
+                graphContext.fillRect(i * squareSize, j * squareSize, squareSize, squareSize);
             }
         }
     }
@@ -147,8 +147,8 @@ public class Main extends Application {
     private void drawFood(GraphicsContext graphContext) {
         Point foodCoords = food.getFood();
         graphContext.drawImage(
-            this.foodImage, foodCoords.getX() * SQUARE_SIZE, 
-            foodCoords.getY() * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
+            this.foodImage, foodCoords.getX() * squareSize, 
+            foodCoords.getY() * squareSize, squareSize, squareSize);
     }
 
     /**
@@ -159,14 +159,14 @@ public class Main extends Application {
     private void drawSnake(GraphicsContext graphContext) {
         Point snakeHead = snake.getSnakeHead();
         graphContext.setFill(Color.web("4674E9"));
-        graphContext.fillRoundRect(snakeHead.getX() * SQUARE_SIZE, snakeHead.getY() * SQUARE_SIZE,
-            SQUARE_SIZE - 1, SQUARE_SIZE - 1, 35, 35);
+        graphContext.fillRoundRect(snakeHead.getX() * squareSize, snakeHead.getY() * squareSize,
+            squareSize - 1, squareSize - 1, 35, 35);
 
         List<Point> snakeBody = snake.getSnakeBody();
         for (int i = 1; i < snakeBody.size(); i++) {
-            graphContext.fillRoundRect(snakeBody.get(i).getX() * SQUARE_SIZE,
-                snakeBody.get(i).getY() * SQUARE_SIZE, SQUARE_SIZE - 1,
-                SQUARE_SIZE - 1, 20, 20);
+            graphContext.fillRoundRect(snakeBody.get(i).getX() * squareSize,
+                snakeBody.get(i).getY() * squareSize, squareSize - 1,
+                squareSize - 1, 20, 20);
         }
     }
 

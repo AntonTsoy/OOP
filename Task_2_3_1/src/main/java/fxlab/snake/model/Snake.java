@@ -10,10 +10,10 @@ import java.util.List;
  */
 public class Snake {
 
-    private final static int START_LENGTH = 1;
+    private static final int startLength = 1;
 
-    private final int COLUMNS;
-    private final int ROWS;
+    private final int columns;
+    private final int rows;
 
     private List<Point> snakeBody;
     private Point snakeHead;
@@ -28,12 +28,12 @@ public class Snake {
      * @param rows The number of rows.
      */
     public Snake(int cols, int rows) {
-        this.COLUMNS = cols;
-        this.ROWS = rows;
+        this.columns = cols;
+        this.rows = rows;
 
         snakeBody = new ArrayList<Point>();
-        for (int snakePointId = 0; snakePointId < START_LENGTH; snakePointId++) {
-            snakeBody.add(new Point(this.COLUMNS / 2, this.ROWS / 2));
+        for (int snakePointId = 0; snakePointId < startLength; snakePointId++) {
+            snakeBody.add(new Point(this.columns / 2, this.rows / 2));
         }
         snakeHead = snakeBody.get(0);
     }
@@ -144,18 +144,18 @@ public class Snake {
     }
 
     private void moveRight() {
-        snakeHead.setX((snakeHead.getX() + 1) % this.COLUMNS);
+        snakeHead.setX((snakeHead.getX() + 1) % this.columns);
     }
 
     private void moveLeft() {
-        snakeHead.setX((snakeHead.getX() - 1 + this.COLUMNS) % this.COLUMNS);
+        snakeHead.setX((snakeHead.getX() - 1 + this.columns) % this.columns);
     }
 
     private void moveUp() {
-        snakeHead.setY((snakeHead.getY() - 1 + this.ROWS) % this.ROWS);
+        snakeHead.setY((snakeHead.getY() - 1 + this.rows) % this.rows);
     }
 
     private void moveDown() {
-        snakeHead.setY((snakeHead.getY() + 1) % this.ROWS);
+        snakeHead.setY((snakeHead.getY() + 1) % this.rows);
     }
 }
