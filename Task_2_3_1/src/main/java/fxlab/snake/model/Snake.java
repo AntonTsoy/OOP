@@ -139,7 +139,7 @@ public class Snake {
     private void checkGame() {
         for (int i = 1; i < snakeBody.size(); i++) {
             if (snakeHead.getX() == snakeBody.get(i).getX() 
-            && snakeHead.getY() == snakeBody.get(i).getY()) {
+                && snakeHead.getY() == snakeBody.get(i).getY()) {
                 this.gameContinue = false;
                 return;
             }

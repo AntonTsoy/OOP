@@ -1,9 +1,8 @@
 package fxlab.snake;
 
-
-import java.util.List;
 import fxlab.snake.model.Food;
 import fxlab.snake.model.Snake;
+import java.util.List;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;

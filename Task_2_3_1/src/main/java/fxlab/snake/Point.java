@@ -5,8 +5,8 @@ package fxlab.snake;
  */
 public class Point {
     
-    private int xCoord; // The x-coordinate of the point
-    private int yCoord; // The y-coordinate of the point
+    private int coordX; // The x-coordinate of the point
+    private int coordY; // The y-coordinate of the point
 
     /**
      * Constructs a new Point with the specified x and y coordinates.
@@ -15,8 +15,8 @@ public class Point {
      * @param y The y-coordinate of the point.
      */
     public Point(int x, int y) {
-        this.xCoord = x;
-        this.yCoord = y;
+        this.coordX = x;
+        this.coordY = y;
     }
 
     /**
@@ -25,7 +25,7 @@ public class Point {
      * @param newY The new y-coordinate of the point.
      */
     public void setY(int newY) {
-        this.yCoord = newY;
+        this.coordY = newY;
     }
 
     /**
@@ -34,7 +34,7 @@ public class Point {
      * @param newX The new x-coordinate of the point.
      */
     public void setX(int newX) {
-        this.xCoord = newX;
+        this.coordX = newX;
     }
 
     /**
@@ -43,7 +43,7 @@ public class Point {
      * @return The y-coordinate of the point.
      */
     public int getY() {
-        return this.yCoord;
+        return this.coordY;
     }
 
     /**
@@ -52,6 +52,6 @@ public class Point {
      * @return The x-coordinate of the point.
      */
     public int getX() {
-        return this.xCoord;
+        return this.coordX;
     }
 }

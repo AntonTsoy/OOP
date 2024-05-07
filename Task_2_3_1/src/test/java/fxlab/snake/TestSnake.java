@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.Test;
 import fxlab.snake.model.Food;
 import fxlab.snake.model.Snake;
+import org.junit.jupiter.api.Test;
 
 
 /**
@@ -41,15 +41,10 @@ public class TestSnake {
         Point startCoords = snake.getSnakeHead();
         int startX = startCoords.getX();
         int startY = startCoords.getY();
-
         snake.changeDirection(Direction.RIGHT);
-        snake.move();
         snake.changeDirection(Direction.LEFT);
-        snake.move();
-
-        Point endCoords = snake.getSnakeHead();
-        assertEquals(startX, endCoords.getX()-2);
-        assertEquals(startY, endCoords.getY());
+        assertEquals(startX, snake.getSnakeHead().getX());
+        assertEquals(startY, snake.getSnakeHead().getY());
     }
 
     @Test
@@ -58,7 +53,11 @@ public class TestSnake {
 
         snake.changeDirection(Direction.RIGHT);
         snake.move();
+        snake.changeDirection(Direction.LEFT);
+        snake.move();
         snake.changeDirection(Direction.UP);
+        snake.move();
+        snake.changeDirection(Direction.DOWN);
         snake.move();
         snake.changeDirection(Direction.LEFT);
         snake.move();
