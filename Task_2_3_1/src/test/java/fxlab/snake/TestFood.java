@@ -1,11 +1,11 @@
 package fxlab.snake;
 
-import fxlab.snake.model.Food;
-import fxlab.snake.model.Snake;
-
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+import fxlab.snake.model.Food;
+import fxlab.snake.model.Snake;
 
 
 /**

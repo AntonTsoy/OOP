@@ -1,15 +1,13 @@
 package fxlab.snake;
 
-import fxlab.snake.model.Food;
-import fxlab.snake.model.Snake;
-
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+import fxlab.snake.model.Food;
+import fxlab.snake.model.Snake;
 
 
 /**
@@ -53,6 +51,23 @@ public class TestSnake {
         assertEquals(startX, endCoords.getX()-2);
         assertEquals(startY, endCoords.getY());
     }
+
+    @Test
+    public void testIsGameOverHard() {
+        Snake snake = new Snake(10, 10);
+
+        snake.changeDirection(Direction.RIGHT);
+        snake.move();
+        snake.changeDirection(Direction.UP);
+        snake.move();
+        snake.changeDirection(Direction.LEFT);
+        snake.move();
+        snake.changeDirection(Direction.DOWN);
+        snake.move();
+
+        assertFalse(snake.isGameOver());
+    }
+
 
     @Test
     public void testGetSnakeHead() {
