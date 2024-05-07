@@ -1,7 +1,6 @@
 package fxlab.snake.model;
 
 import fxlab.snake.Point;
-import javafx.scene.image.Image;
 
 
 public class Food {
@@ -14,21 +13,25 @@ public class Food {
     public Food(int cols, int rows) {
         this.COLUMNS = cols;
         this.ROWS = rows;
+        this.food = new Point(-1, -1);
     }
     
     public void generateFood(Snake snake) {
         start:
         while (true) {
-            food.setX((int)(Math.random() * COLUMNS));
-            food.setY((int)(Math.random() * ROWS));
+            this.food.setX((int)(Math.random() * this.COLUMNS));
+            this.food.setY((int)(Math.random() * this.ROWS));
 
-            for (Point snakePoint : snake.getSankeBody()) {
+            for (Point snakePoint : snake.getSnakeBody()) {
                 if (snakePoint.getX() == food.getX() && snakePoint.getY() == food.getY()) {
                     continue start;
                 }
             }
-            foodImage = new Image(FOOD_IMAGE);
             break;
         }
+    }
+
+    public Point getFood() {
+        return food;
     }
 }

@@ -1,5 +1,6 @@
 package fxlab.snake.model;
 
+import fxlab.snake.Direction;
 import fxlab.snake.Point;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,9 @@ public class Snake {
 
     private List<Point> snakeBody;
     private Point snakeHead;
+    private Direction dir;
+    private boolean gameContinue = true;
+    private int score = 0;
 
     public Snake(int cols, int rows) {
         this.COLUMNS = cols;
@@ -25,32 +29,41 @@ public class Snake {
         }
         snakeHead = snakeBody.get(0);
     }
-    
+
     public boolean isGameOver() {
-        for (int i = 1; i < snakeBody.size(); i++) {
-            if (snakeHead.getX() == snakeBody.get(i).getX() && snakeHead.getY() == snakeBody.get(i).getY()) {
-                return true;
-            }
+        return !this.gameContinue;
+    }
+
+    public boolean isEatenFood(Food food) {
+        Point foodCoords = food.getFood();
+        if (snakeHead.getX() == foodCoords.getX() && snakeHead.getY() == foodCoords.getY()) {
+            snakeBody.add(new Point(-1, -1));
+            this.score += 5;
+            return true;
         }
 
         return false;
     }
 
-    public void eatFood() {
-        if (snakeHead.getX() == foodX && snakeHead.getY() == foodY) {
-            snakeBody.add(new Point(-1, -1));
-            generateFood();
-            score += 5;
+    public void changeDirection(Direction newDirection) {
+        if (newDirection == Direction.RIGHT && this.dir != Direction.LEFT) {
+            this.dir = Direction.RIGHT;
+        } else if (newDirection == Direction.LEFT && this.dir != Direction.RIGHT) {
+            this.dir = Direction.LEFT;
+        } else if (newDirection == Direction.UP && this.dir != Direction.DOWN) {
+            this.dir = Direction.UP;
+        } else if (newDirection == Direction.DOWN && this.dir != Direction.UP) {
+            this.dir = Direction.DOWN;
         }
     }
 
-    public void snakeMove() {
+    public void move() {
         for (int i = snakeBody.size() - 1; i >= 1; i--) {
             this.snakeBody.get(i).setX(snakeBody.get(i - 1).getX());
             this.snakeBody.get(i).setY(snakeBody.get(i - 1).getY());
         }
 
-        switch (currentDirection) {  // Мб лучше сначала голова, потом остальное тело
+        switch (dir) {  // Мб лучше сначала голова, потом остальное тело
             case RIGHT:
                 moveRight();
                 break;
@@ -64,12 +77,28 @@ public class Snake {
                 moveDown();
                 break;
         }
-         = isGameOver();
-        eatFood();
+        checkGame();
     }
 
-    public List<Point> getSankeBody() {
+    public Point getSnakeHead() {
+        return this.snakeHead;
+    }
+
+    public List<Point> getSnakeBody() {
         return this.snakeBody;
+    }
+
+    public int getScore() {
+        return this.score;
+    }
+
+    private void checkGame() {
+        for (int i = 1; i < snakeBody.size(); i++) {
+            if (snakeHead.getX() == snakeBody.get(i).getX() && snakeHead.getY() == snakeBody.get(i).getY()) {
+                this.gameContinue = false;
+                return;
+            }
+        }
     }
 
     private void moveRight() {
