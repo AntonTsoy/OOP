@@ -42,7 +42,6 @@ public class TestSnake {
         int startX = startCoords.getX();
         int startY = startCoords.getY();
         snake.changeDirection(Direction.RIGHT);
-        snake.changeDirection(Direction.LEFT);
         assertEquals(startX, snake.getSnakeHead().getX());
         assertEquals(startY, snake.getSnakeHead().getY());
     }
@@ -84,5 +83,28 @@ public class TestSnake {
     public void testGetScore() {
         Snake snake = new Snake(10, 10);
         assertEquals(0, snake.getScore());
+    }
+
+    @Test
+    public void testSnakeEats5FoodsThenHitsItself() {
+        Snake snake = new Snake(10, 10);
+        Food food = new Food(10, 10);
+
+        snake.changeDirection(Direction.UP);
+        for (int i = 0; i < 5; i++) {
+            snake.move();
+            food.getFood().setX(snake.getSnakeHead().getX());
+            food.getFood().setY(snake.getSnakeHead().getY());
+            snake.isEatenFood(food);
+        }
+
+        // Change direction to hit itself
+        snake.changeDirection(Direction.RIGHT);
+        snake.move();
+        snake.changeDirection(Direction.DOWN);
+        snake.move();
+        snake.changeDirection(Direction.LEFT);
+        snake.move();
+        assertTrue(snake.isGameOver());
     }
 }
