@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"fxlab.snake","l":"fxlab.snake"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"fxlab.snake","l":"fxlab.snake"},{"m":"fxlab.snake","l":"fxlab.snake.model"}];updateSearchResults();
