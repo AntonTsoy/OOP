@@ -70,8 +70,8 @@ public class Main extends Application {
             }
         });
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(270), 
-            e -> run(graphContext)));
+        Timeline timeline = new Timeline(new KeyFrame(
+            Duration.millis(270), e -> run(graphContext)));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
