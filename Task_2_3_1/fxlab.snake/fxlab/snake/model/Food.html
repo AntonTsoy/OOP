@@ -78,6 +78,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Food</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Represents the food in the game.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -91,7 +92,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,int)" class="member-name-link">Food</a><wbr>(int&nbsp;cols,
  int&nbsp;rows)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Constructs a new Food object with the specified number of columns and rows.</div>
+</div>
 </div>
 </section>
 </li>
@@ -108,10 +111,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#generateFood(fxlab.snake.model.Snake)" class="member-name-link">generateFood</a><wbr>(<a href="Snake.html" title="class in fxlab.snake.model">Snake</a>&nbsp;snake)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Generates a new position for the food that does not coincide with the snake's position.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Point.html" title="class in fxlab.snake">Point</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getFood()" class="member-name-link">getFood</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets the current position of the food.</div>
+</div>
 </div>
 </div>
 </div>
@@ -134,6 +141,12 @@ loadScripts(document, 'script');</script>
 <h3>Food</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Food</span><wbr><span class="parameters">(int&nbsp;cols,
  int&nbsp;rows)</span></div>
+<div class="block">Constructs a new Food object with the specified number of columns and rows.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>cols</code> - The number of columns.</dd>
+<dd><code>rows</code> - The number of rows.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -148,12 +161,22 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="generateFood(fxlab.snake.model.Snake)">
 <h3>generateFood</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">generateFood</span><wbr><span class="parameters">(<a href="Snake.html" title="class in fxlab.snake.model">Snake</a>&nbsp;snake)</span></div>
+<div class="block">Generates a new position for the food that does not coincide with the snake's position.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>snake</code> - The snake object.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getFood()">
 <h3>getFood</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Point.html" title="class in fxlab.snake">Point</a></span>&nbsp;<span class="element-name">getFood</span>()</div>
+<div class="block">Gets the current position of the food.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>The position of the food.</dd>
+</dl>
 </section>
 </li>
 </ul>
