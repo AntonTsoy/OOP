@@ -1,4 +1,4 @@
-package fxlab.snake;
+package fxlab.snake.model;
 
 /**
  * Represents a point in 2D space with x and y coordinates.

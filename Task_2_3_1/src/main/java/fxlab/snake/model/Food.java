@@ -1,6 +1,5 @@
 package fxlab.snake.model;
 
-import fxlab.snake.Point; 
 
 /**
  * Represents the food in the game.

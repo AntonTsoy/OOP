@@ -1,6 +1,7 @@
 package fxlab.snake;
 
 import fxlab.snake.model.Food;
+import fxlab.snake.model.Point;
 import fxlab.snake.model.Snake;
 import java.util.List;
 import javafx.animation.Animation;

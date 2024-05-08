@@ -1,7 +1,6 @@
 package fxlab.snake.model;
 
 import fxlab.snake.Direction;
-import fxlab.snake.Point;
 import java.util.ArrayList;
 import java.util.List;
 
