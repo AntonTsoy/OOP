@@ -3,6 +3,8 @@ package fxlab.snake;
 import fxlab.snake.model.Food;
 import fxlab.snake.model.Point;
 import fxlab.snake.model.Snake;
+
+import java.util.ArrayList;
 import java.util.List;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -33,12 +35,13 @@ public class Main extends Application {
     private static final int columns = rows; // The number of columns in the game grid
     private static final int squareSize = width / rows; // The size of each square in the grid
     private static final int foodCnt = 4; // The number of different food images
-    private static String[] foodImages = new String[foodCnt]; // Array to store paths to food images
+    private static final int gameFoodCnt = 3;
+    private static String[] sourceFoodImages = new String[foodCnt]; // Array to store paths to food images
 
     private GraphicsContext graphContext; // Graphics context for rendering
-    private Image foodImage; // The image of the food
+    private List<Image> gameFoodImages; // The image of the food
     private Snake snake; // The snake object
-    private Food food; // The food object
+    private List<Food> gameFood; // The food object
 
     /**
      * Starts the game and initializes the game window and objects.
@@ -50,7 +53,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         // Initialization of food images array
         for (int i = 0; i < foodCnt; i++) {
-            foodImages[i] = Main.class.getResource("img/" + i + ".png").toExternalForm();
+            sourceFoodImages[i] = Main.class.getResource("img/" + i + ".png").toExternalForm();
         }
 
         // Initialization of the game canvas and scene
@@ -65,9 +68,14 @@ public class Main extends Application {
         // Initialization of graphics context and game objects
         graphContext = canvas.getGraphicsContext2D();
         snake = new Snake(columns, rows);
-        food = new Food(columns, rows);
-        food.generateFood(snake);
-        foodImage = new Image(foodImages[(int) (Math.random() * foodCnt)]);
+        gameFoodImages = new ArrayList<Image>(gameFoodCnt);
+        gameFood = new ArrayList<Food>(gameFoodCnt);
+        for (int foodId = 0; foodId < gameFoodCnt; foodId++) {
+            gameFoodImages.add(new Image(sourceFoodImages[(int) (Math.random() * foodCnt)]));
+            Food pieceFood = new Food(columns, rows);
+            pieceFood.generateFood(snake, gameFood);
+            gameFood.add(pieceFood);
+        }
 
         // Event handler for keyboard input
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -115,9 +123,14 @@ public class Main extends Application {
 
         // Move snake and check for food
         snake.move();
-        if (snake.isEatenFood(food)) {
-            food.generateFood(snake);
-            foodImage = new Image(foodImages[(int) (Math.random() * foodCnt)]);
+        int eatenFoodId = snake.isEatenFood(gameFood);
+        if (eatenFoodId >= 0) {
+            gameFood.remove(eatenFoodId);
+            gameFoodImages.remove(eatenFoodId);
+            Food pieceFood = new Food(columns, rows);
+            pieceFood.generateFood(snake, gameFood);
+            gameFood.add(pieceFood);
+            gameFoodImages.add(new Image(sourceFoodImages[(int) (Math.random() * foodCnt)]));
         }
     }
 
@@ -146,10 +159,13 @@ public class Main extends Application {
      * @param graphContext The graphics context for rendering.
      */
     private void drawFood(GraphicsContext graphContext) {
-        Point foodCoords = food.getFood();
-        graphContext.drawImage(
-            this.foodImage, foodCoords.getX() * squareSize, 
-            foodCoords.getY() * squareSize, squareSize, squareSize);
+        Point foodCoords;
+        for (int foodId = 0; foodId < gameFoodCnt; foodId++) {
+            foodCoords = gameFood.get(foodId).getFood();
+            graphContext.drawImage(
+                this.gameFoodImages.get(foodId), foodCoords.getX() * squareSize, 
+                foodCoords.getY() * squareSize, squareSize, squareSize);
+        }
     }
 
     /**

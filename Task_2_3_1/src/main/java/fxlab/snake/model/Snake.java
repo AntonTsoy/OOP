@@ -64,6 +64,27 @@ public class Snake {
     }
 
     /**
+     * Checks if the snake has eaten the food.
+     *
+     * @param gameFood The list of food objects.
+     * @return true if the snake has eaten the food, false otherwise.
+     */
+    public int isEatenFood(List<Food> gameFood) {
+        Point foodCoords;
+        for (int foodId = 0; foodId < gameFood.size(); foodId++){
+            foodCoords = gameFood.get(foodId).getFood();
+
+            if (snakeHead.getX() == foodCoords.getX() && snakeHead.getY() == foodCoords.getY()) {
+                snakeBody.add(new Point(-1, -1));
+                this.score += 5;
+                return foodId;
+            }
+        }
+
+        return -1;
+    }
+
+    /**
      * Changes the direction of the snake.
      *
      * @param newDirection The new direction.

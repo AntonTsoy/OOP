@@ -1,5 +1,6 @@
 package fxlab.snake.model;
 
+import java.util.List;
 
 /**
  * Represents the food in the game.
@@ -37,6 +38,34 @@ public class Food {
             for (Point snakePoint : snake.getSnakeBody()) {
                 if (snakePoint.getX() == food.getX() && snakePoint.getY() == food.getY()) {
                     continue start; 
+                }
+            }
+            break; 
+        }
+    }
+
+    /**
+     * Generates a new position for the food that does not coincide with the snake's and another
+     * food position.
+     *
+     * @param snake The snake object.
+     * @param gameFood The food list of the game.
+     */
+    public void generateFood(Snake snake, List<Food> gameFood) {
+        start: 
+        while (true) {
+            this.food.setX((int) (Math.random() * this.columns));
+            this.food.setY((int) (Math.random() * this.rows));
+
+            for (Point snakePoint : snake.getSnakeBody()) {
+                if (snakePoint.getX() == food.getX() && snakePoint.getY() == food.getY()) {
+                    continue start; 
+                }
+            }
+            for (Food pieceFood : gameFood) {
+                if (pieceFood.getFood().getX() == food.getX() 
+                    && pieceFood.getFood().getY() == food.getY()) {
+                    continue start;
                 }
             }
             break; 
