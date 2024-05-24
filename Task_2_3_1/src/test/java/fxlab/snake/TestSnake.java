@@ -5,7 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import fxlab.snake.model.Food;
+import fxlab.snake.model.Player;
 import fxlab.snake.model.Point;
 import fxlab.snake.model.Snake;
 import org.junit.jupiter.api.Test;
@@ -24,12 +28,13 @@ public class TestSnake {
 
     @Test
     public void testIsEatenFood() {
+        List<Player> enemies = new ArrayList<>();
         Snake snake = new Snake(10, 10);
         Food food = new Food(10, 10);
 
         // Snake head at food position
         snake.changeDirection(Direction.RIGHT);
-        snake.move();
+        snake.move(enemies);
         food.getFood().setX(snake.getSnakeHead().getX());
         food.getFood().setY(snake.getSnakeHead().getY());
 
@@ -49,20 +54,21 @@ public class TestSnake {
 
     @Test
     public void testIsGameOverHard() {
+        List<Player> enemies = new ArrayList<>();
         Snake snake = new Snake(10, 10);
 
         snake.changeDirection(Direction.RIGHT);
-        snake.move();
+        snake.move(enemies);
         snake.changeDirection(Direction.LEFT);
-        snake.move();
+        snake.move(enemies);
         snake.changeDirection(Direction.UP);
-        snake.move();
+        snake.move(enemies);
         snake.changeDirection(Direction.DOWN);
-        snake.move();
+        snake.move(enemies);
         snake.changeDirection(Direction.LEFT);
-        snake.move();
+        snake.move(enemies);
         snake.changeDirection(Direction.DOWN);
-        snake.move();
+        snake.move(enemies);
 
         assertFalse(snake.isGameOver());
     }
@@ -88,12 +94,13 @@ public class TestSnake {
 
     @Test
     public void testSnakeEats5FoodsThenHitsItself() {
+        List<Player> enemies = new ArrayList<>();
         Snake snake = new Snake(10, 10);
         Food food = new Food(10, 10);
 
         snake.changeDirection(Direction.UP);
         for (int i = 0; i < 5; i++) {
-            snake.move();
+            snake.move(enemies);
             food.getFood().setX(snake.getSnakeHead().getX());
             food.getFood().setY(snake.getSnakeHead().getY());
             snake.isEatenFood(food);
@@ -101,11 +108,12 @@ public class TestSnake {
 
         // Change direction to hit itself
         snake.changeDirection(Direction.RIGHT);
-        snake.move();
+        snake.move(enemies);
         snake.changeDirection(Direction.DOWN);
-        snake.move();
+        snake.move(enemies);
         snake.changeDirection(Direction.LEFT);
-        snake.move();
+        snake.move(enemies);
+        snake.move(enemies);
         assertTrue(snake.isGameOver());
     }
 }
