@@ -165,6 +165,11 @@ public class Snake implements Player {
         return this.score;
     }
 
+    /**
+     * Function return a snake moving direction.
+     *
+     * @return snake direction.
+     */
     public Direction getDirection() {
         return this.dir;
     }

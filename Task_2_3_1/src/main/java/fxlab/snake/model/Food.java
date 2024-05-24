@@ -23,14 +23,14 @@ public class Food {
         this.rows = rows; 
         this.food = new Point(-1, -1); 
     }
-    
+
     /**
      * Generates a new position for the food that does not coincide with the snake's position.
      *
      * @param snake The snake object.
      */
     public void generateFood(Snake snake) {
-        start: 
+        start:
         while (true) {
             this.food.setX((int) (Math.random() * this.columns));
             this.food.setY((int) (Math.random() * this.rows));
@@ -50,9 +50,10 @@ public class Food {
      *
      * @param snake The snake object.
      * @param gameFood The food list of the game.
+     * @param otherPlayers The list of other players in the game.
      */
     public void generateFood(Snake snake, List<Food> gameFood, List<Player> otherPlayers) {
-        start: 
+        start:
         while (true) {
             this.food.setX((int) (Math.random() * this.columns));
             this.food.setY((int) (Math.random() * this.rows));
@@ -64,7 +65,7 @@ public class Food {
             }
             for (Food pieceFood : gameFood) {
                 if (pieceFood.getFood().getX() == food.getX() 
-                    && pieceFood.getFood().getY() == food.getY()) {
+                        && pieceFood.getFood().getY() == food.getY()) {
                     continue start;
                 }
             }

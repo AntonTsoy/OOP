@@ -2,7 +2,6 @@ package fxlab.snake.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import fxlab.snake.Direction;
 
 /**
@@ -24,6 +23,9 @@ public class BotSnake implements Player {
      *
      * @param cols The number of columns.
      * @param rows The number of rows.
+     * @param startLength The initial length of the snake.
+     * @param startX The initial X position of the snake.
+     * @param startY The initial Y position of the snake.
      */
     public BotSnake(int cols, int rows, int startLength, int startX, int startY) {
         this.columns = cols;
@@ -32,7 +34,7 @@ public class BotSnake implements Player {
 
         snakeBody = new ArrayList<Point>();
         for (int snakePointId = 0; snakePointId < startLength; snakePointId++) {
-            snakeBody.add(new Point(startX+snakePointId, startY));
+            snakeBody.add(new Point(startX + snakePointId, startY));
         }
         snakeHead = snakeBody.get(0);
     }
@@ -51,7 +53,7 @@ public class BotSnake implements Player {
      * Checks if the snake has eaten the food.
      *
      * @param gameFood The list of food objects.
-     * @return true if the snake has eaten the food, false otherwise.
+     * @return the index of the food eaten, or -1 if no food is eaten.
      */
     @Override
     public int isEatenFood(List<Food> gameFood) {
@@ -60,7 +62,7 @@ public class BotSnake implements Player {
         }
 
         Point foodCoords;
-        for (int foodId = 0; foodId < gameFood.size(); foodId++){
+        for (int foodId = 0; foodId < gameFood.size(); foodId++) {
             foodCoords = gameFood.get(foodId).getFood();
 
             if (snakeHead.getX() == foodCoords.getX() && snakeHead.getY() == foodCoords.getY()) {
@@ -75,6 +77,9 @@ public class BotSnake implements Player {
 
     /**
      * Moves the snake one step in its current direction.
+     *
+     * @param target The target point to move towards.
+     * @param enemies The list of enemy players.
      */
     public void move(Point target, List<Player> enemies) {
         if (isGameOver()) {
@@ -105,8 +110,7 @@ public class BotSnake implements Player {
             players.add(this);
             if (isBadPosition(possibleWays.get(pointId), players)) {
                 possibleWays.remove(pointId);
-            }
-            else {
+            } else {
                 pointId++;
             }
         }
@@ -118,19 +122,20 @@ public class BotSnake implements Player {
         for (int wayId = 0; wayId < possibleWays.size(); wayId++) {
             int wayX = possibleWays.get(wayId).getX();
             int wayY = possibleWays.get(wayId).getY();
-            double distance = Math.sqrt(Math.pow(targetX-wayX, 2) + Math.pow(targetY-wayY, 2));
+            double sum = Math.pow(targetX - wayX, 2) + Math.pow(targetY - wayY, 2);
+            double distance = Math.sqrt(sum);
             if (distance < bestDistance) {
                 bestDistance = distance;
                 bestWayId = wayId;
             }
         }
-        
+
         if (bestWayId >= 0) {
             int bestX = possibleWays.get(bestWayId).getX();
             int bestY = possibleWays.get(bestWayId).getY();
             int deltaX = bestX - headX;
             int deltaY = bestY - headY;
-            if (deltaX == 1){
+            if (deltaX == 1) {
                 this.dir = Direction.RIGHT;
             } else if (deltaX == -1) {
                 this.dir = Direction.LEFT;
@@ -153,7 +158,7 @@ public class BotSnake implements Player {
                 snakeHead.setY((snakeHead.getY() + 1) % this.rows);
             }
         }
-        
+
         checkGame(enemies);
     }
 
@@ -192,7 +197,7 @@ public class BotSnake implements Player {
             List<Point> playerBody = player.getSnakeBody();
             for (int bodyPointId = 0; bodyPointId < playerBody.size(); bodyPointId++) {
                 if (position.getX() == playerBody.get(bodyPointId).getX()
-                && position.getY() == playerBody.get(bodyPointId).getY()) {
+                        && position.getY() == playerBody.get(bodyPointId).getY()) {
                     return true;
                 }
             }
@@ -202,8 +207,8 @@ public class BotSnake implements Player {
 
     private void checkGame(List<Player> enemies) {
         for (int i = 1; i < snakeBody.size(); i++) {
-            if (snakeHead.getX() == snakeBody.get(i).getX() 
-                && snakeHead.getY() == snakeBody.get(i).getY()) {
+            if (snakeHead.getX() == snakeBody.get(i).getX()
+                    && snakeHead.getY() == snakeBody.get(i).getY()) {
                 this.gameContinue = false;
                 return;
             }

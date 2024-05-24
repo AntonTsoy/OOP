@@ -38,8 +38,8 @@ public class Main extends Application {
     private static final int squareSize = width / rows; // The size of each square in the grid
     private static final int foodCnt = 4; // The number of different food images
     private static final int gameFoodCnt = 3;
-    private static String[] sourceFoodImages = new String[foodCnt]; // Array to store paths to food images
-
+    private static String[] sourceFoodImages = new String[foodCnt];
+    
     private GraphicsContext graphContext; // Graphics context for rendering
     private List<Image> gameFoodImages; // The image of the food
     private Snake snake; // The snake object
@@ -307,7 +307,7 @@ public class Main extends Application {
         }
         graphContext.setFill(Color.YELLOW);
         graphContext.setFont(new Font("Digital-7", 35));
-        graphContext.fillText("Score: " + yellow.getScore(), 10 + 16 * squareSize, 35);
+        graphContext.fillText("Score: " + yellow.getScore(), 10 + 15 * squareSize, 35);
     }
 
     /**

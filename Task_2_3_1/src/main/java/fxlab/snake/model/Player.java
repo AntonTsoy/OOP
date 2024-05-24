@@ -2,15 +2,18 @@ package fxlab.snake.model;
 
 import java.util.List;
 
+/**
+ * Interface describes common properties of snake game players.
+ */
 public interface Player {
 
-    public boolean isGameOver();
+    boolean isGameOver();
 
-    public int isEatenFood(List<Food> gameFood);
+    int isEatenFood(List<Food> gameFood);
 
-    public Point getSnakeHead();
+    Point getSnakeHead();
 
-    public List<Point> getSnakeBody();
+    List<Point> getSnakeBody();
 
-    public int getScore();
+    int getScore();
 }
