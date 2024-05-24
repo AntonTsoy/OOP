@@ -114,9 +114,17 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a new position for the food that does not coincide with the snake's position.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Point.html" title="class in fxlab.snake.model">Point</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getFood()" class="member-name-link">getFood</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#generateFood(fxlab.snake.model.Snake,java.util.List,java.util.List)" class="member-name-link">generateFood</a><wbr>(<a href="Snake.html" title="class in fxlab.snake.model">Snake</a>&nbsp;snake,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Food.html" title="class in fxlab.snake.model">Food</a>&gt;&nbsp;gameFood,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Player.html" title="interface in fxlab.snake.model">Player</a>&gt;&nbsp;otherPlayers)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Generates a new position for the food that does not coincide with the snake's and another
+ food position.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Point.html" title="class in fxlab.snake.model">Point</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getFood()" class="member-name-link">getFood</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Gets the current position of the food.</div>
 </div>
 </div>
@@ -165,6 +173,21 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>snake</code> - The snake object.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="generateFood(fxlab.snake.model.Snake,java.util.List,java.util.List)">
+<h3>generateFood</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">generateFood</span><wbr><span class="parameters">(<a href="Snake.html" title="class in fxlab.snake.model">Snake</a>&nbsp;snake,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Food.html" title="class in fxlab.snake.model">Food</a>&gt;&nbsp;gameFood,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Player.html" title="interface in fxlab.snake.model">Player</a>&gt;&nbsp;otherPlayers)</span></div>
+<div class="block">Generates a new position for the food that does not coincide with the snake's and another
+ food position.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>snake</code> - The snake object.</dd>
+<dd><code>gameFood</code> - The food list of the game.</dd>
 </dl>
 </section>
 </li>
