@@ -55,6 +55,10 @@ public class BotSnake implements Player {
      */
     @Override
     public int isEatenFood(List<Food> gameFood) {
+        if (isGameOver()) {
+            return -1;
+        }
+
         Point foodCoords;
         for (int foodId = 0; foodId < gameFood.size(); foodId++){
             foodCoords = gameFood.get(foodId).getFood();
@@ -73,8 +77,9 @@ public class BotSnake implements Player {
      * Moves the snake one step in its current direction.
      */
     public void move(Point target, List<Player> enemies) {
-        checkGame(enemies);
-
+        if (isGameOver()) {
+            return;
+        }
         if (target == null) {
             return;
         }
@@ -148,6 +153,8 @@ public class BotSnake implements Player {
                 snakeHead.setY((snakeHead.getY() + 1) % this.rows);
             }
         }
+        
+        checkGame(enemies);
     }
 
     /**

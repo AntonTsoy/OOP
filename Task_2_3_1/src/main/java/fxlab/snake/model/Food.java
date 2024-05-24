@@ -51,7 +51,7 @@ public class Food {
      * @param snake The snake object.
      * @param gameFood The food list of the game.
      */
-    public void generateFood(Snake snake, List<Food> gameFood) {
+    public void generateFood(Snake snake, List<Food> gameFood, List<Player> otherPlayers) {
         start: 
         while (true) {
             this.food.setX((int) (Math.random() * this.columns));
@@ -66,6 +66,13 @@ public class Food {
                 if (pieceFood.getFood().getX() == food.getX() 
                     && pieceFood.getFood().getY() == food.getY()) {
                     continue start;
+                }
+            }
+            for (Player player : otherPlayers) {
+                for (Point playerPoint : player.getSnakeBody()) {
+                    if (playerPoint.getX() == food.getX() && playerPoint.getY() == food.getY()) {
+                        continue start;
+                    }
                 }
             }
             break; 

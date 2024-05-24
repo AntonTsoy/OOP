@@ -76,24 +76,25 @@ public class Main extends Application {
         // Enemies
         this.enemies = new ArrayList<Player>();
         this.redEnemies = new ArrayList<Player>();
+        this.yellowEnemies = new ArrayList<Player>();
         this.red = new BotSnake(columns, rows, 5, 0, 0);
+        this.yellow = new BotSnake(columns, rows, 1, columns-1, rows-1);
         this.enemies.add(red);
-        if (this.enemies.isEmpty()) {
-            System.out.println("\n\nHHHHHHHHHHHHHHHHHHHH\n");
-            System.exit(-1);
-        }
+        this.enemies.add(yellow);
 
         // Initialization of graphics context and game objects
         graphContext = canvas.getGraphicsContext2D();
         snake = new Snake(columns, rows);
         this.redEnemies.add(snake);
+        this.redEnemies.add(yellow);
+        this.yellowEnemies.add(snake);
+        this.yellowEnemies.add(red);
         gameFoodImages = new ArrayList<Image>(gameFoodCnt);
         gameFood = new ArrayList<Food>(gameFoodCnt);
         for (int foodId = 0; foodId < gameFoodCnt; foodId++) {
             gameFoodImages.add(new Image(sourceFoodImages[(int) (Math.random() * foodCnt)]));
             Food pieceFood = new Food(columns, rows);
-            pieceFood.generateFood(snake, gameFood);
-            //pieceFood.generateFood(snake, gameFood, enemies);
+            pieceFood.generateFood(snake, gameFood, enemies);
             gameFood.add(pieceFood);
         }
 
@@ -140,22 +141,68 @@ public class Main extends Application {
         drawFood(graphContext);
         drawSnake(graphContext);
         drawRedEnemy(graphContext);
+        drawYellowEnemy(graphContext);
         drawScore();
+        drawYellowScore();
 
         Point redTarget = movePoint(snake.getSnakeHead(), snake.getDirection(), 1);
+        int enemyId = 0;
+        while (enemyId < redEnemies.size()) {
+            if (redEnemies.get(enemyId).isGameOver()) {
+                redEnemies.remove(enemyId);
+            } else {
+                enemyId++;
+            }
+        }
         this.red.move(redTarget, redEnemies);
+        enemyId = 0;
+        while (enemyId < yellowEnemies.size()) {
+            if (yellowEnemies.get(enemyId).isGameOver()) {
+                yellowEnemies.remove(enemyId);
+            } else {
+                enemyId++;
+            }
+        }
+        if (snake.getDirection() == null) {
+            this.yellow.move(null, yellowEnemies);
+        } else {
+            this.yellow.move(this.gameFood.get(0).getFood(), yellowEnemies);
+        }
 
         // Move snake and check for food
-        snake.move(enemies);
-        int eatenFoodId = snake.isEatenFood(gameFood);
-        if (eatenFoodId >= 0) {
-            gameFood.remove(eatenFoodId);
-            gameFoodImages.remove(eatenFoodId);
-            Food pieceFood = new Food(columns, rows);
-            pieceFood.generateFood(snake, gameFood);
-            gameFood.add(pieceFood);
-            gameFoodImages.add(new Image(sourceFoodImages[(int) (Math.random() * foodCnt)]));
+        enemyId = 0;
+        while (enemyId < enemies.size()) {
+            if (enemies.get(enemyId).isGameOver()) {
+                enemies.remove(enemyId);
+            } else {
+                enemyId++;
+            }
         }
+        snake.move(enemies);
+        int enemyFoodId = this.yellow.isEatenFood(gameFood);
+        int eatenFoodId = snake.isEatenFood(gameFood);
+        if (enemyFoodId >= 0 && eatenFoodId >= 0) {
+            if (enemyFoodId > eatenFoodId) {
+                checkDelFood(enemyFoodId);
+                checkDelFood(eatenFoodId);
+            } else if (eatenFoodId > enemyFoodId) {
+                checkDelFood(eatenFoodId);
+                checkDelFood(enemyFoodId);
+            }
+        } else if (enemyFoodId >= 0) {
+            checkDelFood(enemyFoodId);
+        } else if (eatenFoodId >= 0) {
+            checkDelFood(eatenFoodId);
+        }
+    }
+
+    private void checkDelFood(int foodId) {
+        gameFood.remove(foodId);
+        gameFoodImages.remove(foodId);
+        Food pieceFood = new Food(columns, rows);
+        pieceFood.generateFood(snake, gameFood, enemies);
+        gameFood.add(pieceFood);
+        gameFoodImages.add(new Image(sourceFoodImages[(int) (Math.random() * foodCnt)]));
     }
 
     /**
@@ -228,13 +275,39 @@ public class Main extends Application {
         }
     }
 
+    private void drawYellowEnemy(GraphicsContext graphicsContext) {
+        if (yellow.isGameOver()) {
+            return;
+        }
+        Point yellowHead = this.yellow.getSnakeHead();
+        graphContext.setFill(Color.web("FFFF00"));
+        graphContext.fillRoundRect(yellowHead.getX() * squareSize, yellowHead.getY() * squareSize,
+            squareSize - 1, squareSize - 1, 50, 50);
+
+        List<Point> yellowBody = yellow.getSnakeBody();
+        for (int i = 1; i < yellowBody.size(); i++) {
+            graphContext.fillRoundRect(yellowBody.get(i).getX() * squareSize,
+                yellowBody.get(i).getY() * squareSize, squareSize - 1,
+                squareSize - 1, 50, 50);
+        }
+    }
+
     /**
      * Draws the score on the game screen.
      */
     private void drawScore() {
-        graphContext.setFill(Color.WHITE);
+        graphContext.setFill(Color.BLUE);
         graphContext.setFont(new Font("Digital-7", 35));
         graphContext.fillText("Score: " + snake.getScore(), 10, 35);
+    }
+    
+    private void drawYellowScore() {
+        if (yellow.isGameOver()) {
+            return;
+        }
+        graphContext.setFill(Color.YELLOW);
+        graphContext.setFont(new Font("Digital-7", 35));
+        graphContext.fillText("Score: " + yellow.getScore(), 10 + 16 * squareSize, 35);
     }
 
     /**
