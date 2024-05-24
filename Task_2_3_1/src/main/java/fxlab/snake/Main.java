@@ -1,6 +1,8 @@
 package fxlab.snake;
 
+import fxlab.snake.model.BotSnake;
 import fxlab.snake.model.Food;
+import fxlab.snake.model.Player;
 import fxlab.snake.model.Point;
 import fxlab.snake.model.Snake;
 
@@ -42,6 +44,12 @@ public class Main extends Application {
     private List<Image> gameFoodImages; // The image of the food
     private Snake snake; // The snake object
     private List<Food> gameFood; // The food object
+    private List<Player> enemies;
+    private BotSnake red;
+    private List<Player> redEnemies;
+    private BotSnake yellow;
+    private List<Player> yellowEnemies;
+
 
     /**
      * Starts the game and initializes the game window and objects.
@@ -65,15 +73,27 @@ public class Main extends Application {
         primaryStage.setTitle("Snake");
         primaryStage.show();
 
+        // Enemies
+        this.enemies = new ArrayList<Player>();
+        this.redEnemies = new ArrayList<Player>();
+        this.red = new BotSnake(columns, rows, 5, 0, 0);
+        this.enemies.add(red);
+        if (this.enemies.isEmpty()) {
+            System.out.println("\n\nHHHHHHHHHHHHHHHHHHHH\n");
+            System.exit(-1);
+        }
+
         // Initialization of graphics context and game objects
         graphContext = canvas.getGraphicsContext2D();
         snake = new Snake(columns, rows);
+        this.redEnemies.add(snake);
         gameFoodImages = new ArrayList<Image>(gameFoodCnt);
         gameFood = new ArrayList<Food>(gameFoodCnt);
         for (int foodId = 0; foodId < gameFoodCnt; foodId++) {
             gameFoodImages.add(new Image(sourceFoodImages[(int) (Math.random() * foodCnt)]));
             Food pieceFood = new Food(columns, rows);
             pieceFood.generateFood(snake, gameFood);
+            //pieceFood.generateFood(snake, gameFood, enemies);
             gameFood.add(pieceFood);
         }
 
@@ -119,10 +139,14 @@ public class Main extends Application {
         drawBackground(graphContext);
         drawFood(graphContext);
         drawSnake(graphContext);
+        drawRedEnemy(graphContext);
         drawScore();
 
+        Point redTarget = movePoint(snake.getSnakeHead(), snake.getDirection(), 1);
+        this.red.move(redTarget, redEnemies);
+
         // Move snake and check for food
-        snake.move();
+        snake.move(enemies);
         int eatenFoodId = snake.isEatenFood(gameFood);
         if (eatenFoodId >= 0) {
             gameFood.remove(eatenFoodId);
@@ -177,13 +201,30 @@ public class Main extends Application {
         Point snakeHead = snake.getSnakeHead();
         graphContext.setFill(Color.web("4674E9"));
         graphContext.fillRoundRect(snakeHead.getX() * squareSize, snakeHead.getY() * squareSize,
-            squareSize - 1, squareSize - 1, 35, 35);
+            squareSize - 1, squareSize - 1, 38, 38);
 
         List<Point> snakeBody = snake.getSnakeBody();
         for (int i = 1; i < snakeBody.size(); i++) {
             graphContext.fillRoundRect(snakeBody.get(i).getX() * squareSize,
                 snakeBody.get(i).getY() * squareSize, squareSize - 1,
-                squareSize - 1, 20, 20);
+                squareSize - 1, 25, 25);
+        }
+    }
+
+    private void drawRedEnemy(GraphicsContext graphicsContext) {
+        if (red.isGameOver()) {
+            return;
+        }
+        Point redHead = this.red.getSnakeHead();
+        graphContext.setFill(Color.web("800000"));
+        graphContext.fillRoundRect(redHead.getX() * squareSize, redHead.getY() * squareSize,
+            squareSize - 1, squareSize - 1, 10, 10);
+
+        List<Point> redBody = red.getSnakeBody();
+        for (int i = 1; i < redBody.size(); i++) {
+            graphContext.fillRoundRect(redBody.get(i).getX() * squareSize,
+                redBody.get(i).getY() * squareSize, squareSize - 1,
+                squareSize - 1, 42, 42);
         }
     }
 
@@ -203,5 +244,21 @@ public class Main extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+    }
+
+    private Point movePoint(Point point, Direction dir, int times) {
+        Point resPoint = new Point(point.getX(), point.getY());
+        if (dir == null) {
+            return null;
+        } else if (dir == Direction.RIGHT) {
+            resPoint.setX((point.getX() + times) % columns);
+        } else if (dir == Direction.LEFT) {
+            resPoint.setX((point.getX() - times + columns) % columns);
+        } else if (dir == Direction.UP) {
+            resPoint.setY((point.getY() - times + rows) % rows);
+        } else if (dir == Direction.DOWN) {
+            resPoint.setY((point.getY() + times) % rows);
+        }
+        return resPoint;
     }
 }

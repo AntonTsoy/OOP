@@ -5,7 +5,7 @@ package fxlab.snake;
  */
 public enum Direction {
     RIGHT, // Right direction
+    UP,
     LEFT, // Left direction
-    UP, // Up direction
     DOWN; // Down direction
 }
