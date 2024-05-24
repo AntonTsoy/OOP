@@ -178,6 +178,9 @@ implements <a href="Player.html" title="interface in fxlab.snake.model">Player</
 <dt>Parameters:</dt>
 <dd><code>cols</code> - The number of columns.</dd>
 <dd><code>rows</code> - The number of rows.</dd>
+<dd><code>startLength</code> - The initial length of the snake.</dd>
+<dd><code>startX</code> - The initial X position of the snake.</dd>
+<dd><code>startY</code> - The initial Y position of the snake.</dd>
 </dl>
 </section>
 </li>
@@ -213,7 +216,7 @@ implements <a href="Player.html" title="interface in fxlab.snake.model">Player</
 <dt>Parameters:</dt>
 <dd><code>gameFood</code> - The list of food objects.</dd>
 <dt>Returns:</dt>
-<dd>true if the snake has eaten the food, false otherwise.</dd>
+<dd>the index of the food eaten, or -1 if no food is eaten.</dd>
 </dl>
 </section>
 </li>
@@ -223,6 +226,11 @@ implements <a href="Player.html" title="interface in fxlab.snake.model">Player</
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">move</span><wbr><span class="parameters">(<a href="Point.html" title="class in fxlab.snake.model">Point</a>&nbsp;target,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Player.html" title="interface in fxlab.snake.model">Player</a>&gt;&nbsp;enemies)</span></div>
 <div class="block">Moves the snake one step in its current direction.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>target</code> - The target point to move towards.</dd>
+<dd><code>enemies</code> - The list of enemy players.</dd>
+</dl>
 </section>
 </li>
 <li>
