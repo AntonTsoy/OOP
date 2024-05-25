@@ -4,14 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.ArrayList;
 import fxlab.snake.model.BotSnake;
-import fxlab.snake.model.Player;
-import java.util.List;
 import fxlab.snake.model.Food;
 import fxlab.snake.model.Point;
-
-import org.junit.jupiter.api.BeforeEach;
+import fxlab.snake.model.Player;
+import fxlab.snake.model.Snake;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 /**

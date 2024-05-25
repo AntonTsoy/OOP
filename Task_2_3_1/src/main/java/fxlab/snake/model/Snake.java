@@ -73,7 +73,7 @@ public class Snake implements Player {
     @Override
     public int isEatenFood(List<Food> gameFood) {
         Point foodCoords;
-        for (int foodId = 0; foodId < gameFood.size(); foodId++){
+        for (int foodId = 0; foodId < gameFood.size(); foodId++) {
             foodCoords = gameFood.get(foodId).getFood();
 
             if (snakeHead.getX() == foodCoords.getX() && snakeHead.getY() == foodCoords.getY()) {
@@ -179,7 +179,7 @@ public class Snake implements Player {
             List<Point> playerBody = player.getSnakeBody();
             for (int bodyPointId = 0; bodyPointId < playerBody.size(); bodyPointId++) {
                 if (position.getX() == playerBody.get(bodyPointId).getX()
-                && position.getY() == playerBody.get(bodyPointId).getY()) {
+                    && position.getY() == playerBody.get(bodyPointId).getY()) {
                     return true;
                 }
             }
