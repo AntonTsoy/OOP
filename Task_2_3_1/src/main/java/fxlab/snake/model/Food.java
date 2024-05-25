@@ -1,5 +1,6 @@
 package fxlab.snake.model;
 
+import java.util.List;
 
 /**
  * Represents the food in the game.
@@ -22,14 +23,14 @@ public class Food {
         this.rows = rows; 
         this.food = new Point(-1, -1); 
     }
-    
+
     /**
      * Generates a new position for the food that does not coincide with the snake's position.
      *
      * @param snake The snake object.
      */
     public void generateFood(Snake snake) {
-        start: 
+        start:
         while (true) {
             this.food.setX((int) (Math.random() * this.columns));
             this.food.setY((int) (Math.random() * this.rows));
@@ -37,6 +38,42 @@ public class Food {
             for (Point snakePoint : snake.getSnakeBody()) {
                 if (snakePoint.getX() == food.getX() && snakePoint.getY() == food.getY()) {
                     continue start; 
+                }
+            }
+            break; 
+        }
+    }
+
+    /**
+     * Generates a new position for the food that does not coincide with the snake's and another
+     * food position.
+     *
+     * @param snake The snake object.
+     * @param gameFood The food list of the game.
+     * @param otherPlayers The list of other players in the game.
+     */
+    public void generateFood(Snake snake, List<Food> gameFood, List<Player> otherPlayers) {
+        start:
+        while (true) {
+            this.food.setX((int) (Math.random() * this.columns));
+            this.food.setY((int) (Math.random() * this.rows));
+
+            for (Point snakePoint : snake.getSnakeBody()) {
+                if (snakePoint.getX() == food.getX() && snakePoint.getY() == food.getY()) {
+                    continue start; 
+                }
+            }
+            for (Food pieceFood : gameFood) {
+                if (pieceFood.getFood().getX() == food.getX() 
+                        && pieceFood.getFood().getY() == food.getY()) {
+                    continue start;
+                }
+            }
+            for (Player player : otherPlayers) {
+                for (Point playerPoint : player.getSnakeBody()) {
+                    if (playerPoint.getX() == food.getX() && playerPoint.getY() == food.getY()) {
+                        continue start;
+                    }
                 }
             }
             break; 

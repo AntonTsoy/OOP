@@ -3,9 +3,13 @@ package fxlab.snake;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import fxlab.snake.model.BotSnake;
 import fxlab.snake.model.Food;
+import fxlab.snake.model.Player;
 import fxlab.snake.model.Point;
 import fxlab.snake.model.Snake;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -35,5 +39,19 @@ public class TestFood {
 
         assertTrue(foodPosition.getX() >= 0 && foodPosition.getX() < 10);
         assertTrue(foodPosition.getY() >= 0 && foodPosition.getY() < 10);
+    }
+
+    @Test
+    public void testBigGeneratingOfFood() {
+        Snake mainSnake = new Snake(2, 2);
+        List<Player> othersSnakes = new ArrayList<Player>();
+        othersSnakes.add(new BotSnake(2, 2, 1, 0, 0));
+        List<Food> gameFood = new ArrayList<>();
+        Food oldFood = new Food(2, 2);
+        oldFood.generateFood(mainSnake, gameFood, othersSnakes);
+        gameFood.add(oldFood);
+        Food newFood = new Food(2, 2);
+        newFood.generateFood(mainSnake, gameFood, othersSnakes);
+        assertNotEquals(0, newFood.getFood().getX() + newFood.getFood().getY());
     }
 }

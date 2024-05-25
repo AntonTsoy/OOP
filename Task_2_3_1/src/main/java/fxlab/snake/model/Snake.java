@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Represents the snake in the game.
  */
-public class Snake {
+public class Snake implements Player {
 
     private static final int startLength = 1;
 
@@ -42,6 +42,7 @@ public class Snake {
      *
      * @return true if the game is over, false otherwise.
      */
+    @Override
     public boolean isGameOver() {
         return !this.gameContinue;
     }
@@ -64,6 +65,28 @@ public class Snake {
     }
 
     /**
+     * Checks if the snake has eaten the food.
+     *
+     * @param gameFood The list of food objects.
+     * @return true if the snake has eaten the food, false otherwise.
+     */
+    @Override
+    public int isEatenFood(List<Food> gameFood) {
+        Point foodCoords;
+        for (int foodId = 0; foodId < gameFood.size(); foodId++) {
+            foodCoords = gameFood.get(foodId).getFood();
+
+            if (snakeHead.getX() == foodCoords.getX() && snakeHead.getY() == foodCoords.getY()) {
+                snakeBody.add(new Point(-1, -1));
+                this.score += 5;
+                return foodId;
+            }
+        }
+
+        return -1;
+    }
+
+    /**
      * Changes the direction of the snake.
      *
      * @param newDirection The new direction.
@@ -83,7 +106,12 @@ public class Snake {
     /**
      * Moves the snake one step in its current direction.
      */
-    public void move() {
+    public void move(List<Player> enemies) {
+        checkGame(enemies);
+        if (this.dir == null) {
+            return;
+        }
+
         for (int i = snakeBody.size() - 1; i >= 1; i--) {
             this.snakeBody.get(i).setX(snakeBody.get(i - 1).getX());
             this.snakeBody.get(i).setY(snakeBody.get(i - 1).getY());
@@ -105,7 +133,6 @@ public class Snake {
             default:
                 break;
         }
-        checkGame();
     }
 
     /**
@@ -113,6 +140,7 @@ public class Snake {
      *
      * @return The position of the snake's head.
      */
+    @Override
     public Point getSnakeHead() {
         return this.snakeHead;
     }
@@ -122,6 +150,7 @@ public class Snake {
      *
      * @return The list of points representing the snake's body.
      */
+    @Override
     public List<Point> getSnakeBody() {
         return this.snakeBody;
     }
@@ -131,17 +160,43 @@ public class Snake {
      *
      * @return The current score of the snake.
      */
+    @Override
     public int getScore() {
         return this.score;
     }
 
-    private void checkGame() {
+    /**
+     * Function return a snake moving direction.
+     *
+     * @return snake direction.
+     */
+    public Direction getDirection() {
+        return this.dir;
+    }
+
+    private boolean isBadPosition(Point position, List<Player> players) {
+        for (Player player : players) {
+            List<Point> playerBody = player.getSnakeBody();
+            for (int bodyPointId = 0; bodyPointId < playerBody.size(); bodyPointId++) {
+                if (position.getX() == playerBody.get(bodyPointId).getX()
+                    && position.getY() == playerBody.get(bodyPointId).getY()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private void checkGame(List<Player> enemies) {
         for (int i = 1; i < snakeBody.size(); i++) {
             if (snakeHead.getX() == snakeBody.get(i).getX() 
                 && snakeHead.getY() == snakeBody.get(i).getY()) {
                 this.gameContinue = false;
                 return;
             }
+        }
+        if (isBadPosition(snakeHead, enemies)) {
+            this.gameContinue = false;
         }
     }
 
