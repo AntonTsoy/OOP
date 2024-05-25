@@ -5,7 +5,6 @@ import fxlab.snake.model.Food;
 import fxlab.snake.model.Player;
 import fxlab.snake.model.Point;
 import fxlab.snake.model.Snake;
-
 import java.util.ArrayList;
 import java.util.List;
 import javafx.animation.Animation;
@@ -78,7 +77,7 @@ public class Main extends Application {
         this.redEnemies = new ArrayList<Player>();
         this.yellowEnemies = new ArrayList<Player>();
         this.red = new BotSnake(columns, rows, 5, 0, 0);
-        this.yellow = new BotSnake(columns, rows, 1, columns-1, rows-1);
+        this.yellow = new BotSnake(columns, rows, 1, columns - 1, rows - 1);
         this.enemies.add(red);
         this.enemies.add(yellow);
 

@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import fxlab.snake.model.BotSnake;
 import fxlab.snake.model.Food;
-import fxlab.snake.model.Point;
 import fxlab.snake.model.Player;
+import fxlab.snake.model.Point;
 import fxlab.snake.model.Snake;
 import java.util.ArrayList;
 import java.util.List;

@@ -1,8 +1,8 @@
 package fxlab.snake.model;
 
+import fxlab.snake.Direction;
 import java.util.ArrayList;
 import java.util.List;
-import fxlab.snake.Direction;
 
 /**
  * Represents the snake in the game.
