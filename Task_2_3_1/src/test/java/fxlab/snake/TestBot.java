@@ -10,7 +10,6 @@ import fxlab.snake.model.Player;
 import fxlab.snake.model.Point;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
