@@ -116,4 +116,20 @@ public class TestSnake {
         snake.move(enemies);
         assertTrue(snake.isGameOver());
     }
+
+    @Test
+    public void testAfterExtraTask() {
+        Snake newPlayer = new Snake(1, 1);
+        newPlayer.move(new ArrayList<Player>());
+        assertEquals(null, newPlayer.getDirection());
+    }
+
+    @Test
+    public void testEatingBigLunch() {
+        List<Food> gameFood = new ArrayList<>();
+        Snake player = new Snake(2, 2);
+        gameFood.add(new Food(2, 2));
+        gameFood.get(0).generateFood(player);
+        assertEquals(-1, player.isEatenFood(gameFood));
+    }
 }
