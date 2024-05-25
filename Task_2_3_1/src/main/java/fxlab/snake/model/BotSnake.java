@@ -89,13 +89,11 @@ public class BotSnake implements Player {
             return;
         }
 
-        // Двигаем всю змею, кроме головы.
         for (int i = snakeBody.size() - 1; i >= 1; i--) {
             this.snakeBody.get(i).setX(snakeBody.get(i - 1).getX());
             this.snakeBody.get(i).setY(snakeBody.get(i - 1).getY());
         }
 
-        // Составили список возможных вариантов куда можно сдвинуть голову.
         int headX = this.snakeHead.getX();
         int headY = this.snakeHead.getY();
         List<Point> possibleWays = new ArrayList<Point>();
