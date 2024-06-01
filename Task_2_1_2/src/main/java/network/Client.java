@@ -8,6 +8,7 @@ import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.Socket;
+import java.util.Objects;
 
 
 public class Client {
@@ -16,11 +17,13 @@ public class Client {
     private final String multicastAddress;
     private final int udpPort;
     private final String serverAddress;
+    private final String addition;
 
-    public Client(String multicastAddress, int udpPort, String serverAddress) {
+    public Client(String multicastAddress, int udpPort, String serverAddress, String addition) {
         this.multicastAddress = multicastAddress;
         this.udpPort = udpPort;
         this.serverAddress = serverAddress;
+        this.addition = addition;
     }
 
     @SuppressWarnings("deprecation")
@@ -37,23 +40,52 @@ public class Client {
         return received;
     }
 
-    public void waitPing() throws IOException {
-        String multicastMessage = multicastRead();
+    public void waitPing() {
+        String multicastMessage;
+        try {
+            multicastMessage = multicastRead();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
         int tcpPort = Integer.parseInt(multicastMessage);
-        while (true) {
-            Socket clientSocket = new Socket("localhost", tcpPort);
-            BufferedReader reader = new BufferedReader(
-                new InputStreamReader(clientSocket.getInputStream()));
-            String serverMessage = reader.readLine();
-            
-            if (serverMessage == "ping") {
-                PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true);
-                writer.println("pong");
-                writer.close();
-            }
+        System.out.println("Client will connect with port: " + tcpPort);
 
-            reader.close();
+        Socket clientSocket;
+        try {
+            clientSocket = new Socket(serverAddress, tcpPort);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+        BufferedReader reader;
+        String serverMessage;
+        try {
+            reader = new BufferedReader(
+                new InputStreamReader(clientSocket.getInputStream()));
+            serverMessage = reader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        System.out.println("Message from server: " + serverMessage);
+        if (Objects.equals(serverMessage, "ping")) {
+            PrintWriter writer;
+            try {
+                writer = new PrintWriter(clientSocket.getOutputStream(), true);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
+            }
+            writer.println("pong" + addition);
+        }
+
+        try {
             clientSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
         }
     }
 }
