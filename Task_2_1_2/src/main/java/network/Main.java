@@ -13,34 +13,15 @@ public class Main {
         client1.start();
         client2.start();
         client3.start();
-        Thread serverThread = new Thread(new ServerTask("Some Ip address", 8080, "230.0.0.0", 12345));
-        serverThread.start();
-        serverThread.join();
+        Thread.sleep(1000);
+        Server server = new Server("Some Ip address", 8080, "230.0.0.0", 12345);
+        server.broadcastPing(3);
         client1.join();
         client2.join();
         client2.join();
         System.out.println("Finish");
     }
 
-    private static class ServerTask implements Runnable {
-
-        private final Server server;
-
-        public ServerTask(String ipAddress, int tcpPort, String multicastAddress, int udpPort) throws SocketException {
-            this.server = new Server(ipAddress, tcpPort, multicastAddress, udpPort);
-        }
-
-        @Override
-        public void run() {
-            try {
-                Thread.sleep(1000);
-                System.out.println("Answer from client: " + server.ping());
-            } catch (InterruptedException e) {
-                System.out.println("Sys_message: Server was interrupted;\n");
-                e.printStackTrace();
-            }
-        }
-    }
 
     private static class ClientTask implements Runnable {
 

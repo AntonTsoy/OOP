@@ -39,29 +39,47 @@ public class Server {
             DatagramPacket packet = new DatagramPacket(buf, buf.length, group, this.udpPort);
             socket.send(packet);
             socket.close();
+            System.out.println("Server made BROADCAST package sending;");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public String ping() {
+    public Runnable pingNewClient(ServerSocket serverSocket) {
+        Runnable pingTask = () -> {
+            try {
+                Socket clientSocket = serverSocket.accept();
+                System.out.println("Server accepting new connection;");
+                PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true);
+                writer.println("ping");
+                System.out.println("Server sent new ping-connection message;");
+
+                BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(clientSocket.getInputStream()));
+                String clientMessage = reader.readLine();
+                System.out.println("[" + clientSocket + "]: " + clientMessage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        };
+        return pingTask;
+    }
+
+    public void broadcastPing(int connectionsNumber) throws InterruptedException {
         try {
             multicastPublish(Integer.toString(this.tcpPort));
-            ServerSocket serverSocket;
-            serverSocket = new ServerSocket(this.tcpPort);
-            Socket clientSocket;
-            clientSocket = serverSocket.accept();
-            PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true);
-            writer.println("ping");
-
-            BufferedReader reader = new BufferedReader(
-                new InputStreamReader(clientSocket.getInputStream()));
-            String clientMessage = reader.readLine();
+            ServerSocket serverSocket = new ServerSocket(this.tcpPort);
+            Thread[] connections = new Thread[connectionsNumber];
+            for (int connectId = 0; connectId < connectionsNumber; connectId++) {
+                connections[connectId] = new Thread(pingNewClient(serverSocket));
+                connections[connectId].start();
+            }
+            for (int connectId = 0; connectId < connectionsNumber; connectId++) {
+                connections[connectId].join();
+            }
             serverSocket.close();
-            return clientMessage;
         } catch (IOException e) {
             e.printStackTrace();
-            return "NOTHING";
         }
     }
 }

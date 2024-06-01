@@ -34,6 +34,7 @@ public class Client {
         byte[] buf = new byte[maxHostAddressLength];
         DatagramPacket packet = new DatagramPacket(buf, buf.length);
         socket.receive(packet);
+        System.out.println(addition + ": Client receive broadcast datagram packet;");
         String received = new String(packet.getData(), 0, packet.getLength());
         socket.leaveGroup(group);
         socket.close();
@@ -41,51 +42,27 @@ public class Client {
     }
 
     public void waitPing() {
-        String multicastMessage;
         try {
-            multicastMessage = multicastRead();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return;
-        }
-        int tcpPort = Integer.parseInt(multicastMessage);
-        System.out.println("Client will connect with port: " + tcpPort);
+            String multicastMessage = multicastRead();
+            System.out.println(addition + ": Client receives TCP port number from UDP broadcast message");
+            int tcpPort = Integer.parseInt(multicastMessage);
 
-        Socket clientSocket;
-        try {
-            clientSocket = new Socket(serverAddress, tcpPort);
+            Socket clientSocket = new Socket(serverAddress, tcpPort);
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(clientSocket.getInputStream()));
+            String serverMessage = reader.readLine();
+
+            System.out.println("[" + clientSocket + "] client receives: " + serverMessage);
+            PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true);
+            if (Objects.equals(serverMessage, "ping")) {
+                writer.println("pong" + addition);
+            }
+
+            reader.close();
+            writer.close();
+            clientSocket.close();
         } catch (Exception e) {
             e.printStackTrace();
-            return;
-        }
-        BufferedReader reader;
-        String serverMessage;
-        try {
-            reader = new BufferedReader(
-                new InputStreamReader(clientSocket.getInputStream()));
-            serverMessage = reader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return;
-        }
-
-        System.out.println("Message from server: " + serverMessage);
-        if (Objects.equals(serverMessage, "ping")) {
-            PrintWriter writer;
-            try {
-                writer = new PrintWriter(clientSocket.getOutputStream(), true);
-            } catch (IOException e) {
-                e.printStackTrace();
-                return;
-            }
-            writer.println("pong" + addition);
-        }
-
-        try {
-            clientSocket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return;
         }
     }
 }
