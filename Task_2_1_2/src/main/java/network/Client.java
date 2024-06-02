@@ -44,6 +44,9 @@ public class Client {
     }
 
 
+    
+
+
     public void waitPing() {
         try {
             String multicastMessage = multicastRead();
