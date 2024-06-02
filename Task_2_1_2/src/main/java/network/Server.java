@@ -18,6 +18,7 @@ public class Server {
     private final String multicastAddress;
     private final int udpPort;
 
+
     public Server(String ipAddress, int tcpPort, String multicastAddress, int udpPort) {
         this.host = ipAddress;
         this.tcpPort = tcpPort;
@@ -25,9 +26,11 @@ public class Server {
         this.udpPort = udpPort;
     }
 
+
     public boolean hasUnsimpleNumber(List<Integer> checkingList) {
         return false;
     }
+
 
     private void multicastPublish(String message) {
         try {
@@ -45,6 +48,7 @@ public class Server {
         }
     }
 
+    
     public Runnable pingNewClient(ServerSocket serverSocket) {
         Runnable pingTask = () -> {
             try {
@@ -58,12 +62,16 @@ public class Server {
                     new InputStreamReader(clientSocket.getInputStream()));
                 String clientMessage = reader.readLine();
                 System.out.println("[" + clientSocket + "]: " + clientMessage);
+
+                writer.close();
+                reader.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         };
         return pingTask;
     }
+
 
     public void broadcastPing(int connectionsNumber) throws InterruptedException {
         try {
