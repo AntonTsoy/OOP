@@ -16,6 +16,9 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 
+/**
+ * Класс сервера.
+ */
 public class Server {
     private final int tcpPort;
     private final String multicastAddress;
@@ -39,6 +42,15 @@ public class Server {
         }
     }
 
+    /**
+     * Функция исполняется в основном потоке. Создает побочные потоки: 1) поиска новых подключений
+     * до тех пор, пока не кончатся задачи; 2) потоки для взаимодействия с клиентами.
+     *
+     * @param numberChunks это задачи, которые должны решить потоки-клиенты (рабочие)
+     * @return результат. Булевое значение есть ли в коллекции епростое число.
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public boolean hasUnsimpleNumber(List<String> numberChunks)
             throws IOException, InterruptedException {
 
@@ -75,7 +87,7 @@ public class Server {
         Thread task = new Thread(() -> {
             try {
                 while (!Thread.currentThread().isInterrupted()) {
-                    multicastPublish(Integer.toString(this.tcpPort));
+                    // multicastPublish(Integer.toString(this.tcpPort));
                     if (clientTasks.isEmpty()) {
                         break;
                     }

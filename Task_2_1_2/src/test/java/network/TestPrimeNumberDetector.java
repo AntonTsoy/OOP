@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions;
 
 
 /**
- * Класс для тестирования работы Детектеров.
+ * Класс для тестирования работы Детектера.
  */
 public class TestPrimeNumberDetector {
 

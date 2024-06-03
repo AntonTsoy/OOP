@@ -4,10 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * Класс для парсинга и обработки строк/коллекций с числами.
+ */
 public class Parser {
 
     public static int optimalTaskLength = 6;
     
+
+    /**
+     * Из строки с числами получаем список чисел.
+     *
+     * @param numsString строка чисел.
+     * @return коллекция чисел.
+     */
     public static List<Integer> parseStrToIntegerList(String numsString) {
         String[] numStrings = numsString.split(" ");
         List<Integer> integerList = new ArrayList<Integer>();
@@ -17,6 +27,12 @@ public class Parser {
         return integerList;
     }
 
+    /**
+     * Из списка числе делает список строк этих чисел, разделенных пробелами.
+     *
+     * @param numbers коллекция чисел.
+     * @return список строк. Мы делим колеекцию чисел.
+     */
     public static List<String> makeTaskListFromIntegerList(List<Integer> numbers) {
         List<String> taskList = new ArrayList<>();
         int chunksNumber = numbers.size() / optimalTaskLength;

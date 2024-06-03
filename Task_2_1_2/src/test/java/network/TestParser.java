@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
+/**
+ * Класс для тестирования парсинга и распарсинга числовой коллекции.
+ */
 public class TestParser {
 
     @Test

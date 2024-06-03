@@ -51,6 +51,11 @@ public class Client {
     }
 
 
+    /**
+     * Функция создает поток клиента, который выполныет задачу полученную по TCP соединению.
+     *
+     * @return поток клиента, который выполняет задачу.
+     */
     public Thread completeTask() {
         Thread task = new Thread(() -> {
             try (Socket clientSocket = setTcpConnection();
