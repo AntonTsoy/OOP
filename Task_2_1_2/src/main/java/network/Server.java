@@ -17,14 +17,12 @@ import java.util.concurrent.BlockingQueue;
 
 
 public class Server {
-    // private final String host;
     private final int tcpPort;
     private final String multicastAddress;
     private final int udpPort;
 
 
-    public Server(String ipAddress, int tcpPort, String multicastAddress, int udpPort) {
-        // this.host = ipAddress;
+    public Server(int tcpPort, String multicastAddress, int udpPort) {
         this.tcpPort = tcpPort;
         this.multicastAddress = multicastAddress;
         this.udpPort = udpPort;

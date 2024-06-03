@@ -17,7 +17,6 @@ public class Client {
     private final int udpPort;
     private final String serverAddress;
 
-
     public Client(String multicastAddress, int udpPort, String serverAddress) {
         this.multicastAddress = multicastAddress;
         this.udpPort = udpPort;
@@ -27,17 +26,15 @@ public class Client {
 
     @SuppressWarnings("deprecation")
     private String multicastRead() {
-        try {
-            MulticastSocket socket = new MulticastSocket(this.udpPort);
+        try (MulticastSocket socket = new MulticastSocket(this.udpPort)) {
             InetAddress group = InetAddress.getByName(this.multicastAddress);
             socket.joinGroup(group);
-            byte[] buf = new byte[maxHostAddressLength];
-            DatagramPacket packet = new DatagramPacket(buf, buf.length);
-            System.out.println(Thread.currentThread().getId() + " client wants receiving multicast;"); 
+            byte[] buffer = new byte[maxHostAddressLength];
+            DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
+            System.out.println(Thread.currentThread().getId() + " client wants receiving multicast;");
             socket.receive(packet);
             String received = new String(packet.getData(), 0, packet.getLength());
             socket.leaveGroup(group);
-            socket.close();
             return received;
         } catch (IOException e) {
             e.printStackTrace();
@@ -46,59 +43,34 @@ public class Client {
     }
 
 
-    private Socket setTcpConnection() throws Exception {
-        String multicastMessage;
-        multicastMessage = multicastRead();
+    private Socket setTcpConnection() throws IOException {
+        String multicastMessage = multicastRead();
         int tcpPort = Integer.parseInt(multicastMessage);
-
-        Socket clientSocket;
-        clientSocket = new Socket(serverAddress, tcpPort);
-
-        return clientSocket;
+        return new Socket(serverAddress, tcpPort);
     }
 
 
     public Thread completeTask() {
         Thread task = new Thread(() -> {
-            Socket clientSocket;
-            try {
-                clientSocket = setTcpConnection();
-            } catch (Exception e) {
-                System.out.println(Thread.currentThread().getId() + " client couldn't connect - finishing.");
-                return;
-            }
+            try (Socket clientSocket = setTcpConnection();
+                 BufferedReader reader = new BufferedReader(new InputStreamReader(
+                    clientSocket.getInputStream()));
+                 PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true)) {
 
-            BufferedReader reader;
-            PrintWriter writer;
-            try {
-                reader = new BufferedReader(
-                    new InputStreamReader(clientSocket.getInputStream()));
-                writer = new PrintWriter(clientSocket.getOutputStream(), true);
-            } catch (IOException e) {
-                System.out.println(Thread.currentThread().getId() + " client couldn't open IO streams finishing.");
-                return;
-            }
-
-            while (true) {
-                String serverTask;
-                try {
-                    if (Thread.interrupted()) {
-                        System.out.println(Thread.currentThread().getId() + " client finishing.");
-                        return;
-                    }
-                    serverTask = reader.readLine();
+                while (!Thread.currentThread().isInterrupted()) {
+                    String serverTask = reader.readLine();
                     if (serverTask == null) {
                         System.out.println(Thread.currentThread().getId() + " client finishing.");
-                        return;
+                        break;
                     }
-                } catch (IOException e) {
-                    System.out.println("Client-thread: " + Thread.currentThread().getId() + " lost the connection.");
-                    return;
+                    System.out.println(Thread.currentThread().getId() + 
+                        " client sending task-answer;");
+                    writer.println(PrimeNumberDetector.isNotPrimeNumbers(
+                        Parser.parseStrToIntegerList(serverTask)));
                 }
-
-                System.out.println(Thread.currentThread().getId() + " client sending task-answer;");
-                writer.println(PrimeNumberDetector.isNotPrimeNumbers(
-                    Parser.parseStrToIntegerList(serverTask)));
+            } catch (IOException e) {
+                System.out.println(Thread.currentThread().getId() + 
+                    " client couldn't connect or lost connection - finishing.");
             }
         });
         task.start();
