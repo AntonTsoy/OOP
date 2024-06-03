@@ -19,14 +19,12 @@ public class Client {
     private final String serverAddress;
     private final String addition;
 
-
     public Client(String multicastAddress, int udpPort, String serverAddress, String addition) {
         this.multicastAddress = multicastAddress;
         this.udpPort = udpPort;
         this.serverAddress = serverAddress;
         this.addition = addition;
     }
-
 
     @SuppressWarnings("deprecation")
     private String multicastRead() throws IOException {
@@ -42,10 +40,6 @@ public class Client {
         socket.close();
         return received;
     }
-
-
-    
-
 
     public void waitPing() {
         try {
@@ -63,7 +57,9 @@ public class Client {
             if (Objects.equals(serverMessage, "ping")) {
                 writer.println("pong" + addition);
             }
-            
+
+            reader.close();
+            writer.close();
             clientSocket.close();
         } catch (Exception e) {
             e.printStackTrace();
