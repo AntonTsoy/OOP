@@ -32,7 +32,7 @@ public class Server {
      * @param multicastAddress рассылка
      * @param udpPort броадкаст
      */
-      public Server(int tcpPort, String multicastAddress, int udpPort) {
+    public Server(int tcpPort, String multicastAddress, int udpPort) {
         this.tcpPort = tcpPort;
         this.multicastAddress = multicastAddress;
         this.udpPort = udpPort;

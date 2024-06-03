@@ -11,7 +11,7 @@ public class PrimeNumberDetector {
     /**
      * Функция для проверки присутствия непростых чисел в массиве.
      *
-     * @param numbers is checking numbers.
+     * @param numList is checking numbers.
      * @return true if numbers are not all prime.
      */
     public static boolean isNotPrimeNumbers(List<Integer> numList) {

@@ -21,12 +21,12 @@ public class TestNetworkCommunication {
             Arrays.stream(arr).boxed().toList());
 
         Client client1 = new Client("230.0.0.0", 12345, "localhost");
-        Client client2 = new Client("230.0.0.0", 12345, "localhost");
-        Client client3 = new Client("230.0.0.0", 12345, "localhost");
-        Client client4 = new Client("230.0.0.0", 12345, "localhost");
         client1.completeTask();
+        Client client2 = new Client("230.0.0.0", 12345, "localhost");
         client2.completeTask();
+        Client client3 = new Client("230.0.0.0", 12345, "localhost");
         client3.completeTask();
+        Client client4 = new Client("230.0.0.0", 12345, "localhost");
         client4.completeTask();
         Server server = new Server(8080, "230.0.0.0", 12345);
         Assertions.assertTrue(server.hasUnsimpleNumber(tasks));
@@ -54,14 +54,14 @@ public class TestNetworkCommunication {
 
     @Test 
     public void testServerStableness() throws IOException, InterruptedException {
-        Client client1 = new Client("230.0.0.0", 12345, "localhost");
-        Client client2 = new Client("230.0.0.0", 12345, "localhost");
-        Client client3 = new Client("230.0.0.0", 12345, "localhost");
         List<Thread> clients = new ArrayList<Thread>();
+        Client client1 = new Client("230.0.0.0", 12345, "localhost");
         clients.add(client1.completeTask());
+        Client client2 = new Client("230.0.0.0", 12345, "localhost");
         clients.add(client2.completeTask());
+        Client client3 = new Client("230.0.0.0", 12345, "localhost");
         clients.add(client3.completeTask());
-
+        
         Thread interrupter = new Thread(() -> {
             for (Thread client : clients) {
                 client.interrupt();
