@@ -8,61 +8,100 @@ import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.Socket;
-import java.util.Objects;
 
 
 public class Client {
-    private static final int maxHostAddressLength = 22;
+    private static final int maxHostAddressLength = 1024;
 
     private final String multicastAddress;
     private final int udpPort;
     private final String serverAddress;
-    private final String addition;
 
-    public Client(String multicastAddress, int udpPort, String serverAddress, String addition) {
+
+    public Client(String multicastAddress, int udpPort, String serverAddress) {
         this.multicastAddress = multicastAddress;
         this.udpPort = udpPort;
         this.serverAddress = serverAddress;
-        this.addition = addition;
     }
+
 
     @SuppressWarnings("deprecation")
-    private String multicastRead() throws IOException {
-        MulticastSocket socket = new MulticastSocket(this.udpPort);
-        InetAddress group = InetAddress.getByName(this.multicastAddress);
-        socket.joinGroup(group);
-        byte[] buf = new byte[maxHostAddressLength];
-        DatagramPacket packet = new DatagramPacket(buf, buf.length);
-        socket.receive(packet);
-        System.out.println(addition + ": Client receive broadcast datagram packet;");
-        String received = new String(packet.getData(), 0, packet.getLength());
-        socket.leaveGroup(group);
-        socket.close();
-        return received;
+    private String multicastRead() {
+        try {
+            MulticastSocket socket = new MulticastSocket(this.udpPort);
+            InetAddress group = InetAddress.getByName(this.multicastAddress);
+            socket.joinGroup(group);
+            byte[] buf = new byte[maxHostAddressLength];
+            DatagramPacket packet = new DatagramPacket(buf, buf.length);
+            System.out.println(Thread.currentThread().getId() + " client wants receiving multicast;"); 
+            socket.receive(packet);
+            String received = new String(packet.getData(), 0, packet.getLength());
+            socket.leaveGroup(group);
+            socket.close();
+            return received;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
-    public void waitPing() {
-        try {
-            String multicastMessage = multicastRead();
-            System.out.println(addition + ": Client receives TCP port number from UDP broadcast message");
-            int tcpPort = Integer.parseInt(multicastMessage);
 
-            Socket clientSocket = new Socket(serverAddress, tcpPort);
-            BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(clientSocket.getInputStream()));
-            String serverMessage = reader.readLine();
+    private Socket setTcpConnection() throws Exception {
+        String multicastMessage;
+        multicastMessage = multicastRead();
+        int tcpPort = Integer.parseInt(multicastMessage);
 
-            System.out.println("[" + clientSocket + "] client receives: " + serverMessage);
-            PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true);
-            if (Objects.equals(serverMessage, "ping")) {
-                writer.println("pong" + addition);
+        Socket clientSocket;
+        clientSocket = new Socket(serverAddress, tcpPort);
+
+        return clientSocket;
+    }
+
+
+    public Thread completeTask() {
+        Thread task = new Thread(() -> {
+            Socket clientSocket;
+            try {
+                clientSocket = setTcpConnection();
+            } catch (Exception e) {
+                System.out.println(Thread.currentThread().getId() + " client couldn't connect - finishing.");
+                return;
             }
 
-            reader.close();
-            writer.close();
-            clientSocket.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            BufferedReader reader;
+            PrintWriter writer;
+            try {
+                reader = new BufferedReader(
+                    new InputStreamReader(clientSocket.getInputStream()));
+                writer = new PrintWriter(clientSocket.getOutputStream(), true);
+            } catch (IOException e) {
+                System.out.println(Thread.currentThread().getId() + " client couldn't open IO streams finishing.");
+                return;
+            }
+
+            while (true) {
+                String serverTask;
+                try {
+                    if (Thread.interrupted()) {
+                        System.out.println(Thread.currentThread().getId() + " client finishing.");
+                        return;
+                    }
+                    serverTask = reader.readLine();
+                    if (serverTask == null) {
+                        System.out.println(Thread.currentThread().getId() + " client finishing.");
+                        return;
+                    }
+                } catch (IOException e) {
+                    System.out.println("Client-thread: " + Thread.currentThread().getId() + " lost the connection.");
+                    return;
+                }
+
+                System.out.println(Thread.currentThread().getId() + " client sending task-answer;");
+                writer.println(PrimeNumberDetector.isNotPrimeNumbers(
+                    Parser.parseStrToIntegerList(serverTask)));
+            }
+        });
+        task.start();
+        return task;
     }
 }

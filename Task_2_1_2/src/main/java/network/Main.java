@@ -1,39 +1,31 @@
 package network;
 
-import java.net.SocketException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Main {
 
-    public static void main(String[] args) throws SocketException, InterruptedException {
-        System.out.println("Begin");
-        Thread client1 = new Thread(new ClientTask("230.0.0.0", 12345, "localhost", "1"));
-        Thread client2 = new Thread(new ClientTask("230.0.0.0", 12345, "localhost", "2"));
-        Thread client3 = new Thread(new ClientTask("230.0.0.0", 12345, "localhost", "3"));
-        client1.start();
-        client2.start();
-        client3.start();
-        Thread.sleep(1000);
+    public static void main(String[] args) throws IOException, InterruptedException {
+        List<Integer> arr = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            arr.add(i);
+        }
+        List<String> tasks = Parser.makeTaskListFromIntegerList(arr);
+
         Server server = new Server("Some Ip address", 8080, "230.0.0.0", 12345);
-        server.broadcastPing(3);
-        client1.join();
-        client2.join();
-        client2.join();
-        System.out.println("Finish");
-    }
-
-
-    private static class ClientTask implements Runnable {
-
-        private final Client client;
-
-        public ClientTask(String multicastAddress, int udpPort, String serverAddress, String addition) {
-            this.client = new Client(multicastAddress, udpPort, serverAddress, addition);
-        }
-
-        @Override
-        public void run() {
-            client.waitPing();
-        }
-    }
+        Client client1 = new Client("230.0.0.0", 12345, "localhost");
+        Client client2 = new Client("230.0.0.0", 12345, "localhost");
+        Client client3 = new Client("230.0.0.0", 12345, "localhost");
+        Client client4 = new Client("230.0.0.0", 12345, "localhost");
+        Client client5 = new Client("230.0.0.0", 12345, "localhost");
+        client1.completeTask();
+        client2.completeTask();
+        client3.completeTask();
+        client4.completeTask();
+        client5.completeTask();
+        System.out.println(Thread.currentThread().getId() + ":[main-thread] result = " + 
+            server.hasUnsimpleNumber(tasks));
+    }   
 }
