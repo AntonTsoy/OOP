@@ -20,7 +20,7 @@ public class PrimeNumberDetector {
         );
     }
 
-    public static boolean isPrimeNumber(int number) {
+    private static boolean isPrimeNumber(int number) {
         if (number < 2) {
             return false;
         } else {
