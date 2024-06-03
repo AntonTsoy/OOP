@@ -11,11 +11,13 @@ import java.net.Socket;
 
 
 public class Client {
+
     private static final int maxHostAddressLength = 1024;
 
     private final String multicastAddress;
     private final int udpPort;
     private final String serverAddress;
+
 
     public Client(String multicastAddress, int udpPort, String serverAddress) {
         this.multicastAddress = multicastAddress;

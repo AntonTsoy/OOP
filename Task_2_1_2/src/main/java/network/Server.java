@@ -32,7 +32,7 @@ public class Server {
             InetAddress group = InetAddress.getByName(this.multicastAddress);
             byte[] buffer = message.getBytes();
             DatagramPacket packet = new DatagramPacket(buffer, buffer.length, group, this.udpPort);
-            // Thread.sleep(1000);
+            Thread.sleep(800);
             socket.send(packet);
         } catch (Exception e) {
             e.printStackTrace();
@@ -42,7 +42,7 @@ public class Server {
     public boolean hasUnsimpleNumber(List<String> numberChunks)
             throws IOException, InterruptedException {
 
-        // multicastPublish(Integer.toString(this.tcpPort));
+        multicastPublish(Integer.toString(this.tcpPort));
         try (ServerSocket serverSocket = new ServerSocket(this.tcpPort)) {
             BlockingQueue<String> clientTasks = new ArrayBlockingQueue<>(numberChunks.size(),
                 false, numberChunks);
