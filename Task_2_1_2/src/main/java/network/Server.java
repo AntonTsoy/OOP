@@ -17,14 +17,14 @@ import java.util.concurrent.BlockingQueue;
 
 
 public class Server {
-    private final String host;
+    // private final String host;
     private final int tcpPort;
     private final String multicastAddress;
     private final int udpPort;
 
 
     public Server(String ipAddress, int tcpPort, String multicastAddress, int udpPort) {
-        this.host = ipAddress;
+        // this.host = ipAddress;
         this.tcpPort = tcpPort;
         this.multicastAddress = multicastAddress;
         this.udpPort = udpPort;
@@ -53,34 +53,30 @@ public class Server {
         ServerSocket serverSocket = new ServerSocket(this.tcpPort);
         ArrayBlockingQueue<String> clientTasks = new ArrayBlockingQueue<>(numberChunks.size(),
             false, numberChunks);
-        List<Boolean> clientAnswers = new ArrayList<Boolean>();
+        ArrayBlockingQueue<Boolean> clientAnswers = new ArrayBlockingQueue<>(numberChunks.size(),
+            false);
         List<Thread> clientHandlingThreads = new ArrayList<Thread>();
         Thread workerSearcher = takingNewConnections(serverSocket, clientTasks, clientAnswers, clientHandlingThreads);
 
+        Boolean resultAnswer = false;
         int expectedTaskAnswersNumber = clientTasks.size();
-        while (expectedTaskAnswersNumber != 0) {
-            synchronized (clientAnswers) {
-                clientAnswers.wait();
-                if (clientAnswers.stream().anyMatch(x -> x == true)) {
-                    break;
-                } else {
-                    expectedTaskAnswersNumber -= clientAnswers.size();
-                    clientAnswers.clear();
-                }
+        for (int answerId = 0; answerId < expectedTaskAnswersNumber; answerId++) {
+            if (clientAnswers.take()) {
+                resultAnswer = true;
+                break;
             }
         }
         workerSearcher.interrupt();
         serverSocket.close();
-
         stopAllThreads(clientHandlingThreads);
-        return clientAnswers.stream().anyMatch(x -> x == true);
+        return resultAnswer;
     }
 
 
     private Thread takingNewConnections(
         ServerSocket serverSocket, 
         BlockingQueue<String> clientTasks,
-        List<Boolean> clientAnswers,
+        BlockingQueue<Boolean> clientAnswers,
         List<Thread> clientHandlingThreads) {
 
         Thread task = new Thread(() -> {
@@ -98,7 +94,7 @@ public class Server {
                         System.out.println(Thread.currentThread().getId() + " server-searcher finishing.");
                         return;
                     }
-                    Thread.sleep(11);  // Это нужно, чтобы только что подключившийся клиент мог успеть взять задачу до того, как будет подключен следующий воркер.
+                    Thread.sleep(5);  // Это нужно, чтобы только что подключившийся клиент мог успеть взять задачу до того, как будет подключен следующий воркер.
                     Socket clientSocket = serverSocket.accept();
                     System.out.println(Thread.currentThread().getId() + " server accepted new connect;");
                     clientHandlingThreads.add(clientHandling(clientSocket, clientTasks, 
@@ -117,7 +113,7 @@ public class Server {
     private Thread clientHandling(
         Socket clientSocket, 
         BlockingQueue<String> clientTasks,
-        List<Boolean> clientAnswers) {
+        BlockingQueue<Boolean> clientAnswers) {
 
         Thread task = new Thread(() -> {
             PrintWriter writer;
@@ -187,10 +183,16 @@ public class Server {
                 }
 
                 System.out.println(Thread.currentThread().getId() + " server received a client answer;");
-                boolean resultAnswer = Objects.equals(clientResult, "true");
-                synchronized (clientAnswers) {
-                    clientAnswers.add(resultAnswer);
-                    clientAnswers.notify();
+                try {
+                    clientAnswers.put(Objects.equals(clientResult, "true"));
+                } catch (InterruptedException e) {
+                    System.out.println(Thread.currentThread().getId() + " server-handler finishing.");
+                    try {
+                        clientSocket.close();
+                    } catch (IOException error) {
+                        error.printStackTrace();
+                    }
+                    return;
                 }
             }
         });
