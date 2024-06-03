@@ -31,7 +31,6 @@ public class Client {
             socket.joinGroup(group);
             byte[] buffer = new byte[maxHostAddressLength];
             DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
-            System.out.println(Thread.currentThread().getId() + " client wants receiving multicast;");
             socket.receive(packet);
             String received = new String(packet.getData(), 0, packet.getLength());
             socket.leaveGroup(group);
@@ -57,23 +56,33 @@ public class Client {
                     clientSocket.getInputStream()));
                  PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true)) {
 
-                while (!Thread.currentThread().isInterrupted()) {
-                    String serverTask = reader.readLine();
-                    if (serverTask == null) {
-                        System.out.println(Thread.currentThread().getId() + " client finishing.");
-                        break;
-                    }
-                    System.out.println(Thread.currentThread().getId() + 
-                        " client sending task-answer;");
-                    writer.println(PrimeNumberDetector.isNotPrimeNumbers(
-                        Parser.parseStrToIntegerList(serverTask)));
-                }
+                performingTasksLoop(reader, writer);
             } catch (IOException e) {
                 System.out.println(Thread.currentThread().getId() + 
                     " client couldn't connect or lost connection - finishing.");
+                return;
             }
+            System.out.println(Thread.currentThread().getId() + " client finishing.");
         });
         task.start();
         return task;
+    }
+
+
+    private void performingTasksLoop(BufferedReader reader, PrintWriter writer)
+            throws IOException {
+
+        while (!Thread.currentThread().isInterrupted()) {
+            String serverTask = reader.readLine();
+            if (serverTask == null) {
+                return;
+            }
+            boolean answer = PrimeNumberDetector.isNotPrimeNumbers(
+                Parser.parseStrToIntegerList(serverTask));
+            writer.println(answer);
+            if (answer) {
+                return;
+            }
+        }
     }
 }
