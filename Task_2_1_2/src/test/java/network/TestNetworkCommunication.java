@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
-/*
+/**
  * Класс для тестирования сетевого взаимодействия.
  */
 public class TestNetworkCommunication {
@@ -17,7 +17,8 @@ public class TestNetworkCommunication {
     public void testWorkPresentation() throws IOException, InterruptedException {
         int[] arr = new int[]{997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997,
             997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 8, 10, 20, 30, 40};
-        List<String> tasks = Parser.makeTaskListFromIntegerList(Arrays.stream(arr).boxed().toList());
+        List<String> tasks = Parser.makeTaskListFromIntegerList(
+            Arrays.stream(arr).boxed().toList());
 
         Client client1 = new Client("230.0.0.0", 12345, "localhost");
         Client client2 = new Client("230.0.0.0", 12345, "localhost");

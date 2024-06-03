@@ -10,6 +10,9 @@ import java.net.MulticastSocket;
 import java.net.Socket;
 
 
+/**
+ * Класс клиента.
+ */
 public class Client {
 
     private static final int maxHostAddressLength = 1024;
@@ -19,6 +22,13 @@ public class Client {
     private final String serverAddress;
 
 
+    /**
+     * Конструктор для клинета. 
+     *
+     * @param multicastAddress рассылка
+     * @param udpPort броадкаст
+     * @param serverAddress адрес сервера
+     */
     public Client(String multicastAddress, int udpPort, String serverAddress) {
         this.multicastAddress = multicastAddress;
         this.udpPort = udpPort;
@@ -65,8 +75,8 @@ public class Client {
 
                 performingTasksLoop(reader, writer);
             } catch (IOException e) {
-                System.out.println(Thread.currentThread().getId() + 
-                    " client couldn't connect or lost connection - finishing.");
+                System.out.println(Thread.currentThread().getId()
+                    + " client couldn't connect or lost connection - finishing.");
                 return;
             }
             System.out.println(Thread.currentThread().getId() + " client finishing.");

@@ -24,7 +24,15 @@ public class Server {
     private final String multicastAddress;
     private final int udpPort;
 
-    public Server(int tcpPort, String multicastAddress, int udpPort) {
+
+    /**
+     * Конструктор сервера.
+     *
+     * @param tcpPort соединение с клиентом
+     * @param multicastAddress рассылка
+     * @param udpPort броадкаст
+     */
+      public Server(int tcpPort, String multicastAddress, int udpPort) {
         this.tcpPort = tcpPort;
         this.multicastAddress = multicastAddress;
         this.udpPort = udpPort;
@@ -48,8 +56,8 @@ public class Server {
      *
      * @param numberChunks это задачи, которые должны решить потоки-клиенты (рабочие)
      * @return результат. Булевое значение есть ли в коллекции епростое число.
-     * @throws IOException
-     * @throws InterruptedException
+     * @throws IOException непредвиденные исключения
+     * @throws InterruptedException непредвиденные исключения
      */
     public boolean hasUnsimpleNumber(List<String> numberChunks)
             throws IOException, InterruptedException {
