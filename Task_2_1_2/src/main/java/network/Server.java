@@ -43,7 +43,7 @@ public class Server {
             InetAddress group = InetAddress.getByName(this.multicastAddress);
             byte[] buffer = message.getBytes();
             DatagramPacket packet = new DatagramPacket(buffer, buffer.length, group, this.udpPort);
-            Thread.sleep(800);
+            Thread.sleep(1000);
             socket.send(packet);
         } catch (Exception e) {
             e.printStackTrace();
