@@ -23,11 +23,11 @@ public class TestNetworkCommunicationSecond {
         Client client4 = new Client("230.0.0.0", 12345, "localhost");
         client4.completeTask();
 
-        int[] arr = new int[]{997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997,
-            997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 8, 10, 20, 30, 40};
-        List<String> tasks = Parser.makeTaskListFromIntegerList(
-            Arrays.stream(arr).boxed().toList());
+        Integer[] arr = {997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997,
+            997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 8, 10, 20, 30, 40};
+        List<String> tasks = Parser.makeTaskListFromIntegerList(Arrays.asList(arr));
         Server server = new Server(8080, "230.0.0.0", 12345);
-        Assertions.assertTrue(server.hasUnsimpleNumber(tasks));
+        boolean result = server.hasUnsimpleNumber(tasks);
+        Assertions.assertTrue(result);
     }
 }
