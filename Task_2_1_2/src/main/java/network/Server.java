@@ -43,9 +43,9 @@ public class Server {
             InetAddress group = InetAddress.getByName(this.multicastAddress);
             byte[] buffer = message.getBytes();
             DatagramPacket packet = new DatagramPacket(buffer, buffer.length, group, this.udpPort);
-            Thread.sleep(1000);
+            // Thread.sleep(1000);
             socket.send(packet);
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -59,9 +59,8 @@ public class Server {
      * @throws IOException непредвиденные исключения
      * @throws InterruptedException непредвиденные исключения
      */
-    public boolean hasUnsimpleNumber(List<String> numberChunks)
+    public boolean hasUnsimpleNumber(List<String> numberChunks) 
             throws IOException, InterruptedException {
-
         multicastPublish(Integer.toString(this.tcpPort));
         try (ServerSocket serverSocket = new ServerSocket(this.tcpPort)) {
             BlockingQueue<String> clientTasks = new ArrayBlockingQueue<>(numberChunks.size(),
@@ -95,7 +94,7 @@ public class Server {
         Thread task = new Thread(() -> {
             try {
                 while (!Thread.currentThread().isInterrupted()) {
-                    // multicastPublish(Integer.toString(this.tcpPort));
+                    multicastPublish(Integer.toString(this.tcpPort));
                     if (clientTasks.isEmpty()) {
                         break;
                     }
