@@ -151,15 +151,18 @@ public class Server {
                 clientResult = reader.readLine();
                 if (clientResult == null) {
                     try {
+                        clientTasks.put(currentTask);
+                        System.out.println(Thread.currentThread().getId() + " server-handler back task.");
                         clientSocket.close();
-                    } catch (IOException e) {
+                    } catch (InterruptedException | IOException e) {
                         e.printStackTrace();
+                        return;
                     }
                 }
             } catch (IOException e) {
                 clientTasks.put(currentTask);
                 System.out.println(Thread.currentThread().getId() + " server-handler back task.");
-                break;
+                return;
             }
             clientAnswers.put(Objects.equals(clientResult, "true"));
         }
